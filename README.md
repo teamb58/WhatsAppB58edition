@@ -13,6 +13,8 @@ To include this code to WhatsApp you need to compile this project to an APK, and
 
 *SAVE/SHARE YOUR THEMES. 
 
+*OPTION TO CALL THROUGH SIM.
+
 *Privacy mods (Anti revoke, pause last seen,Hide status view, hide blue ticks, hide second ticks, etc)
 
 *Added open chat
