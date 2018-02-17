@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="image" type="id">false</item>
+    <item name="custom_view" type="id" />
+    <item name="conversation_contact_photo" type="id" />
+    <item name="transition_start" type="id" />
+    <item name="change_photo_progress_stub" type="id" />
+    <item name="up" type="id" />
+    <item name="back" type="id" />
+    <item name="conversation_contact" type="id" />
+    <item name="conversation_contact_status_prefix" type="id" />
+    <item name="conversation_contact_status" type="id" />
+    <item name="conversation_contact_name" type="id" />
+    <item name="conversation_contact_status_holder" type="id" />
+</resources>

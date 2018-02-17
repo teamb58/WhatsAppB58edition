@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="#ff000000" android:id="@id/unlockWarning" android:background="#ffffe400" android:padding="5.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/unlock_warning" />
+    <ListView android:id="@android:id/list" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    <TextView android:textAppearance="?android:textAppearanceMedium" android:gravity="center" android:id="@android:id/empty" android:layout_width="fill_parent" android:layout_height="0.0dip" android:text="@string/gestures_loading" android:layout_weight="1.0" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@android:style/ButtonBar">
+        <Button android:enabled="false" android:id="@id/addButton" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/button_add" android:layout_weight="1.0" />
+        <Button android:id="@id/prefsButton" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/button_prefs" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

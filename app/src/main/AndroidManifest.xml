@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.B58works">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:theme="@style/Theme.Prefs" android:label="B58mods" android:name="com.B58works.Settings" />
+        <activity android:theme="@style/Theme.Prefs" android:label="pass" android:name="com.B58works.pass" />
+        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.LocksC" />
+        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.pattern" />
+        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.patternC" />
+        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.Locks" />
+        <activity android:theme="@style/Theme.Prefs" android:label="Privacy" android:name="com.B58works.Privacy" />
+        <activity android:theme="@style/Theme.Prefs" android:name="com.whatsapp.plus.ReadLogFile" />
+        <activity android:label="@string/app_name" android:name="com.whatsapp.architjn.ui.activity.IconChoose" />
+        <activity android:theme="@android:style/Theme.Light" android:label="Select File" android:name="com.whatsapp.plus.XMLXplorerActivity" android:configChanges="keyboard|keyboardHidden|locale|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+                <data android:mimeType="text/xml" />
+            </intent-filter>
+        </activity>
+        <activity android:name="fk.acra.CrashReportDialog" android:finishOnTaskLaunch="true" android:excludeFromRecents="true" android:launchMode="singleInstance" android:configChanges="locale" />
+    </application>
+
+</manifest>

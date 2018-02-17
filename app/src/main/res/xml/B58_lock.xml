@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="WhatsApp Lock" android:summary="@string/B58PrivacySum"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/Lock" android:key="cat_wa">
+        <CheckBoxPreference android:title="@string/Lock" android:key="Locked" android:defaultValue="false" />
+        <CheckBoxPreference android:title="@string/EnableP" android:key="pt_enabled" android:summary="@string/EnablePS" android:dependency="Locked" />
+        <Preference android:title="@string/ChangeP" android:key="lockC" android:summary="@string/ChangePS" />
+        <Preference android:title="@string/ChangePt" android:key="patternC" />
+		<!--com.B58works.Activities android:title="@string/clearl" android:key="clearlock" android:summary="@string/clearlsum" /-->
+    </PreferenceCategory>
+</PreferenceScreen>

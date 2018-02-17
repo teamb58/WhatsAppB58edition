@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16.0dip</dimen>
+    <dimen name="activity_vertical_margin">16.0dip</dimen>
+    <dimen name="corner_radius">0.0dip</dimen>
+    <dimen name="layer_padding">0.0dip</dimen>
+    <dimen name="bW">130.0dip</dimen>
+    <dimen name="bH">90.0dip</dimen>
+	<dimen name="circleSize">150.0dip</dimen>
+	<item type="dimen" name="abc_button_inset_horizontal_material">@dimen/abc_control_inset_material</item>
+	<item type="dimen" name="abc_button_padding_vertical_material">@dimen/abc_control_padding_material</item>
+	<dimen name="abc_control_inset_material">4.0dip</dimen>
+	<dimen name="abc_control_corner_material">2.0dip</dimen>
+	<dimen name="abc_button_padding_horizontal_material">8.0dip</dimen>
+	<dimen name="abc_control_padding_material">4.0dip</dimen>
+	<dimen name="abc_button_inset_vertical_material">6.0dip</dimen>
+	<dimen name="info_screen_padding">16.0dip</dimen>
+	<dimen name="info_screen_row">58.0dip</dimen>
+	<dimen name="info_screen_card_spacing">6.5dip</dimen>
+</resources>

@@ -1,0 +1,53 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.Prefs" parent="@style/AppTheme">
+        <item name="android:icon">@null</item>
+        <item name="icon">@null</item>
+    </style>
+	<style name="ListItemTitle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">17.0sp</item>
+        <item name="android:textColor">@color/list_item_title</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="Theme.Conversation.ActionBar" parent="">
+        <item name="android:gravity">center</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:minHeight">48.0dip</item>
+        <item name="android:maxLines">2</item>
+        <item name="textAllCaps">@bool/abc_config_actionMenuItemAllCaps</item>
+    </style>
+    <style name="VTSettingsDesign">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">fill_horizontal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">#ffeaeaea</item>
+        <item name="android:padding">2.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">12.0dip</item>
+    </style>
+	<style name="Base.Widget.AppCompat.Button.Borderless" parent="@style/Base.Widget.AppCompat.Button">
+        <item name="android:background">@drawable/abc_btn_borderless_material</item>
+    </style>
+	<style name="Base.Widget.AppCompat.Button" parent="@android:style/Widget">
+        <item name="android:textAppearance">?android:textAppearanceButton</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/abc_btn_default_mtrl_shape</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:minWidth">88.0dip</item>
+        <item name="android:minHeight">48.0dip</item>
+    </style>
+	<style name="FlatCardSeparator" parent="@android:style/Widget">
+        <item name="android:background">@color/divider_gray</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.5dip</item>
+        <item name="android:layout_marginLeft">@dimen/info_screen_padding</item>
+    </style>
+
+    <bool name="abc_config_actionMenuItemAllCaps">false</bool>
+</resources>

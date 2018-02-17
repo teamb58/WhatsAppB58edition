@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/lockw" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.gesture.GestureOverlayView android:orientation="vertical" android:id="@id/gestures_overlay" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0" android:gestureStrokeType="multiple">
+        <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <TextView android:textColor="#ff000000" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/draw_gesture_here" />
+        </LinearLayout>
+    </android.gesture.GestureOverlayView>
+    <LinearLayout android:orientation="horizontal" android:background="#00333333" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <Button android:enabled="false" android:id="@id/done" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/button_done" android:layout_weight="1.0" />
+        <Button android:id="@id/cancel" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/button_discard" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

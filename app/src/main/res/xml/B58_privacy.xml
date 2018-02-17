@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="Privacy" android:summary="@string/B58PrivacySum"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:cmwmobile="http://schemas.android.com/apk/res/com.whatsapp">
+    <PreferenceCategory android:title="@string/B58General" android:key="cat_pg">
+        <SwitchPreference android:title="@string/B58HideSeen" android:key="HideSeen" android:summary="@string/B58HideSeenSum" android:defaultValue="false" />
+        <SwitchPreference android:title="Anti Revoke" android:key="Antirevoke" android:summary="Messages will not be deleted from your side when sender deletes it." android:defaultValue="false" />
+        <SwitchPreference android:title="Always online" android:key="always_online" android:summary="Stay online even while not online(Make sure whatsapp is not killed from recents)" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Status" android:key="cat_pg">
+        <SwitchPreference android:title="Hide Status View" android:key="hide_status" android:summary="Don't Tell contact that you viewed their status" android:defaultValue="false" />
+        <SwitchPreference android:title="Copy Text Status." android:key="copytext" android:summary="Enable to copy Text status to clipbart and to freeze time" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Contacts" android:key="cat_pc">
+        <SwitchPreference android:title="@string/B58HideRead" android:key="C_HideRead" android:summary="@string/B58HideReadSumC" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideReceipt" android:key="C_HideReceipt" android:summary="@string/B58HideReceiptSumC" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HidePlay" android:key="C_HidePlay" android:summary="@string/B58HidePlaySumC" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideRecord" android:key="C_HideRecord" android:summary="@string/B58HideRecordSum" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideCompose" android:key="C_HideCompose" android:summary="@string/B58HideComposeSum" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Groups" android:key="cat_pg">
+        <SwitchPreference android:title="@string/B58HideRead" android:key="G_HideRead" android:summary="@string/B58HideReadSumG" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideReceipt" android:key="G_HideReceipt" android:summary="@string/B58HideReceiptSumG" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HidePlay" android:key="G_HidePlay" android:summary="@string/B58HidePlaySumG" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideRecord" android:key="G_HideRecord" android:summary="@string/B58HideRecordSum" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideCompose" android:key="G_HideCompose" android:summary="@string/B58HideComposeSum" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Broadcast" android:key="cat_pb">
+        <SwitchPreference android:title="@string/B58HideRead" android:key="B_HideRead" android:summary="@string/B58HideReadSumB" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideReceipt" android:key="B_HideReceipt" android:summary="@string/B58HideReceiptSumB" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HidePlay" android:key="B_HidePlay" android:summary="@string/B58HidePlaySumB" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideRecord" android:key="B_HideRecord" android:summary="@string/B58HideRecordSum" android:defaultValue="false" />
+        <SwitchPreference android:title="@string/B58HideCompose" android:key="B_HideCompose" android:summary="@string/B58HideComposeSum" android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Reset Privacy" android:key="cat_rest">
+        <com.B58works.Activities android:title="Reset" android:key="reset" android:summary="Reset Your All Privacy Settings including Custom Privacy To Default." />
+    </PreferenceCategory>
+</PreferenceScreen>

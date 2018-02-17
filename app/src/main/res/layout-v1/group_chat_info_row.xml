@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:paddingLeft="@dimen/small_list_avatar_padding" android:paddingRight="@dimen/list_row_padding" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="@dimen/small_list_row_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/avatar" android:layout_width="@dimen/small_list_avatar_size" android:layout_height="@dimen/small_list_avatar_size" android:layout_marginRight="@dimen/small_list_avatar_padding" android:src="@drawable/avatar_contact" android:scaleType="fitCenter" android:contentDescription="@string/contact_profile_photo" />
+    <LinearLayout android:orientation="vertical" android:clipChildren="false" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <com.whatsapp.TextEmojiLabel android:id="@id/name" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/ListItemTitle" />
+                <Space android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
+            </LinearLayout>
+            <com.whatsapp.TextEmojiLabel android:gravity="center" android:id="@id/counter" android:text="\?" style="@style/TextGroupAdmin" />
+            <TextView android:id="@id/owner" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" style="@style/TextGroupAdmin" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.whatsapp.TextEmojiLabel android:gravity="left" android:layout_gravity="left" android:id="@id/status" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/ListItemSubtitleSmall" />
+            <com.whatsapp.TextEmojiLabel android:textSize="14.0sp" android:textColor="@color/dark_gray" android:id="@id/push_name" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
