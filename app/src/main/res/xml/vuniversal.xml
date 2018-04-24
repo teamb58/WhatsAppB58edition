@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.B58works.ColorPref android:title="@string/univactionbar" android:key="ActionbarColor" android:summary="@string/univactionbarsum" />
+    <com.B58works.ColorPref android:title="@string/univactionbartext" android:key="ActionbartextColor" android:summary="@string/univactionbartextsum" />
+    <com.B58works.ColorPref android:title="@string/univstatusbar" android:key="StatusbarColor" android:summary="@string/univstatusbarsum" />
+    <com.B58works.ColorPref android:title="@string/univnavbar" android:key="NavbarColor" android:summary="@string/univnavbarsum" />
+</PreferenceScreen>

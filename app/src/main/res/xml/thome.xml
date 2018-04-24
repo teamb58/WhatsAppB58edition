@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/B58home"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:title="@string/oldui" android:key="oldui" android:summary="@string/olduisum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/lsms" android:key="onlinechat" android:summary="@string/lsmssum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/namems" android:key="show_my_name_check" android:summary="@string/namemssum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/subhead" android:key="subhead" android:summary="@string/subheadsum" android:dependency="show_my_name_check" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/numstatus" android:key="number" android:summary="@string/numstatussum" android:dependency="subhead" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/Archv" android:key="Archv_chats" android:summary="@string/Archvsum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/COT" android:key="contact_online_toast" android:summary="@string/COTsum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/Hidemsg" android:key="hidemsg" android:summary="@string/Hidemsgsum" android:defaultValue="false" />
+</PreferenceScreen>

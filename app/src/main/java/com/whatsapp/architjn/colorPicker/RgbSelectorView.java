@@ -27,9 +27,9 @@ public class RgbSelectorView extends LinearLayout
     }
     
     private void init() {
-        final View inflate = ((LayoutInflater)this.getContext().getSystemService("layout_inflater")).inflate(others.getResId(this.getContext(), "color_rgbview", "layout"), (ViewGroup)null);
-        this.addView(inflate, (ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -2));
-        final SeekBar$OnSeekBarChangeListener seekBar$OnSeekBarChangeListener = (SeekBar$OnSeekBarChangeListener)new SeekBar$OnSeekBarChangeListener() {
+        final View inflate = ((LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(others.getResId(this.getContext(), "color_rgbview", "layout"), (ViewGroup)null);
+        this.addView(inflate, (ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -2));
+        final SeekBar.OnSeekBarChangeListener OnSeekBarChangeListener = (SeekBar.OnSeekBarChangeListener)new SeekBar.OnSeekBarChangeListener() {
             public void onProgressChanged(final SeekBar seekBar, final int n, final boolean b) {
                 RgbSelectorView.this.setPreviewImage();
                 RgbSelectorView.this.onColorChanged();
@@ -41,10 +41,10 @@ public class RgbSelectorView extends LinearLayout
             public void onStopTrackingTouch(final SeekBar seekBar) {
             }
         };
-        (this.seekRed = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekRed", "id"))).setOnSeekBarChangeListener((SeekBar$OnSeekBarChangeListener)seekBar$OnSeekBarChangeListener);
-        (this.seekGreen = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekGreen", "id"))).setOnSeekBarChangeListener((SeekBar$OnSeekBarChangeListener)seekBar$OnSeekBarChangeListener);
-        (this.seekBlue = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekBlue", "id"))).setOnSeekBarChangeListener((SeekBar$OnSeekBarChangeListener)seekBar$OnSeekBarChangeListener);
-        (this.seekAlpha = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekAlpha", "id"))).setOnSeekBarChangeListener((SeekBar$OnSeekBarChangeListener)seekBar$OnSeekBarChangeListener);
+        (this.seekRed = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekRed", "id"))).setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)OnSeekBarChangeListener);
+        (this.seekGreen = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekGreen", "id"))).setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)OnSeekBarChangeListener);
+        (this.seekBlue = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekBlue", "id"))).setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)OnSeekBarChangeListener);
+        (this.seekAlpha = (SeekBar)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_seekAlpha", "id"))).setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener)OnSeekBarChangeListener);
         this.imgPreview = (ImageView)inflate.findViewById(others.getResId(this.getContext(), "color_rgb_imgpreview", "id"));
         this.setColor(-16777216);
     }
@@ -56,7 +56,7 @@ public class RgbSelectorView extends LinearLayout
     }
     
     private void setPreviewImage() {
-        final Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap$Config.ARGB_8888);
+        final Bitmap bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
         bitmap.setPixel(0, 0, this.getColor());
         this.imgPreview.setImageBitmap(bitmap);
     }

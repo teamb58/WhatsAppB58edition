@@ -8,128 +8,79 @@ import android.graphics.Color;
 
 public class ColorStore
 {
-    private static String a;
-    private static String b;
-    private static String c;
-    private static String d;
-    private static String e;
-    private static String f;
-    private static String g;
-    private static String gn;
-    private static String h;
-    private static String i;
-    private static String j;
-    private static String k;
-    private static String l;
-    private static String m;
-    private static String n;
+    private static String homebg;
+    private static String actionbar;
+    private static String statusbar;
+    private static String chatbubbleleft;
+    private static String chatbubbleright;
     private static String name;
-    private static String o;
-    private static String p;
-    private static String q;
-    private static String r;
+    private static String leftbubbletext;
+    private static String rightbubbletext;
+    private static String gn;
     private static String send;
     private static String sendbg;
+    private static String unread;
+
+    private static String FabColorNormal;
+    private static String FabColorPressed;
+    private static String FabBackgoundColor;
 
     static {
-        ColorStore.a = "#ffffff";
-        ColorStore.b = "#ffffff";
-        ColorStore.c = "#075e54";
-        ColorStore.d = "#075e54";
-        ColorStore.e = "#075e54";
-        ColorStore.f = "#075e54";
-        ColorStore.g = "#000000";
-        ColorStore.h = "#1Affffff";
-        ColorStore.i = "#ffffff";
-        ColorStore.j = "#e1ffc7";
-        ColorStore.k = "#ffffff";
-        ColorStore.l = "#075e54";
-        ColorStore.m = "#000000";
-        ColorStore.n = "#075e54";
-        ColorStore.o = "#303030";
-        ColorStore.p = "#ffffff";
-        ColorStore.q = "#303030";
-        ColorStore.r = "#303030";
-        ColorStore.send = "#ffffff";
+        ColorStore.homebg = "#ffffff";
+        ColorStore.actionbar = "#075e54";
+        ColorStore.statusbar = "#075e54";
+        ColorStore.chatbubbleleft = "#ffffff";
+        ColorStore.chatbubbleright = "#e1ffc7";
+        ColorStore.leftbubbletext = "#303030";
+        ColorStore.rightbubbletext = "#303030";
         ColorStore.gn = "#303030";
+        ColorStore.send = "#ffffff";
         ColorStore.name = "#ffffff";
         ColorStore.sendbg = "#075e54";
+        ColorStore.unread = "#09d261";
+        ColorStore.FabColorNormal = "#00897b";
+        ColorStore.FabColorPressed = "#bdbdbd";
+        ColorStore.FabBackgoundColor = "#ffffffff";
     }
 
     public static int getActionBarColor() {
-        return Color.parseColor(ColorStore.c);
-    }
-
-    public static int getBGColor() {
-        return Color.parseColor(ColorStore.p);
+        return Color.parseColor(ColorStore.actionbar);
     }
 
     public static int getChatBubbleLeftColor() {
-        return Color.parseColor(ColorStore.i);
+        return Color.parseColor(ColorStore.chatbubbleleft);
     }
 
     public static int getChatBubbleRightColor() {
-        return Color.parseColor(ColorStore.j);
+        return Color.parseColor(ColorStore.chatbubbleright);
     }
 
     public static int getChatBubbleTextColor() {
-        return Color.parseColor(ColorStore.r);
+        return Color.parseColor(ColorStore.rightbubbletext);
     }
 
     public static int getChatBubbleTextColorL() {
-        return Color.parseColor(ColorStore.q);
-    }
-
-    public static int getConPickBackColor() {
-        return Color.parseColor(ColorStore.b);
+        return Color.parseColor(ColorStore.leftbubbletext);
     }
 
     public static int getConsBackColor() {
-        return Color.parseColor(ColorStore.a);
+        return Color.parseColor(ColorStore.homebg);
     }
 
     public static int getFabBgColor() {
-        return Color.parseColor(ColorStore.h);
+        return Color.parseColor(ColorStore.FabBackgoundColor);
     }
 
     public static int getFabColorNormal() {
-        return Color.parseColor(ColorStore.e);
+        return Color.parseColor(ColorStore.FabColorNormal);
     }
 
     public static int getFabColorPressed() {
-        return Color.parseColor(ColorStore.f);
-    }
-
-    public static int getMicColor() {
-        return Color.parseColor(ColorStore.o);
-    }
-
-    public static int getNavigationBarColor() {
-        return Color.parseColor(ColorStore.g);
+        return Color.parseColor(ColorStore.FabColorPressed);
     }
 
     public static int getStatusBarColor() {
-        return Color.parseColor(ColorStore.d);
-    }
-
-    public static int getUniActionColor() {
-        return Color.parseColor(ColorStore.n);
-    }
-
-    public static int getUniBackColor() {
-        return Color.parseColor(ColorStore.k);
-    }
-
-    public static int getUniNavColor() {
-        return Color.parseColor(ColorStore.m);
-    }
-
-    public static int getUniStatColor() {
-        return Color.parseColor(ColorStore.l);
-    }
-
-    public static int gnc() {
-        return Color.parseColor(ColorStore.gn);
+        return Color.parseColor(ColorStore.statusbar);
     }
 
     public static int name() {
@@ -143,5 +94,7 @@ public class ColorStore
     public static int send() {
         return Color.parseColor(ColorStore.send);
     }
+
+    public static int unread(){ return Color.parseColor(unread);}
 }
 

@@ -6,6 +6,8 @@ import android.util.*;
 import android.widget.*;
 import android.view.*;
 
+import com.whatsapp.sn1;
+
 public class HsvHueSelectorView extends LinearLayout
 {
     private boolean down;
@@ -33,15 +35,15 @@ public class HsvHueSelectorView extends LinearLayout
     }
     
     private void buildUI() {
-        this.setOrientation(0);
+        this.setOrientation(HORIZONTAL);
         this.setGravity(1);
         (this.imgSeekSelector = new ImageView(this.getContext())).setImageDrawable(this.seekSelector);
-        this.addView((View)this.imgSeekSelector, (ViewGroup$LayoutParams)new LinearLayout$LayoutParams(this.seekSelector.getIntrinsicWidth(), this.seekSelector.getIntrinsicHeight()));
-        (this.imgHue = new ImageView(this.getContext())).setImageDrawable(this.getContext().getResources().getDrawable(2130840670));
-        this.imgHue.setScaleType(ImageView$ScaleType.FIT_XY);
-        final LinearLayout$LayoutParams linearLayout$LayoutParams = new LinearLayout$LayoutParams(-1, -1);
-        linearLayout$LayoutParams.setMargins(0, this.getOffset(), 0, this.getSelectorOffset());
-        this.addView((View)this.imgHue, (ViewGroup$LayoutParams)linearLayout$LayoutParams);
+        this.addView((View)this.imgSeekSelector, (ViewGroup.LayoutParams)new LinearLayout.LayoutParams(this.seekSelector.getIntrinsicWidth(), this.seekSelector.getIntrinsicHeight()));
+        (this.imgHue = new ImageView(this.getContext())).setImageDrawable(this.getContext().getResources().getDrawable(sn1.zcolor_hue()));
+        this.imgHue.setScaleType(ImageView.ScaleType.FIT_XY);
+        final LinearLayout.LayoutParams LayoutParams = new LinearLayout.LayoutParams(-1, -1);
+        LayoutParams.setMargins(0, this.getOffset(), 0, this.getSelectorOffset());
+        this.addView((View)this.imgHue, (ViewGroup.LayoutParams)LayoutParams);
     }
     
     private int getOffset() {
@@ -53,7 +55,7 @@ public class HsvHueSelectorView extends LinearLayout
     }
     
     private void init() {
-        this.seekSelector = this.getContext().getResources().getDrawable(2130840671);
+        this.seekSelector = this.getContext().getResources().getDrawable(sn1.zcolor_seekselector());
         this.buildUI();
     }
     
@@ -110,9 +112,9 @@ public class HsvHueSelectorView extends LinearLayout
     
     public void setMinContentOffset(final int minOffset) {
         this.minOffset = minOffset;
-        final LinearLayout$LayoutParams layoutParams = new LinearLayout$LayoutParams(this.imgHue.getLayoutParams());
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(this.imgHue.getLayoutParams());
         layoutParams.setMargins(0, this.getOffset(), 0, this.getSelectorOffset());
-        this.imgHue.setLayoutParams((ViewGroup$LayoutParams)layoutParams);
+        this.imgHue.setLayoutParams((ViewGroup.LayoutParams)layoutParams);
     }
     
     public void setOnHueChangedListener(final OnHueChangedListener listener) {

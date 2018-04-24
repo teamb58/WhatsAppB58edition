@@ -5,7 +5,7 @@ WhatsApp B58 edition Is a modified version of WhatsApp. Including new featuresas
 To include this code to WhatsApp you need to compile this project to an APK, and decompile to get the smali code, layout, pngs And Xmls to merge both apps.
 
 # **_Features_**
-*Based on latest beta version 2.18.19
+*Based on latest web version 2.18.119
 
 *Size just 21mb 
 
@@ -14,6 +14,12 @@ To include this code to WhatsApp you need to compile this project to an APK, and
 *SAVE/SHARE YOUR THEMES. 
 
 *OPTION TO CALL THROUGH SIM.
+
+*OPTION TO SEND SMS THROUGH SIM.
+
+*Added FAB to access settings.
+
+*Option to hide sender name or message in chat screen.
 
 *Privacy mods (Anti revoke, pause last seen,Hide status view, hide blue ticks, hide second ticks, etc)
 

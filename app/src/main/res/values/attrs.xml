@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fab_plusIconColor" format="color" />
+    <attr name="fab_colorPressed" format="color" />
+    <attr name="fab_colorNormal" format="color" />
+    <attr name="fab_icon" format="reference" />
+    <attr name="fab_size">
+        <enum name="normal" value="0" />
+        <enum name="mini" value="1" />
+    </attr>
+    <attr name="fab_title" format="string" />
+    <attr name="fab_addButtonColorPressed" format="color" />
+    <attr name="fab_addButtonColorNormal" format="color" />
+    <attr name="fab_addButtonPlusIconColor" format="color" />
+    <attr name="fab_labelStyle" format="reference" />
+    <attr name="fab_expandDirection">
+        <enum name="up" value="0" />
+        <enum name="down" value="1" />
+        <enum name="left" value="2" />
+        <enum name="right" value="3" />
+    </attr>
+    <attr name="entryImages" format="reference" />
+    <attr name="circleColor" format="color" />
+    <attr name="dotColor" format="color" />
+    <attr name="gridRows" format="integer" />
+    <attr name="gridColumns" format="integer" />
+    <attr name="pathColor" format="color" />
+    <attr name="maxSize" format="dimension" />
+</resources>

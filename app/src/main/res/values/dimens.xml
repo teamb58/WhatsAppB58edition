@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="fab_actions_spacing">16.0dip</dimen>
+	<dimen name="fab_icon_size">24.0dip</dimen>
+	<dimen name="fab_labels_margin">6.0dip</dimen>
+	<dimen name="fab_plus_icon_size">14.0dip</dimen>
+	<dimen name="fab_plus_icon_stroke">2.0dip</dimen>
+	<dimen name="fab_shadow_offset">3.0dip</dimen>
+	<dimen name="fab_shadow_radius">9.0dip</dimen>
+	<dimen name="fab_size_mini">40.0dip</dimen>
+	<dimen name="fab_size_normal">56.0dip</dimen>
+	<dimen name="fab_stroke_width">0.5dip</dimen>
+	<dimen name="activity_horizontal_margin">16.0dip</dimen>
+	<dimen name="activity_vertical_margin">16.0dip</dimen>
+	<dimen name="corner_radius">0.0dip</dimen>
+	<dimen name="layer_padding">0.0dip</dimen>
+	<dimen name="bW">130.0dip</dimen>
+	<dimen name="bH">90.0dip</dimen>
+	<dimen name="circleSize">150.0dip</dimen>
+</resources>

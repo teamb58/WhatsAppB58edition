@@ -36,7 +36,7 @@ class B58$5
 
     private static boolean b() {
         try {
-            d = ((MediaData)((com.whatsapp.protocol.j)((List)b.get(c)).get(a)).G).file;
+            d = ((MediaData)((com.whatsapp.protocol.k)((List)b.get(c)).get(a)).A).file;
             return true;
         }
         catch (Exception ex) {

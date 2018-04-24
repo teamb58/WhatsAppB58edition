@@ -41,16 +41,16 @@ public class HsvAlphaSelectorView extends LinearLayout
     }
     
     private void buildUI() {
-        this.setOrientation(0);
+        this.setOrientation(HORIZONTAL);
         this.setGravity(1);
         this.setWillNotDraw(false);
         (this.imgSeekSelector = new ImageView(this.getContext())).setImageDrawable(this.seekSelector);
-        this.addView((View)this.imgSeekSelector, (ViewGroup$LayoutParams)new LinearLayout$LayoutParams(this.seekSelector.getIntrinsicWidth(), this.seekSelector.getIntrinsicHeight()));
+        this.addView((View)this.imgSeekSelector, (ViewGroup.LayoutParams)new LinearLayout.LayoutParams(this.seekSelector.getIntrinsicWidth(), this.seekSelector.getIntrinsicHeight()));
         (this.imgAlpha = new ImageView(this.getContext())).setBackgroundDrawable(this.getContext().getResources().getDrawable(others.getResId(this.getContext(), "transparentbackrepeat", "drawable")));
-        this.imgAlpha.setScaleType(ImageView$ScaleType.FIT_XY);
-        final LinearLayout$LayoutParams linearLayout$LayoutParams = new LinearLayout$LayoutParams(-1, -1);
-        linearLayout$LayoutParams.setMargins(0, this.getOffset(), 0, this.getSelectorOffset());
-        this.addView((View)this.imgAlpha, (ViewGroup$LayoutParams)linearLayout$LayoutParams);
+        this.imgAlpha.setScaleType(ImageView.ScaleType.FIT_XY);
+        final LinearLayout.LayoutParams LayoutParams = new LinearLayout.LayoutParams(-1, -1);
+        LayoutParams.setMargins(0, this.getOffset(), 0, this.getSelectorOffset());
+        this.addView((View)this.imgAlpha, LayoutParams);
     }
     
     private int getOffset() {
@@ -87,8 +87,8 @@ public class HsvAlphaSelectorView extends LinearLayout
         else {
             final Paint paint = new Paint();
             if (!false) {
-                paint.setShader((Shader)new LinearGradient(0.0f, (float)this.imgAlpha.getHeight(), 0.0f, 0.0f, 0xFFFFFF & this.color, 0xFF000000 | this.color, Shader$TileMode.CLAMP));
-                final Bitmap bitmap = Bitmap.createBitmap(this.imgAlpha.getWidth(), this.imgAlpha.getHeight(), Bitmap$Config.ARGB_8888);
+                paint.setShader((Shader)new LinearGradient(0.0f, (float)this.imgAlpha.getHeight(), 0.0f, 0.0f, 0xFFFFFF & this.color, 0xFF000000 | this.color, Shader.TileMode.CLAMP));
+                final Bitmap bitmap = Bitmap.createBitmap(this.imgAlpha.getWidth(), this.imgAlpha.getHeight(), Bitmap.Config.ARGB_8888);
                 new Canvas(bitmap).drawRect(0.0f, 0.0f, (float)this.imgAlpha.getWidth(), (float)this.imgAlpha.getHeight(), paint);
                 this.imgAlpha.setImageBitmap(bitmap);
             }
@@ -152,9 +152,9 @@ public class HsvAlphaSelectorView extends LinearLayout
     
     public void setMinContentOffset(final int minOffset) {
         this.minOffset = minOffset;
-        final LinearLayout$LayoutParams layoutParams = new LinearLayout$LayoutParams(this.imgAlpha.getLayoutParams());
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(this.imgAlpha.getLayoutParams());
         layoutParams.setMargins(0, this.getOffset(), 0, this.getSelectorOffset());
-        this.imgAlpha.setLayoutParams((ViewGroup$LayoutParams)layoutParams);
+        this.imgAlpha.setLayoutParams((ViewGroup.LayoutParams)layoutParams);
     }
     
     public void setOnAlphaChangedListener(final OnAlphaChangedListener listener) {

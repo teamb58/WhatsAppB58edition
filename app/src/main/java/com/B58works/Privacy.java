@@ -4,17 +4,16 @@ package com.B58works;
  * Created by Bharath.R(58) on 27-12-2017.
  */
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Process;
+import android.preference.Preference;
 
-import com.whatsapp.afc;
-import com.whatsapp.ph;
-import com.whatsapp.protocol.j;
+import com.whatsapp.nc;
+import com.whatsapp.protocol.k;
 
 import java.lang.reflect.Field;
 
-public class Privacy extends ph {
+public class Privacy extends nc {
     static String JID;
     static Context pctx;
 
@@ -23,7 +22,7 @@ public class Privacy extends ph {
     }
 
     public static boolean AntiRevoke(final Object o) {
-        final String a = ((j)o).b.a;
+        final String a = ((k)o).b.a;
         boolean b;
         if (getPrivacyB(a)) {
             b = getPrivacyB(String.valueOf(a) + "_AR");
@@ -98,13 +97,13 @@ public class Privacy extends ph {
         return b;
     }
 
-    public static boolean HidePlay(final j j) {
-        final String a = j.b.a;
+    public static boolean HidePlay(final k k) {
+        final String a = k.b.a;
         boolean b;
         if (getPrivacyB(a)) {
             b = getPrivacyB(a + "_HidePlay");
         } else {
-            b = getPrivacyB(GetType(j) + "_HidePlay");
+            b = getPrivacyB(GetType(k) + "_HidePlay");
         }
         return b;
     }
@@ -141,10 +140,10 @@ public class Privacy extends ph {
         final String jid = Privacy.JID;
         boolean b;
         if (getPrivacyB(jid)) {
-            b = (getPrivacyB(String.valueOf(jid) + "_HideStatus") ^ true);
+            b = (!getPrivacyB(String.valueOf(jid) + "_HideStatus"));
         }
         else {
-            b = (getPrivacyB("hide_status") ^ true);
+            b = (!getPrivacyB("hide_status"));
         }
         return b;
     }
@@ -161,14 +160,6 @@ public class Privacy extends ph {
         return B58.ctx.getSharedPreferences("B58", 0).getString(s, "");
     }
 
-    public static void setBooleanPriv(final String s, final boolean b) {
-        B58.ctx.getSharedPreferences("B58privacy", 0).edit().putBoolean(s, b).apply();
-    }
-
-    public static void setStringPriv(final String s, final String s2) {
-        B58.ctx.getSharedPreferences("B58privacy", 0).edit().putString(s, s2).apply();
-    }
-
     public void onBackPressed() {
         super.onBackPressed();
         Process.killProcess(Process.myPid());
@@ -177,6 +168,9 @@ public class Privacy extends ph {
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
         this.getPreferenceManager().setSharedPreferencesName("B58privacy");
-        this.addPreferencesFromResource(B58.getResID("B58_privacy", "xml"));
+        this.addPreferencesFromResource(B58.getResID("b58_privacy", "xml"));
+        final Preference p=this.findPreference("HideReceipt");
+        p.setEnabled(false);
+        p.setSummary("Please use custom privacy as it has reduced delay.");
     }
 }

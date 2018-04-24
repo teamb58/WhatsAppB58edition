@@ -25,13 +25,13 @@ public class HexSelectorView extends LinearLayout
     }
     
     private void init() {
-        final LayoutInflater layoutInflater = (LayoutInflater)this.getContext().getSystemService("layout_inflater");
+        final LayoutInflater layoutInflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final Context context = this.getContext();
         final View inflate = layoutInflater.inflate(others.getResId(context, "color_hexview", "layout"), (ViewGroup)null);
-        this.addView(inflate, (ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -2));
+        this.addView(inflate, (ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -2));
         this.txtError = (TextView)inflate.findViewById(others.getResId(context, "color_hex_txtError", "id"));
         this.edit = (EditText)inflate.findViewById(others.getResId(context, "color_hex_edit", "id"));
-        (this.btnSave = (Button)inflate.findViewById(others.getResId(context, "color_hex_btnSave", "id"))).setOnClickListener((View$OnClickListener)new View$OnClickListener() {
+        (this.btnSave = (Button)inflate.findViewById(others.getResId(context, "color_hex_btnSave", "id"))).setOnClickListener((View.OnClickListener)new View.OnClickListener() {
             public void onClick(final View view) {
                 String s = null;
                 Label_0103: {
@@ -52,12 +52,12 @@ public class HexSelectorView extends LinearLayout
                         break Label_0103;
                     }
                     catch (Exception ex) {
-                        HexSelectorView.this.txtError.setVisibility(0);
+                        HexSelectorView.this.txtError.setVisibility(VISIBLE);
                     }
                     return;
                 }
                 HexSelectorView.this.color = (int)Long.parseLong(s, 16);
-                HexSelectorView.this.txtError.setVisibility(8);
+                HexSelectorView.this.txtError.setVisibility(GONE);
                 HexSelectorView.this.onColorChanged();
             }
         });
@@ -89,7 +89,7 @@ public class HexSelectorView extends LinearLayout
         if (color != this.color) {
             this.color = color;
             this.edit.setText((CharSequence)this.padLeft(Integer.toHexString(color).toUpperCase(), '0', 8));
-            this.txtError.setVisibility(8);
+            this.txtError.setVisibility(GONE);
         }
     }
     

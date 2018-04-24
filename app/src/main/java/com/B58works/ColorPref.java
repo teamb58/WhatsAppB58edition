@@ -50,7 +50,7 @@ public class ColorPref extends Preference {
 
     private void b() {
         final String key = this.getKey();
-        new ColorSelectorDialog(this.getContext(), (ColorSelectorDialog.OnColorChangedListener) new com.B58works.extra.b(this, key), B58.ctx.getSharedPreferences("B58", 0).getInt(key, this.b)).show();
+        new ColorSelectorDialog(this.getContext(),  new com.B58works.extra.b(this, key), B58.ctx.getSharedPreferences("B58", 0).getInt(key, this.b)).show();
     }
 
     public void a(final View view) {

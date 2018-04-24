@@ -58,11 +58,11 @@ public class CopyingTask extends AsyncTask<File, Integer, Integer>
         ++this.max;
     }
 
-    void DeleteDirectory(final File file) {
+    public static void DeleteDirectory(final File file) {
         if (file.isDirectory()) {
             final File[] listFiles = file.listFiles();
             for (int length = listFiles.length, i = 0; i < length; ++i) {
-                this.DeleteDirectory(listFiles[i]);
+                DeleteDirectory(listFiles[i]);
             }
         }
         file.delete();

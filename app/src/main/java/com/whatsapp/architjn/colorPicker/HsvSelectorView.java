@@ -26,8 +26,8 @@ public class HsvSelectorView extends LinearLayout
     }
     
     private void buildUI() {
-        final View inflate = ((LayoutInflater)this.getContext().getSystemService("layout_inflater")).inflate(others.getResId(this.getContext(), "color_hsvview", "layout"), (ViewGroup)null);
-        this.addView(inflate, (ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -1));
+        final View inflate = ((LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(others.getResId(this.getContext(), "color_hsvview", "layout"), (ViewGroup)null);
+        this.addView(inflate, (ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -1));
         this.alphaSelector = (HsvAlphaSelectorView)inflate.findViewById(others.getResId(this.getContext(), "color_hsv_alpha", "id"));
         this.hsvColorValueView = (HsvColorValueView)inflate.findViewById(others.getResId(this.getContext(), "color_hsv_value", "id"));
         this.hueSelector = (HsvHueSelectorView)inflate.findViewById(others.getResId(this.getContext(), "color_hsv_hue", "id"));
@@ -90,14 +90,14 @@ public class HsvSelectorView extends LinearLayout
     
     protected void onMeasure(final int n, final int n2) {
         super.onMeasure(n, n2);
-        final LinearLayout$LayoutParams layoutParams = new LinearLayout$LayoutParams(this.alphaSelector.getLayoutParams());
-        final LinearLayout$LayoutParams layoutParams2 = new LinearLayout$LayoutParams(this.hueSelector.getLayoutParams());
+        final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(this.alphaSelector.getLayoutParams());
+        final LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(this.hueSelector.getLayoutParams());
         layoutParams.height = this.hsvColorValueView.getHeight();
         layoutParams2.height = this.hsvColorValueView.getHeight();
         this.hueSelector.setMinContentOffset(this.hsvColorValueView.getBackgroundOffset());
         this.alphaSelector.setMinContentOffset(this.hsvColorValueView.getBackgroundOffset());
-        this.alphaSelector.setLayoutParams((ViewGroup$LayoutParams)layoutParams);
-        this.hueSelector.setLayoutParams((ViewGroup$LayoutParams)layoutParams2);
+        this.alphaSelector.setLayoutParams((ViewGroup.LayoutParams)layoutParams);
+        this.hueSelector.setLayoutParams((ViewGroup.LayoutParams)layoutParams2);
         super.onMeasure(n, n2);
     }
     

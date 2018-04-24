@@ -6,6 +6,7 @@ import android.os.*;
 import com.whatsapp.architjn.*;
 import android.widget.*;
 import android.view.*;
+import android.widget.LinearLayout.LayoutParams;
 
 public class ColorSelectorDialog extends Dialog
 {
@@ -31,24 +32,24 @@ public class ColorSelectorDialog extends Dialog
     protected void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
         final LinearLayout contentView = new LinearLayout(this.getContext());
-        contentView.setOrientation(1);
+        contentView.setOrientation(LinearLayout.VERTICAL);
         final LinearLayout linearLayout = new LinearLayout(this.getContext());
         final Context context = this.getContext();
         linearLayout.setBackgroundResource(others.getResId(context, "transparentbackrepeat", "drawable"));
-        (this.btnOld = new Button(this.getContext())).setText((CharSequence)this.getContext().getResources().getString(others.getResId(context, "color_old_color", "string")));
-        final LinearLayout$LayoutParams linearLayout$LayoutParams = new LinearLayout$LayoutParams(-1, -2);
-        linearLayout$LayoutParams.weight = 1.0f;
-        linearLayout.addView((View)this.btnOld, (ViewGroup$LayoutParams)linearLayout$LayoutParams);
-        this.btnOld.setOnClickListener((View$OnClickListener)new View$OnClickListener() {
+        (this.btnOld = new Button(this.getContext())).setText(this.getContext().getResources().getString(others.getResId(context, "color_old_color", "string")));
+        final LinearLayout.LayoutParams LayoutParams = new LinearLayout.LayoutParams(-1, -2);
+        LayoutParams.weight = 1.0f;
+        linearLayout.addView(this.btnOld, LayoutParams);
+        this.btnOld.setOnClickListener((View.OnClickListener)new View.OnClickListener() {
             public void onClick(final View view) {
                 ColorSelectorDialog.this.dismiss();
             }
         });
         (this.btnNew = new Button(this.getContext())).setText((CharSequence)this.getContext().getResources().getString(others.getResId(context, "color_new_color", "string")));
-        final LinearLayout$LayoutParams linearLayout$LayoutParams2 = new LinearLayout$LayoutParams(-1, -2);
-        linearLayout$LayoutParams2.weight = 1.0f;
-        linearLayout.addView((View)this.btnNew, (ViewGroup$LayoutParams)linearLayout$LayoutParams2);
-        this.btnNew.setOnClickListener((View$OnClickListener)new View$OnClickListener() {
+        final LayoutParams LayoutParams2 = new LinearLayout.LayoutParams(-1, -2);
+        LayoutParams2.weight = 1.0f;
+        linearLayout.addView((View)this.btnNew, (ViewGroup.LayoutParams)LayoutParams2);
+        this.btnNew.setOnClickListener((View.OnClickListener)new View.OnClickListener() {
             public void onClick(final View view) {
                 if (ColorSelectorDialog.this.listener != null) {
                     ColorSelectorDialog.this.listener.colorChanged(ColorSelectorDialog.this.color);
@@ -62,12 +63,12 @@ public class ColorSelectorDialog extends Dialog
                 ColorSelectorDialog.this.colorChangedInternal(n);
             }
         });
-        final LinearLayout$LayoutParams linearLayout$LayoutParams3 = new LinearLayout$LayoutParams(-1, -1);
-        linearLayout$LayoutParams3.weight = 1.0f;
-        final LinearLayout$LayoutParams linearLayout$LayoutParams4 = new LinearLayout$LayoutParams(-1, -2);
-        linearLayout$LayoutParams4.weight = 0.0f;
-        contentView.addView((View)this.content, (ViewGroup$LayoutParams)linearLayout$LayoutParams3);
-        contentView.addView((View)linearLayout, (ViewGroup$LayoutParams)linearLayout$LayoutParams4);
+        final LinearLayout.LayoutParams LayoutParams3 = new LinearLayout.LayoutParams(-1, -1);
+        LayoutParams3.weight = 1.0f;
+        final LinearLayout.LayoutParams LayoutParams4 = new LinearLayout.LayoutParams(-1, -2);
+        LayoutParams4.weight = 0.0f;
+        contentView.addView((View)this.content, (ViewGroup.LayoutParams)LayoutParams3);
+        contentView.addView((View)linearLayout, (ViewGroup.LayoutParams)LayoutParams4);
         this.setContentView((View)contentView);
         this.btnOld.setBackgroundColor(this.initColor);
         this.btnOld.setTextColor(0xFF000000 | (-1 ^ this.initColor));

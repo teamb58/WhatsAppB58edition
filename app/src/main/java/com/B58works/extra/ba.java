@@ -23,7 +23,7 @@ public class ba implements DialogInterface.OnClickListener
 
     public void onClick(final DialogInterface dialogInterface, final int n) {
         final String string = this.etname.getText().toString();
-        B58.BackupPreference2((Context)this.a, String.valueOf(string) + ".xml", String.valueOf("WhatsApp") + "/B58/Themes/");
-        B58.getWallpaper((Context)this.a, string, "Themes");
+        B58.BackupPreference2(this.a, String.valueOf(string) + ".xml", String.valueOf("WhatsApp") + "/B58/Themes/");
+        B58.getWallpaper(this.a, string, "Themes");
     }
 }

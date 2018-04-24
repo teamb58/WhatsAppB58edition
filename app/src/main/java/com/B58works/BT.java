@@ -1,12 +1,19 @@
 package com.B58works;
 
+import android.view.View;
+import android.widget.TextView;
+
+import static com.B58works.B58.getBoolean;
+import static com.whatsapp.sn1.getColor;
+import static com.whatsapp.sn1.mainTextColor;
+
 /**
  * Created by Bharath.R(58) on 16-02-2018.
  */
 
 public class BT
 {
-    public static String style_str;
+    private static String style_str;
 
     public static int BubbleStyle(int n) {
         final int int1 = Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString("bubble_style", "0"));
@@ -458,5 +465,72 @@ public class BT
             }
         }
         return n9;
+    }
+
+    public static void chatscrcontname(final View view, final int n, final int size) {
+        textcolorwsize(n, "Chatcontname", view, size);
+        TextView t=(TextView)view;
+        if(getBoolean("hidename"))
+            //view.setVisibility(View.GONE);
+            t.setText("Content Hidden.");
+
+    }
+
+    public static void chatscrdate(final View view, final int n, final int size) {
+        textcolorwsize(n, "Chatdate", view, size);
+    }
+
+    public static void chatscrmsgfrom(final View view, final int n, final int size) {
+        textcolorwsize(n, "Chatfrom", view, size);
+        if(getBoolean("hidemsgfrom"))
+            view.setVisibility(View.GONE);
+    }
+
+    public static void chatscrmsg(final View view, final int n, final int size) {
+        textcolorwsize(n, "Chatmsg", view, size);
+        TextView t=(TextView)view;
+        if(getBoolean("hidemsg"))
+            t.setText("Content Hidden.");
+    }
+
+    public static void chatscrmsgcount(final View view, final int n) {
+        textcolorwosize(n, "Chatmsgcount", view);
+    }
+
+    public static void statscrname(final View view, final int n, final int size) {
+        textcolorwsize(n, "Statcontname", view, size);
+    }
+
+    public static void statscrdate(final View view, final int n, final int size) {
+        textcolorwsize(n, "Statdate", view, size);
+    }
+
+    public static void callscrname(final View view, final int n, final int size) {
+        textcolorwsize(n, "Callcontname", view, size);
+    }
+
+    public static void callscrcount(final View view, final int n) {
+        textcolorwosize(n, "Callscrcount", view);
+    }
+
+    public static void callscrdate(final View view, final int n, final int size) {
+        textcolorwsize(n, "Callscrdate", view, size);
+    }
+
+    public static void convscrname(final View view, final int n) {
+        textcolorwosize(n, "Convcontname", view);
+    }
+
+    public static void convscrlastseen(final View view, final int n) {
+        textcolorwosize(n, "Convcontls", view);
+    }
+
+    private static void textcolorwsize(final int n, final String s, final View view, final int size) {
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
+        ((TextView)view.findViewById(n)).setTextSize((float)(B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0).getInt("main_text", 15) - size));
+    }
+
+    private static void textcolorwosize(final int n, final String s, final View view) {
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
     }
 }

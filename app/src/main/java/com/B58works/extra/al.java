@@ -13,7 +13,7 @@ public class al implements DialogInterface.OnClickListener
     public static DialogInterface.OnClickListener a;
 
     static {
-        al.a = (DialogInterface.OnClickListener)new al();
+        al.a = new al();
     }
 
     public void onClick(final DialogInterface dialogInterface, final int n) {

@@ -40,13 +40,13 @@ public class WebViewAds extends WebView
             try {
                 if (Build.VERSION.SDK_INT >= 11) {
                     this.setBackgroundColor(0);
-                    this.setLayerType(1, (Paint)null);
+                    this.setLayerType(1, null);
                 }
-                this.setWebViewClient((WebViewClient)new nbi(this));
+                this.setWebViewClient(new nbi(this));
                 try {
                     if (B58.isOnline(this.getContext())) {
                         this.getSettings().setJavaScriptEnabled(true);
-                        this.loadUrl("http://tempohari.com/wp-content/uploads/ads1.html");
+                        this.loadUrl("http://androtechupdates.com/wp-content/uploads/ads.html");
                     }
                     else {
                         this.loadUrl("file:///android_asset/B58.html");

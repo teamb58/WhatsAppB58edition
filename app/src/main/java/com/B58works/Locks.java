@@ -33,7 +33,7 @@ public class Locks extends c
             c.startActivity(new Intent(Locks.c));
         }
         else {
-            c.startActivity(new Intent((Context)c, (Class)clazz));
+            c.startActivity(new Intent(c, clazz));
         }
     }
 
@@ -42,10 +42,10 @@ public class Locks extends c
     }
 
     public void callHome() {
-        String s = this.b.getString("codepa", (String)null);
+        String s = this.b.getString("codepa", null);
         if (this.getIntent() != null && this.getIntent().hasExtra("jid")) {
             s = Privacy.getStringPriv(this.getIntent().getStringExtra("jid") + "_codepa");
-            Locks.c = (Intent)this.getIntent().getParcelableExtra("intent");
+            Locks.c = this.getIntent().getParcelableExtra("intent");
         }
         final EditText editText = this.findViewById(getID("passTe", "id"));
         if (new String(Base64.encode(editText.getText().toString().getBytes(), 2)).equals(s)) {
@@ -53,7 +53,7 @@ public class Locks extends c
             this.finish();
         }
         else {
-            editText.setText((CharSequence)"");
+            editText.setText("");
         }
     }
 
@@ -104,14 +104,14 @@ public class Locks extends c
         this.findViewById(getID("relmain", "id")).setBackgroundDrawable(pass.getWall());
         this.b = this.getSharedPreferences("B58", 0);
         this.a = this.b.edit();
-        if (this.b.getString("codepa", (String)null) == null) {
+        if (this.b.getString("codepa", null) == null) {
             this.a.putString("codepa", "MDAwMA==");
             this.a.apply();
             StartActivity(HomeActivity.class, this);
             this.finish();
         }
         final EditText editText = this.findViewById(getID("passTe", "id"));
-        editText.addTextChangedListener((TextWatcher)new com.B58works.extra.x(this, editText));
+        editText.addTextChangedListener(new com.B58works.extra.x(this, editText));
     }
 }
 

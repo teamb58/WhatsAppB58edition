@@ -35,25 +35,25 @@ public class ColorSelectorView extends LinearLayout
     }
     
     private void init() {
-        final LayoutInflater layoutInflater = (LayoutInflater)this.getContext().getSystemService("layout_inflater");
+        final LayoutInflater layoutInflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final Context context = this.getContext();
         final View inflate = layoutInflater.inflate(others.getResId(context, "color_colorselectview", "layout"), (ViewGroup)null);
-        this.addView(inflate, (ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -1));
-        (this.hsvSelector = new HsvSelectorView(this.getContext())).setLayoutParams((ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -1));
+        this.addView(inflate, new LinearLayout.LayoutParams(-1, -1));
+        (this.hsvSelector = new HsvSelectorView(this.getContext())).setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
         this.hsvSelector.setOnColorChangedListener((HsvSelectorView.OnColorChangedListener)new HsvSelectorView.OnColorChangedListener() {
             @Override
             public void colorChanged(final int color) {
                 ColorSelectorView.this.setColor(color);
             }
         });
-        (this.rgbSelector = new RgbSelectorView(this.getContext())).setLayoutParams((ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -1));
+        (this.rgbSelector = new RgbSelectorView(this.getContext())).setLayoutParams((ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -1));
         this.rgbSelector.setOnColorChangedListener((RgbSelectorView.OnColorChangedListener)new RgbSelectorView.OnColorChangedListener() {
             @Override
             public void colorChanged(final int color) {
                 ColorSelectorView.this.setColor(color);
             }
         });
-        (this.hexSelector = new HexSelectorView(this.getContext())).setLayoutParams((ViewGroup$LayoutParams)new LinearLayout$LayoutParams(-1, -1));
+        (this.hexSelector = new HexSelectorView(this.getContext())).setLayoutParams((ViewGroup.LayoutParams)new LinearLayout.LayoutParams(-1, -1));
         this.hexSelector.setOnColorChangedListener((HexSelectorView.OnColorChangedListener)new HexSelectorView.OnColorChangedListener() {
             @Override
             public void colorChanged(final int color) {
@@ -62,9 +62,9 @@ public class ColorSelectorView extends LinearLayout
         });
         (this.tabs = (TabHost)inflate.findViewById(others.getResId(context, "colorview_tabColors", "id"))).setup();
         final ColorTabContentFactory content = new ColorTabContentFactory();
-        final TabHost$TabSpec setContent = this.tabs.newTabSpec("HSV").setIndicator((CharSequence)"HSV", this.getContext().getResources().getDrawable(others.getResId(context, "hsv32", "drawable"))).setContent((TabHost$TabContentFactory)content);
-        final TabHost$TabSpec setContent2 = this.tabs.newTabSpec("RGB").setIndicator((CharSequence)"RGB", this.getContext().getResources().getDrawable(others.getResId(context, "rgb32", "drawable"))).setContent((TabHost$TabContentFactory)content);
-        final TabHost$TabSpec setContent3 = this.tabs.newTabSpec("HEX").setIndicator((CharSequence)"HEX", this.getContext().getResources().getDrawable(others.getResId(context, "hex32", "drawable"))).setContent((TabHost$TabContentFactory)content);
+        final TabHost.TabSpec setContent = this.tabs.newTabSpec("HSV").setIndicator((CharSequence)"HSV", this.getContext().getResources().getDrawable(others.getResId(context, "hsv32", "drawable"))).setContent((TabHost.TabContentFactory)content);
+        final TabHost.TabSpec setContent2 = this.tabs.newTabSpec("RGB").setIndicator((CharSequence)"RGB", this.getContext().getResources().getDrawable(others.getResId(context, "rgb32", "drawable"))).setContent((TabHost.TabContentFactory)content);
+        final TabHost.TabSpec setContent3 = this.tabs.newTabSpec("HEX").setIndicator((CharSequence)"HEX", this.getContext().getResources().getDrawable(others.getResId(context, "hex32", "drawable"))).setContent((TabHost.TabContentFactory)content);
         this.tabs.addTab(setContent);
         this.tabs.addTab(setContent2);
         this.tabs.addTab(setContent3);
@@ -113,7 +113,7 @@ public class ColorSelectorView extends LinearLayout
         this.listener = listener;
     }
     
-    class ColorTabContentFactory implements TabHost$TabContentFactory
+    class ColorTabContentFactory implements TabHost.TabContentFactory
     {
         public View createTabContent(final String s) {
             Object o;

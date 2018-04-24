@@ -69,10 +69,10 @@ public class HsvColorValueView extends FrameLayout
         }
         final int backgroundSize = this.getBackgroundSize(n);
         if (this.drawCache == null && backgroundSize > 0) {
-            this.outerShader = (Shader)new LinearGradient(0.0f, 0.0f, 0.0f, (float)backgroundSize, -1, -16777216, Shader$TileMode.CLAMP);
-            this.innerShader = (Shader)new LinearGradient(0.0f, 0.0f, (float)backgroundSize, 0.0f, -1, Color.HSVToColor(new float[] { this.hue, 1.0f, 1.0f }), Shader$TileMode.CLAMP);
-            this.paint.setShader((Shader)new ComposeShader(this.outerShader, this.innerShader, PorterDuff$Mode.MULTIPLY));
-            this.drawCache = Bitmap.createBitmap(backgroundSize, backgroundSize, Bitmap$Config.ARGB_8888);
+            this.outerShader = (Shader)new LinearGradient(0.0f, 0.0f, 0.0f, (float)backgroundSize, -1, -16777216, Shader.TileMode.CLAMP);
+            this.innerShader = (Shader)new LinearGradient(0.0f, 0.0f, (float)backgroundSize, 0.0f, -1, Color.HSVToColor(new float[] { this.hue, 1.0f, 1.0f }), Shader.TileMode.CLAMP);
+            this.paint.setShader((Shader)new ComposeShader(this.outerShader, this.innerShader, PorterDuff.Mode.MULTIPLY));
+            this.drawCache = Bitmap.createBitmap(backgroundSize, backgroundSize, Bitmap.Config.ARGB_8888);
             new Canvas(this.drawCache).drawRect(0.0f, 0.0f, (float)backgroundSize, (float)backgroundSize, this.paint);
         }
     }
@@ -84,7 +84,7 @@ public class HsvColorValueView extends FrameLayout
     private void init() {
         this.colorSelector = this.getContext().getResources().getDrawable(others.getResId(this.getContext(), "color_selector", "drawable"));
         (this.selectorView = new ImageView(this.getContext())).setImageDrawable(this.colorSelector);
-        this.addView((View)this.selectorView, (ViewGroup$LayoutParams)new FrameLayout$LayoutParams(this.colorSelector.getIntrinsicWidth(), this.colorSelector.getIntrinsicHeight()));
+        this.addView((View)this.selectorView, (ViewGroup.LayoutParams)new FrameLayout.LayoutParams(this.colorSelector.getIntrinsicWidth(), this.colorSelector.getIntrinsicHeight()));
         this.setWillNotDraw(false);
     }
     

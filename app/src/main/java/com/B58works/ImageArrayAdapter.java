@@ -36,8 +36,8 @@ public class ImageArrayAdapter extends ArrayAdapter<CharSequence>
     public View getView(final int n, final View view, final ViewGroup viewGroup) {
         final View inflate = ((Activity)this.getContext()).getLayoutInflater().inflate(this.getResID("listitem", "layout"), viewGroup, false);
         ((ImageView)inflate.findViewById(this.getResID("image", "id"))).setImageResource(this.resourceIds[n]);
-        final CheckedTextView checkedTextView = (CheckedTextView)inflate.findViewById(this.getResID("check", "id"));
-        checkedTextView.setText((CharSequence)this.getItem(n));
+        final CheckedTextView checkedTextView = inflate.findViewById(this.getResID("check", "id"));
+        checkedTextView.setText(this.getItem(n));
         if (n == this.index) {
             checkedTextView.setChecked(true);
         }

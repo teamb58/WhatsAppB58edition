@@ -1,6 +1,7 @@
 package com.B58works.extra;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.B58works.B58;
 
@@ -11,12 +12,11 @@ import com.B58works.B58;
 public class ak implements View.OnClickListener
 {
     private final String a;
-
     public ak(final String a) {
         this.a = a;
     }
 
     public void onClick(final View view) {
-        B58.a(this.a, view);
+        B58.a(this.a);
     }
 }

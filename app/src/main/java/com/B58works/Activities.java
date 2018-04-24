@@ -34,14 +34,14 @@ public class Activities extends Preference
         super.onClick();
         final String key = this.getKey();
         switch (key) {
-            case "reset": {
-                this.getContext().getSharedPreferences("B58privacy", 0).edit().clear().apply();
-                Toast.makeText(this.getContext(), (CharSequence)"All privacy preferences including custom privacy are reset to default now.", Toast.LENGTH_SHORT).show();
+            case "update": {
+                new Update(getContext()).execute((String[]) new String[0]);
                 break;
             }
-            case "clearlock": {
-                this.getContext().getSharedPreferences("B58lock", 0).edit().clear().apply();
-                Toast.makeText(this.getContext(), (CharSequence)"All individual locks are now removed.", Toast.LENGTH_SHORT).show();
+
+            case "reset": {
+                this.getContext().getSharedPreferences("B58privacy", 0).edit().clear().apply();
+                Toast.makeText(this.getContext(), "All privacy preferences including custom privacy are reset to default now.", Toast.LENGTH_SHORT).show();
                 break;
             }
             case "share": {
@@ -53,21 +53,25 @@ public class Activities extends Preference
                 this.getContext().startActivity(Intent.createChooser(intent, (CharSequence)this.getContext().getString(B58.getResID("B58Share", "string"))));
                 break;
             }
-            case "clemoji": {
-                final File file = new File("/data/data/com.whatsapp/files/emoji");
-                if (file.exists()) {
-                    file.delete();
-                    Toast.makeText(this.getContext(), (CharSequence)"All Recently used Emojis are Cleared", Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                Toast.makeText(this.getContext(), (CharSequence)"No Recent Emojis There!", Toast.LENGTH_SHORT).show();
-                break;
-            }
             case "credits": {
                 final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
                 alertDialog$Builder.setTitle((CharSequence)"Credits");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("file:///android_asset/credits.html");
+                alertDialog$Builder.setView((View)view);
+                alertDialog$Builder.setNeutralButton("OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialogInterface, final int n) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                alertDialog$Builder.show();
+                break;
+            }
+            case "clogs": {
+                final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
+                alertDialog$Builder.setTitle((CharSequence)"Changelogs");
+                final WebView view = new WebView(this.getContext());
+                view.loadUrl("file:///android_asset/clog.html");
                 alertDialog$Builder.setView((View)view);
                 alertDialog$Builder.setNeutralButton((CharSequence)"OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
@@ -77,18 +81,18 @@ public class Activities extends Preference
                 alertDialog$Builder.show();
                 break;
             }
-            case "clogs": {
-                final AlertDialog.Builder alertDialog$Builder2 = new AlertDialog.Builder(this.getContext());
-                alertDialog$Builder2.setTitle((CharSequence)"Changelogs");
-                final WebView view2 = new WebView(this.getContext());
-                view2.loadUrl("file:///android_asset/clog.html");
-                alertDialog$Builder2.setView((View)view2);
-                alertDialog$Builder2.setNeutralButton((CharSequence)"OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
+            case "devmsg": {
+                final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
+                alertDialog$Builder.setTitle((CharSequence)"Developer Message");
+                final WebView view = new WebView(this.getContext());
+                view.loadUrl("https://androtechupdates.com/wp-content/uploads/devmsg.html");
+                alertDialog$Builder.setView((View)view);
+                alertDialog$Builder.setNeutralButton((CharSequence)"OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }
                 });
-                alertDialog$Builder2.show();
+                alertDialog$Builder.show();
                 break;
             }
         }

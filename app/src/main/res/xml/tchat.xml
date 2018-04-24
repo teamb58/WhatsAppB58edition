@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:title="@string/hideinfo" android:key="B58_hideinfo" android:summary="@string/hideinfosum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/textsel" android:key="TxtSelect" android:summary="@string/textselsum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/hidecall" android:key="call_btn" android:summary="@string/hidecallsum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/hidepic" android:key="B58pic" android:summary="@string/hidepicsum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/Gifchoose" android:key="tgchoose" android:summary="@string/Gifchoosesum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/status" android:key="statuschat" android:summary="@string/statussum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/cenaction" android:key="actionbar" android:summary="@string/cenactionsum" android:defaultValue="false" />
+</PreferenceScreen>

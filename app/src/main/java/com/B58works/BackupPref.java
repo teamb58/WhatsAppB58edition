@@ -35,22 +35,10 @@ public class BackupPref extends Preference implements Preference.OnPreferenceCli
     public boolean onPreferenceClick(final Preference preference) {
         final Context context = this.getContext();
         final File dataDirectory = Environment.getDataDirectory();
-        String s;
-        if (B58.IsB58) {
-            s = "data/com.whatsapp";
-        }
-        else {
-            s = "data/com.whatsapp";
-        }
+        String s="data/com.whatsapp";
         final File file = new File(dataDirectory, s);
         final File externalStorageDirectory = Environment.getExternalStorageDirectory();
-        String s2;
-        if (B58.IsB58) {
-            s2 = "WhatsApp/B58Backup";
-        }
-        else {
-            s2 = "WhatsApp/B58Backup";
-        }
+        String s2="data/com.whatsapp";
         new CopyingTask(context, true, file, new File(externalStorageDirectory, s2)).execute(new File[0]);
         return false;
     }

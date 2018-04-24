@@ -1,7 +1,10 @@
 package com.whatsapp.architjn.ui.activity;
 
 import android.app.*;
+import android.content.pm.PackageManager;
 import android.os.*;
+
+import com.B58works.settings.textmods.Settings;
 import com.whatsapp.architjn.*;
 import android.widget.*;
 import android.view.*;
@@ -61,7 +64,7 @@ public class IconChoose extends Activity
         this.iconNineteen = (RadioButton)this.findViewById(others.getResId((Context)this, "iconNineteen_radio", "id"));
         this.iconTwenty = (RadioButton)this.findViewById(others.getResId((Context)this, "iconTwenty_radio", "id"));
         this.applyChangeButton = (Button)this.findViewById(others.getResId((Context)this, "applyIcon", "id"));
-        this.iconOne.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconOne.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 1;
@@ -88,7 +91,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconTwo.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconTwo.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 2;
@@ -115,7 +118,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconThree.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconThree.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 3;
@@ -142,7 +145,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconFour.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconFour.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 4;
@@ -169,7 +172,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconFive.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconFive.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 5;
@@ -196,7 +199,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconSix.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconSix.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 6;
@@ -223,7 +226,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconSeven.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconSeven.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 7;
@@ -250,7 +253,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconEight.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconEight.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 8;
@@ -277,7 +280,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconNine.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconNine.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 9;
@@ -304,7 +307,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconTen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconTen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 10;
@@ -331,7 +334,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconEleven.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconEleven.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 11;
@@ -358,7 +361,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconTwelve.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconTwelve.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 12;
@@ -385,7 +388,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconThirteen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconThirteen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 13;
@@ -412,7 +415,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconFourteen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconFourteen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 14;
@@ -439,7 +442,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconFifteen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconFifteen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 15;
@@ -466,7 +469,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconSixteen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconSixteen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 16;
@@ -493,7 +496,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconSeventeen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconSeventeen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 17;
@@ -520,7 +523,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconEighteen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconEighteen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 18;
@@ -547,7 +550,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconNineteen.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconNineteen.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 19;
@@ -574,7 +577,7 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.iconTwenty.setOnCheckedChangeListener((CompoundButton$OnCheckedChangeListener)new CompoundButton$OnCheckedChangeListener() {
+        this.iconTwenty.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener)new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 if (b) {
                     IconChoose.this.choosenIcon = 20;
@@ -601,114 +604,114 @@ public class IconChoose extends Activity
                 }
             }
         });
-        this.applyChangeButton.setOnClickListener((View$OnClickListener)new View$OnClickListener() {
+        this.applyChangeButton.setOnClickListener((View.OnClickListener)new View.OnClickListener() {
             public void onClick(final View view) {
                 if (IconChoose.this.choosenIcon == 1) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconone"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconone"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 2) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwo"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwo"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 3) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthree"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthree"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 4) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfour"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfour"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 5) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfive"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfive"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 6) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsix"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsix"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 7) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseven"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseven"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 8) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeight"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeight"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 9) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnine"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnine"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 10) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconten"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconten"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 11) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeleven"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeleven"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 12) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwelve"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwelve"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 13) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthirteen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthirteen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 14) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfourteen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfourteen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 15) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfifteen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfifteen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 16) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsixteen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsixteen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 17) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseventeen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseventeen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 18) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeighteen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeighteen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 19) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnineteen"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnineteen"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
                 else if (IconChoose.this.choosenIcon == 20) {
                     IconChoose.this.removeAll();
-                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwenty"), 1, 1);
+                    IconChoose.this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwenty"), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
                 }
-                IconChoose.this.startActivity(new Intent((Context)IconChoose.this, (Class)Settings.class));
+                IconChoose.this.startActivity(new Intent(IconChoose.this, Settings.class));
                 IconChoose.this.finish();
             }
         });
     }
     
     public void removeAll() {
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconone"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwo"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthree"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfour"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfive"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsix"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseven"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeight"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnine"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconten"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeleven"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwelve"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthirteen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfourteen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfifteen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsixteen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseventeen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeighteen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnineteen"), 2, 1);
-        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwenty"), 2, 1);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconone"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwo"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthree"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfour"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfive"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsix"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseven"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeight"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnine"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconten"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeleven"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwelve"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconthirteen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfourteen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconfifteen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconsixteen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconseventeen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconeighteen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.iconnineteen"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        this.getPackageManager().setComponentEnabledSetting(new ComponentName("com.whatsapp", "com.whatsapp.icontwenty"), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
 }
