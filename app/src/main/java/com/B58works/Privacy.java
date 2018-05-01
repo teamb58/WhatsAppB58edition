@@ -169,8 +169,15 @@ public class Privacy extends nc {
         super.onCreate(bundle);
         this.getPreferenceManager().setSharedPreferencesName("B58privacy");
         this.addPreferencesFromResource(B58.getResID("b58_privacy", "xml"));
-        final Preference p=this.findPreference("HideReceipt");
-        p.setEnabled(false);
-        p.setSummary("Please use custom privacy as it has reduced delay.");
+        final Preference p1=this.findPreference("C_HideReceipt");
+        final Preference p2=this.findPreference("B_HideReceipt");
+        final Preference p3=this.findPreference("G_HideReceipt");
+        p1.setEnabled(false);
+        p1.setSummary("Please use custom privacy as it has reduced delay.");
+        p2.setEnabled(false);
+        p2.setSummary("Please use custom privacy as it has reduced delay.");
+        p3.setEnabled(false);
+        p3.setSummary("Please use custom privacy as it has reduced delay.");
+
     }
 }

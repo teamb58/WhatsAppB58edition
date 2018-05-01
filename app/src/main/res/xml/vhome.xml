@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:robobunny="http://robobunny.com">
+<PreferenceScreen android:title="@string/B58homev"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:robobunny="http://robobunny.com">
     <com.B58works.ColorPref android:title="@string/homebg" android:key="homebg" android:summary="@string/homebgsum" />
     <com.B58works.ColorPref android:title="@string/tabcolor" android:key="Tabcolor" android:summary="@string/tabcolorsum" />
     <com.B58works.ColorPref android:title="@string/unreadc" android:key="counterbg" android:summary="@string/unreadcsum" />
@@ -17,4 +18,5 @@
     <com.B58works.ColorPref android:title="@string/callsname" android:key="Callcontname" android:summary="@string/callsnamesum" />
     <com.B58works.ColorPref android:title="@string/callscount" android:key="Callscrcount" android:summary="@string/callscountsum" />
     <com.B58works.ColorPref android:title="@string/callsdate" android:key="Callscrdate" android:summary="@string/callsdatesum" />
+    <com.B58works.ColorPref android:title="@string/callsicon" android:key="callbtncolor" android:summary="@string/callsiconsum" />
 </PreferenceScreen>

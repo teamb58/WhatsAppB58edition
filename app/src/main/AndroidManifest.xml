@@ -10,14 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:theme="@style/Theme.Prefs" android:label="B58mods" android:name="com.B58works.Settings" />
-        <activity android:theme="@style/Theme.Prefs" android:label="pass" android:name="com.B58works.pass" />
-        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.LocksC" />
-        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.pattern" />
-        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.patternC" />
-        <activity android:theme="@style/Theme.Prefs" android:label="Lock" android:name="com.B58works.Locks" />
-        <activity android:theme="@style/Theme.Prefs" android:label="Privacy" android:name="com.B58works.Privacy" />
-        <activity android:theme="@style/Theme.Prefs" android:name="com.whatsapp.plus.ReadLogFile" />
+        <activity android:name="com.B58works.pass" />
+        <activity android:name="com.B58works.LocksC" />
+        <activity android:name="com.B58works.pattern" />
+        <activity android:name="com.B58works.patternC" />
+        <activity android:name="com.B58works.Locks" />
+        <activity android:name="com.B58works.Privacy" />
+        <activity android:name="com.whatsapp.plus.ReadLogFile" />
         <activity android:label="@string/app_name" android:name="com.whatsapp.architjn.ui.activity.IconChoose" />
         <activity android:theme="@android:style/Theme.Light" android:label="Select File" android:name="com.whatsapp.plus.XMLXplorerActivity" android:configChanges="keyboard|keyboardHidden|locale|orientation">
             <intent-filter>
@@ -27,7 +26,18 @@
                 <data android:mimeType="text/xml" />
             </intent-filter>
         </activity>
-        <activity android:name="fk.acra.CrashReportDialog" android:finishOnTaskLaunch="true" android:excludeFromRecents="true" android:launchMode="singleInstance" android:configChanges="locale" />
+        <activity android:name="com.B58works.settings.textmods.Chatscreen" />
+        <activity android:name="com.B58works.settings.textmods.Choosers" />
+        <activity android:name="com.B58works.settings.textmods.Homescreen" />
+        <activity android:name="com.B58works.settings.textmods.Logscreen" />
+        <activity android:name="com.B58works.settings.textmods.Mediamods" />
+        <activity android:name="com.B58works.settings.textmods.Settings" />
+        <activity android:name="com.B58works.settings.visualmods.Chatscreen" />
+        <activity android:name="com.B58works.settings.visualmods.Fabscreen" />
+        <activity android:name="com.B58works.settings.visualmods.Homescreen" />
+        <activity android:name="com.B58works.settings.visualmods.Settings" />
+        <activity android:name="com.B58works.settings.visualmods.Themescreen" />
+        <activity android:name="com.B58works.settings.visualmods.Universal" />
     </application>
 
 </manifest>

@@ -239,7 +239,7 @@ public class B58 extends sn1 {
                 textView.setTextColor(sn1.getColor("ModChatGStatusT", -1));
                 textView.setSelected(true);
                 textView.setBackgroundColor(sn1.getColor("ModChatGStatusB", Color.parseColor("#44000000")));
-                if (!statuschat()) {
+                if (statuschat()) {
                     textView.setVisibility(View.VISIBLE);
                     clickcopytext(textView);
                     return;
@@ -269,11 +269,8 @@ public class B58 extends sn1 {
     public static void TxtSelect(final TextEmojiLabel textEmojiLabel) {
         if (getBoolean("TxtSelect")) {
             textEmojiLabel.setTextIsSelectable(true);
+            textEmojiLabel.setLinksClickable(true);
         }
-    }
-
-    public static boolean Up_size_limit() {
-        return getBoolean("Up_size_limit");
     }
 
     public static Class a() {
@@ -324,7 +321,7 @@ public class B58 extends sn1 {
         if (menuItem.getItemId() == getResID("restart", "id")) {
             rebootApp(homeActivity);
         }
-        if(menuItem.getItemId() == getResID("openchat", "id")){
+        if(menuItem.getItemId() == getResID("openc", "id")){
             AlertDialog.Builder builder;
             builder = new AlertDialog.Builder(homeActivity);
             builder.setTitle("New Chat");
@@ -580,7 +577,7 @@ public class B58 extends sn1 {
 
     public static Intent notifIn(Intent putExtra) {
         if (getBoolean("Locked")) {
-            putExtra = new Intent(getCtx(), a()).putExtra("intent", (Parcelable)putExtra);
+            putExtra = new Intent(getCtx(), a()).putExtra("intent", putExtra);
         }
         return putExtra;
     }
@@ -646,6 +643,17 @@ public class B58 extends sn1 {
         return menu.add(1, getResID("B58visualmods", "id"), 0, getResID("B58visualsettingstitle", "string"));
     }
 
+    public static void setMenuNC(final Menu menu) {
+        if(!getBoolean("hide_fab"))
+        {
+            MenuItem m=menu.add(1, getResID("menuitem_new_conversation", "id"), 0, getResID("menuitem_new", "string"));
+            int i=getResID("ic_action_compose","drawable");
+            m.setIcon(i);
+            m.setShowAsAction(2);
+        }
+
+    }
+
     public static void menu(final Menu m)
     {
         if(getBoolean("hide_fab"))
@@ -658,7 +666,7 @@ public class B58 extends sn1 {
     }
     public static void setStatusText(final fo fo, final TextView textView) {
         try {
-            if (Privacy.HideSeen() || wacontactfinder(fo) || onlinechat() || (!isNetworkAvailable())) {
+            if (Privacy.HideSeen() || wacontactfinder(fo) || !onlinechat() || (!isNetworkAvailable())) {
                 textView.setVisibility(View.GONE);
                 return;
             }
@@ -672,7 +680,7 @@ public class B58 extends sn1 {
                 textView.setTextColor(sn1.getColor("ModlastseenColor"));
                 textView.setTypeface(textView.getTypeface(), 0);
             }
-            textView.setText((CharSequence)replace);
+            textView.setText(replace);
             textView.setVisibility(View.VISIBLE);
         }
         catch (Exception ignored) {}

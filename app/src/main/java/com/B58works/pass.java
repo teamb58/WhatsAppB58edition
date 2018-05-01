@@ -10,36 +10,23 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.TwoStatePreference;
 
 import com.B58works.extra.*;
 import com.whatsapp.nc;
 
-public class pass extends nc implements SharedPreferences.OnSharedPreferenceChangeListener
+public class pass extends nc implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener
 {
     public static Context con;
     public SharedPreferences.Editor editor;
 
 
+    public boolean onPreferenceClick(Preference preference) {
+        return false;
+    }
 
     public pass() {
         this.editor = null;
-    }
-
-    private void a(final Preference preference) {
-        if (preference != null) {
-            final String key = preference.getKey();
-            if (preference instanceof ListPreference) {
-                this.editor.putString(key, ((ListPreference)preference).getValue());
-                this.editor.commit();
-            }
-            else if (preference instanceof EditTextPreference) {
-                preference.setSummary(((EditTextPreference)preference).getText());
-            }
-            else if (preference instanceof CheckBoxPreference) {
-                this.editor.putBoolean(key, ((CheckBoxPreference)preference).isChecked());
-                this.editor.commit();
-            }
-        }
     }
 
     public static Drawable getWall() {
@@ -59,15 +46,33 @@ public class pass extends nc implements SharedPreferences.OnSharedPreferenceChan
 
     protected void onPause() {
         super.onPause();
-        this.getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
     protected void onResume() {
         super.onResume();
-        this.getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
-    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String s) {
-        this.a(this.findPreference(s));
+    public void onSharedPreferenceChanged(SharedPreferences paramSharedPreferences, String paramString)
+    {
+        updatePrefSummary(findPreference(paramString));
+    }
+
+    private void updatePrefSummary(final Preference preference) {
+        if (preference != null) {
+            final String key = preference.getKey();
+            if (preference instanceof ListPreference) {
+                this.editor.putString(key, ((ListPreference)preference).getValue());
+                this.editor.commit();
+            }
+            else if (preference instanceof EditTextPreference) {
+                preference.setSummary(((EditTextPreference)preference).getText());
+            }
+            else if (preference instanceof TwoStatePreference) {
+                this.editor.putBoolean(key, ((TwoStatePreference)preference).isChecked());
+                this.editor.commit();
+            }
+        }
     }
 }

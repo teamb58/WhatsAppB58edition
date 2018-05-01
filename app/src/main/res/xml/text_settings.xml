@@ -17,8 +17,8 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Mods" android:key="cat_wa">
         <Preference android:key="tprivacy" android:title="@string/B58privacy" android:summary="@string/B58privacysum" />
-        <Preference android:key="thome" android:title="@string/B58home" android:summary="@string/B58homesum" />
-        <Preference android:key="tchat" android:title="@string/B58chat" android:summary="@string/B58chatsum" />
+        <Preference android:key="thome" android:title="@string/B58homet" android:summary="@string/B58homesum" />
+        <Preference android:key="tchat" android:title="@string/B58chatt" android:summary="@string/B58chatsum" />
         <Preference android:key="tmedia" android:title="@string/B58media" android:summary="@string/B58mediasum" />
         <Preference android:key="tlog" android:title="@string/B58log" android:summary="@string/B58logsum" />
         <Preference android:key="tpass" android:title="@string/B58protect" android:summary="@string/B58protectsum" />

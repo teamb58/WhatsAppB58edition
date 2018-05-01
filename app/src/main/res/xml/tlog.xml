@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen android:title="@string/B58log"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference android:title="@string/read_log_prefopen">
         <intent android:targetPackage="com.whatsapp" android:targetClass="com.whatsapp.plus.ReadLogFile" />
     </Preference>

@@ -58,12 +58,12 @@ public class pattern extends Activity
             pattern.c = (Intent)this.getIntent().getParcelableExtra("intent");
         }
         if (this.b == null) {
-            Toast.makeText(this.getApplicationContext(), (CharSequence)"Set a pattern first!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getApplicationContext(), "Set a pattern first!", Toast.LENGTH_SHORT).show();
             StartActivity(HomeActivity.class, this);
             this.finish();
         }
-        this.a = (PatternView)this.findViewById(getID("patternView", "id"));
-        Toast.makeText(this.getApplicationContext(), (CharSequence)"ENTER PATTERN", Toast.LENGTH_SHORT).show();
-        this.a.setOnPatternDetectedListener((PatternView.OnPatternDetectedListener)new com.B58works.extra.cb(this));
+        this.a = this.findViewById(getID("patternView", "id"));
+        Toast.makeText(this.getApplicationContext(), "ENTER PATTERN", Toast.LENGTH_SHORT).show();
+        this.a.setOnPatternDetectedListener(new com.B58works.extra.cb(this));
     }
 }

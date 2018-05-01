@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen android:title="@string/B58themes"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference android:title="@string/downloadtheme" android:key="download" android:summary="@string/downloadthemesum" />
     <Preference android:title="@string/savetheme" android:key="save_temp" android:summary="@string/savethemesum" />
     <Preference android:title="@string/restoretheme" android:key="load_pref_file" android:summary="@string/restorethemesum" />

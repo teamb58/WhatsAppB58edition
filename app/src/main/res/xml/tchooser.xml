@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen android:title="@string/B58choosers"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cmwmobile="http://schemas.android.com/apk/res-auto">
     <com.B58works.listpref android:entries="@array/notifybar_colors" android:title="@string/notifychoose" android:key="notifybar_colors_list" android:defaultValue="0" android:entryValues="@array/notifybar_values" cmwmobile:entryImages="@array/notifybar_icons" />
     <Preference android:title="@string/launchicon">

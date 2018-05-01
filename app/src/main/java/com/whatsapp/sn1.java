@@ -102,7 +102,7 @@ public class sn1
 
     public static void ColorFab(final Context context, final View view) {
         final Drawable drawable = context.getResources().getDrawable(getResID("input_circle_green", "drawable"));
-        drawable.setColorFilter(getColor("FabNormal", 0), PorterDuff.Mode.SRC_ATOP);
+        drawable.setColorFilter(getColor("FabNormalColor", 0), PorterDuff.Mode.SRC_ATOP);
         view.setBackgroundDrawable(drawable);
     }
     public static void DisableFAB(final ImageView i, int n) {
@@ -138,17 +138,11 @@ public class sn1
     }
 
     public static void PaintBubbleLeft(final Drawable drawable) {
-        try {
-            drawable.setColorFilter(getColor("leftfill", ColorStore.getChatBubbleLeftColor()), PorterDuff.Mode.SRC_IN);
-        }
-        catch (Exception ex) {ex.printStackTrace();}
+        drawable.setColorFilter(getColor("leftfill", ColorStore.getChatBubbleLeftColor()), PorterDuff.Mode.MULTIPLY);
     }
 
     public static void PaintBubbleRight(final Drawable drawable) {
-        try {
-            drawable.setColorFilter(getColor("rightfill", ColorStore.getChatBubbleRightColor()), PorterDuff.Mode.SRC_IN);
-        }
-        catch (Exception ex) {ex.printStackTrace();}
+        drawable.setColorFilter(getColor("rightfill", ColorStore.getChatBubbleRightColor()), PorterDuff.Mode.MULTIPLY);
     }
 
     public static void Restart() {
@@ -159,6 +153,14 @@ public class sn1
     {
         t.setBackgroundColor(getColor("ActionbarColor",ColorStore.getActionBarColor()));
         t.setTitleTextColor(mainpagercolor());
+        t.setSubtitleTextColor(mainpagercolor());
+    }
+
+    public static void Toolbarcolor(final android.support.v7.app.a a) {
+        final int color = getColor("ActionbarColor", ColorStore.getActionBarColor());
+        if (color != -11) {
+            a.a(new ColorDrawable(color));
+        }
     }
 
     public static void Toolbaricon(Toolbar t, int i)
@@ -167,6 +169,10 @@ public class sn1
         t.setNavigationIcon(d);
     }
 
+    public static void Voipcnamebg(TextView t)
+    {
+        t.setBackgroundColor(tabcolor());
+    }
 
     static void a(final View view, final int textColor) {
         try {
@@ -189,6 +195,10 @@ public class sn1
         catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static int abc_action_bar_default_height_material() {
+        return B58.getResID("abc_action_bar_default_height_material", "dimen");
     }
 
     public static void actionbarbk(final Activity activity) {
@@ -332,7 +342,7 @@ public class sn1
     }
 
     public static int mainTextColor() {
-        return getColor("ModConTextColor", Color.parseColor("#303031"));
+        return getColor("ModConTextColor", Color.parseColor("#de000000"));
     }
 
     public static int mainpagercolor() {
@@ -401,6 +411,11 @@ public class sn1
 
     public static void setHomeIc(final ImageView imageView) {
         int color = mainpagercolor();
+        imageView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+    }
+
+    public static void setcallbtn(final ImageView imageView) {
+        int color = getColor("callbtncolor",ColorStore.getActionBarColor());
         imageView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
     }
 

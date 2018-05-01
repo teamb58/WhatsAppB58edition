@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen android:title="@string/B58home"
+<PreferenceScreen android:title="@string/B58homet"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference android:title="@string/oldui" android:key="oldui" android:summary="@string/olduisum" android:defaultValue="false" />
     <SwitchPreference android:title="@string/lsms" android:key="onlinechat" android:summary="@string/lsmssum" android:defaultValue="false" />
@@ -9,4 +9,5 @@
     <SwitchPreference android:title="@string/Archv" android:key="Archv_chats" android:summary="@string/Archvsum" android:defaultValue="false" />
     <SwitchPreference android:title="@string/COT" android:key="contact_online_toast" android:summary="@string/COTsum" android:defaultValue="false" />
     <SwitchPreference android:title="@string/Hidemsg" android:key="hidemsg" android:summary="@string/Hidemsgsum" android:defaultValue="false" />
+    <SwitchPreference android:title="@string/Hidename" android:key="hidename" android:summary="@string/Hidenamesum" android:defaultValue="false" />
 </PreferenceScreen>

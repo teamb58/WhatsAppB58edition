@@ -1,7 +1,11 @@
 package com.B58works;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
+
+import com.whatsapp.TextEmojiLabel;
 
 import static com.B58works.B58.getBoolean;
 import static com.whatsapp.sn1.getColor;
@@ -469,11 +473,18 @@ public class BT
 
     public static void chatscrcontname(final View view, final int n, final int size) {
         textcolorwsize(n, "Chatcontname", view, size);
-        TextView t=(TextView)view;
-        if(getBoolean("hidename"))
-            //view.setVisibility(View.GONE);
-            t.setText("Content Hidden.");
+        TextView t=(view.findViewById(n));
+        hidename(t);
+    }
 
+    public static void hidename(TextView t)
+    {
+        if(getBoolean("hidename"))
+        {
+            //t.setText("Contact name Hidden.");
+           //t.setTypeface(null, Typeface.ITALIC);
+            t.setVisibility(View.GONE);
+        }
     }
 
     public static void chatscrdate(final View view, final int n, final int size) {
@@ -482,19 +493,21 @@ public class BT
 
     public static void chatscrmsgfrom(final View view, final int n, final int size) {
         textcolorwsize(n, "Chatfrom", view, size);
-        if(getBoolean("hidemsgfrom"))
-            view.setVisibility(View.GONE);
     }
 
     public static void chatscrmsg(final View view, final int n, final int size) {
         textcolorwsize(n, "Chatmsg", view, size);
-        TextView t=(TextView)view;
+        TextEmojiLabel t=view.findViewById(n);
         if(getBoolean("hidemsg"))
-            t.setText("Content Hidden.");
+        {
+            //t.setText("Content Hidden.");
+            //t.setTypeface(null, Typeface.ITALIC);
+            t.setVisibility(View.GONE);
+        }
     }
 
     public static void chatscrmsgcount(final View view, final int n) {
-        textcolorwosize(n, "Chatmsgcount", view);
+        ((TextView)view.findViewById(n)).setTextColor(getColor("Chatmsgcount", Color.parseColor("#ffffff")));
     }
 
     public static void statscrname(final View view, final int n, final int size) {
@@ -518,19 +531,23 @@ public class BT
     }
 
     public static void convscrname(final View view, final int n) {
-        textcolorwosize(n, "Convcontname", view);
+        ((TextView)view.findViewById(n)).setTextColor(getColor("Convcontname", Color.parseColor("#ffffff")));
+        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
     }
 
     public static void convscrlastseen(final View view, final int n) {
-        textcolorwosize(n, "Convcontls", view);
+        ((TextView)view.findViewById(n)).setTextColor(getColor("Convcontls", Color.parseColor("#ffffff")));
+        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
     }
 
     private static void textcolorwsize(final int n, final String s, final View view, final int size) {
         ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
+        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
         ((TextView)view.findViewById(n)).setTextSize((float)(B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0).getInt("main_text", 15) - size));
     }
 
     private static void textcolorwosize(final int n, final String s, final View view) {
         ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
+        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
     }
 }

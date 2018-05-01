@@ -115,7 +115,7 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
                 try
                 {
                     RelativeLayout localRelativeLayout = (RelativeLayout)paramView;
-                    this.i = ((TextView)localRelativeLayout.findViewById(zseekBarPrefValue()));
+                    this.i = (localRelativeLayout.findViewById(zseekBarPrefValue()));
                     this.i.setText(String.valueOf(this.e));
                     this.i.setMinimumWidth(30);
                     this.h.setProgress(this.e - this.c);

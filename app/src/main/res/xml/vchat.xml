@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen android:title="@string/B58chatv"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <com.B58works.ColorPref android:title="@string/contname" android:key="Convcontname" android:summary="@string/contnamesum" />
     <com.B58works.ColorPref android:title="@string/contls" android:key="Convcontls" android:summary="@string/contlssum" />
     <com.B58works.ColorPref android:title="@string/statusbg" android:key="ModChatGStatusB" android:summary="@string/statusbgsum" />

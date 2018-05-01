@@ -21,12 +21,12 @@ public class cb implements PatternView.OnPatternDetectedListener
     @Override
     public void onPatternDetected() {
         if (pattern.b(this.a).equals(pattern.a(this.a).getPatternString())) {
-            Toast.makeText(this.a.getApplicationContext(), (CharSequence)"Unlocked.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.a.getApplicationContext(), "Unlocked.", Toast.LENGTH_SHORT).show();
             pattern.StartActivity(HomeActivity.class, this.a);
             this.a.finish();
         }
         else {
-            Toast.makeText(this.a.getApplicationContext(), (CharSequence)"Wrong. Try resetting if you've forgotten.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.a.getApplicationContext(), "Wrong. Try resetting if you've forgotten.", Toast.LENGTH_SHORT).show();
             pattern.a(this.a).clearPattern();
         }
     }

@@ -5,21 +5,13 @@ WhatsApp B58 edition Is a modified version of WhatsApp. Including new featuresas
 To include this code to WhatsApp you need to compile this project to an APK, and decompile to get the smali code, layout, pngs And Xmls to merge both apps.
 
 # **_Features_**
-*Based on latest web version 2.18.119
+*Based on latest play store version 2.18.122
 
 *Size just 21mb 
 
-*THEME YOUR APP TO YOUR LIKINGS.
+*Theme the app to your likings.
 
-*SAVE/SHARE YOUR THEMES. 
-
-*OPTION TO CALL THROUGH SIM.
-
-*OPTION TO SEND SMS THROUGH SIM.
-
-*Added FAB to access settings.
-
-*Option to hide sender name or message in chat screen.
+*Save/Share your themes.
 
 *Privacy mods (Anti revoke, pause last seen,Hide status view, hide blue ticks, hide second ticks, etc)
 
@@ -27,25 +19,9 @@ To include this code to WhatsApp you need to compile this project to an APK, and
 
 *Separate category of privacy for contacts, groups and broadcast message
 
-* GROUP COUNTER
+* Group Counter
 
-*Hide Archived chats
-
-*Make text selectable
-
-*Hide date and time while copying 2 or more
-
-**Hide call button.*
-
-*Choose Bubble styles(20 options)
-
-*Choose Tick styles(20 options)
-
-*Choose Notify bar icon styles(20 options)
-
-*Choose Launcher icon styles(20 options)
-
-*Backup and restore messages
+*Choose Bubbles, ticks, notifybar and launcher icons[20 styles]
 
 *Restart app
 
@@ -53,23 +29,25 @@ To include this code to WhatsApp you need to compile this project to an APK, and
 
 *Copy contact's status.
 
-*Option to put CONTACT'S STATUS IN CHAT SCREEN 
+*Option to put Contact's status in chatscreen.
 
-*LAST SEEN IN MAIN SCREEN
+*Call a contact through SIM instead of WhatsApp call or even send SMS.
 
-*CONTACT ONLINE TOAST
+*Last seen in main screen.
 
-*READLOG TO READ WHATSAPP LOG ALONG WITH FILTERS
+*Contact online toast.
 
-*ACRA FOR CRASH REPORTING
+*Logger to read WhatsApp Logs.
 
-*OPTION TO SAVE CONTACT'S STORIES, COPY TEXT STATUS TO CLIPBOARD
+*Option to save Contact's statuses(story) or copy Text status.
 
-*LOCK WHATSAPP WITH A PIN or Pattern.
+*LOCK WHATSAPP WITH A PIN OR PATTERN
 
-*LOCK INDIVIDUAL CHATS WITH A PIN OR PATTERN.
+*PER CHAT LOCK
 
-*Added profile pic zoom
+*Option to hide sender name in home screen.
+
+*Developer message to get important messages from the developer.
 
 * Much more to be experienced by yourself.
 
