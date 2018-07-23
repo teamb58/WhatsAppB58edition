@@ -74,9 +74,8 @@ public class Privacy extends nx {
         return s2;
     }
 
-    public static boolean HideCR(final int n) {
-        String s=JID;
-        boolean b;
+    public static boolean HideCR(final String s, final int n) {
+        boolean b = false;
         switch (n) {
             default: {
                 if (getPrivacyB(s)) {
