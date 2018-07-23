@@ -5,13 +5,17 @@ WhatsApp B58 edition Is a modified version of WhatsApp. Including new featuresas
 To include this code to WhatsApp you need to compile this project to an APK, and decompile to get the smali code, layout, pngs And Xmls to merge both apps.
 
 # **_Features_**
-*Based on latest play store version 2.18.122
+*Based on latest play store version 2.18.217
 
 *Size just 21mb 
 
 *Theme the app to your likings.
 
+*Theme with Gradients too.
+
 *Save/Share your themes.
+
+*Restore even GBWhatsApp or YoWhatsApp theme.
 
 *Privacy mods (Anti revoke, pause last seen,Hide status view, hide blue ticks, hide second ticks, etc)
 
