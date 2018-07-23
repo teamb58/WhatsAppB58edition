@@ -7,12 +7,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.c;
+import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.whatsapp.HomeActivity;
@@ -111,7 +114,60 @@ public class Locks extends c
             this.finish();
         }
         final EditText editText = this.findViewById(getID("passTe", "id"));
-        editText.addTextChangedListener(new com.B58works.extra.x(this, editText));
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                final ImageView imageView = findViewById(Locks.getID("imageView", "id"));
+                final ImageView imageView2 = findViewById(Locks.getID("imageView2", "id"));
+                final ImageView imageView3 = findViewById(Locks.getID("imageView3", "id"));
+                final ImageView imageView4 = findViewById(Locks.getID("imageView4", "id"));
+                final Drawable drawable = Locks.ctx.getResources().getDrawable(Locks.getID("pin1", "drawable"));
+                final Drawable drawable2 = Locks.ctx.getResources().getDrawable(Locks.getID("pinz", "drawable"));
+                if (editText.getText().toString().trim().length() == 1) {
+                    imageView.setImageDrawable(drawable);
+                    imageView2.setImageDrawable(drawable2);
+                    imageView3.setImageDrawable(drawable2);
+                    imageView4.setImageDrawable(drawable2);
+                }
+                else if (editText.getText().toString().length() == 2) {
+                    imageView.setImageDrawable(drawable);
+                    imageView2.setImageDrawable(drawable);
+                    imageView3.setImageDrawable(drawable2);
+                    imageView4.setImageDrawable(drawable2);
+                }
+                else if (editText.getText().toString().length() == 3) {
+                    imageView.setImageDrawable(drawable);
+                    imageView2.setImageDrawable(drawable);
+                    imageView3.setImageDrawable(drawable);
+                    imageView4.setImageDrawable(drawable2);
+                }
+                else if (editText.getText().toString().length() == 4) {
+                    imageView.setImageDrawable(drawable);
+                    imageView2.setImageDrawable(drawable);
+                    imageView3.setImageDrawable(drawable);
+                    imageView4.setImageDrawable(drawable);
+                }
+                else if (editText.getText().toString().length() == 0) {
+                    imageView.setImageDrawable(drawable2);
+                    imageView2.setImageDrawable(drawable2);
+                    imageView3.setImageDrawable(drawable2);
+                    imageView4.setImageDrawable(drawable2);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editText.getText().toString().length() == 4) {
+                    callHome();
+                }
+            }
+        });
     }
 }
 

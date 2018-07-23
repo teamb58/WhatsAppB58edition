@@ -17,4 +17,7 @@
 	<dimen name="bW">130.0dip</dimen>
 	<dimen name="bH">90.0dip</dimen>
 	<dimen name="circleSize">150.0dip</dimen>
+	<dimen name="list_row_padding">14.0dip</dimen>
+	<dimen name="pref_profile_small_photo_size">70.0dip</dimen>
+	<dimen name="conversations_row_height">76.0dip</dimen>
 </resources>

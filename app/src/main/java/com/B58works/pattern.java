@@ -30,7 +30,7 @@ public class pattern extends Activity
             activity.startActivity(new Intent(pattern.c));
         }
         else {
-            activity.startActivity(new Intent((Context)activity, (Class)clazz));
+            activity.startActivity(new Intent(activity, clazz));
         }
     }
 
@@ -55,7 +55,7 @@ public class pattern extends Activity
         this.b = this.getSharedPreferences("B58", 0).getString("pat", (String)null);
         if (this.getIntent() != null && this.getIntent().hasExtra("jid")) {
             this.b = Privacy.getStringPriv(this.getIntent().getStringExtra("jid") + "_pat");
-            pattern.c = (Intent)this.getIntent().getParcelableExtra("intent");
+            pattern.c = this.getIntent().getParcelableExtra("intent");
         }
         if (this.b == null) {
             Toast.makeText(this.getApplicationContext(), "Set a pattern first!", Toast.LENGTH_SHORT).show();
@@ -64,6 +64,19 @@ public class pattern extends Activity
         }
         this.a = this.findViewById(getID("patternView", "id"));
         Toast.makeText(this.getApplicationContext(), "ENTER PATTERN", Toast.LENGTH_SHORT).show();
-        this.a.setOnPatternDetectedListener(new com.B58works.extra.cb(this));
+        this.a.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
+            @Override
+            public void onPatternDetected() {
+                if (b.equals(a.getPatternString())) {
+                    Toast.makeText(getApplicationContext(), "Unlocked.", Toast.LENGTH_SHORT).show();
+                    pattern.StartActivity(HomeActivity.class,pattern.super.getParent());
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Wrong. Try resetting if you've forgotten.", Toast.LENGTH_SHORT).show();
+                   a.clearPattern();
+                }
+            }
+        });
     }
 }

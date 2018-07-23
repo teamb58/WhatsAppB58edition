@@ -3,11 +3,14 @@ package com.B58works;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.whatsapp.TextEmojiLabel;
+import com.whatsapp.sn1;
 
 import static com.B58works.B58.getBoolean;
+import static com.B58works.B58.getPrefString;
+import static com.B58works.B58.getPrefString1;
 import static com.whatsapp.sn1.getColor;
 import static com.whatsapp.sn1.mainTextColor;
 
@@ -20,7 +23,8 @@ public class BT
     private static String style_str;
 
     public static int BubbleStyle(int n) {
-        final int int1 = Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString("bubble_style", "0"));
+
+        final int int1 = getPrefString1("bubble_style");
         int n2 = B58.getResID("balloon_incoming_normal", "drawable");
         int n3 = B58.getResID("balloon_incoming_normal_ext", "drawable");
         int n4 = B58.getResID("balloon_outgoing_normal", "drawable");
@@ -196,7 +200,7 @@ public class BT
         int n7 = B58.getResID("message_got_receipt_from_target_onmedia", "drawable");
         int n8 = B58.getResID("message_got_read_receipt_from_target", "drawable");
         int n9 = B58.getResID("message_got_read_receipt_from_target_onmedia", "drawable");
-        switch (Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString("tick_style", "0"))) {
+        switch (getPrefString1("tick_style")) {
             case 0: {
                 BT.style_str = "stock";
                 n2 = B58.getResID("message_unsent", "drawable");
@@ -472,7 +476,14 @@ public class BT
     }
 
     public static void chatscrcontname(final View view, final int n, final int size) {
-        textcolorwsize(n, "Chatcontname", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Chatcontname";break;}
+            case 1:{s="ModContactNameColor";break;}
+            case 2:{s="chats_contacts_names_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
         TextView t=(view.findViewById(n));
         hidename(t);
     }
@@ -488,66 +499,167 @@ public class BT
     }
 
     public static void chatscrdate(final View view, final int n, final int size) {
-        textcolorwsize(n, "Chatdate", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Chatdate";break;}
+            case 1:{s="ModConTextColor";break;}
+            case 2:{s="chats_date_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
     }
 
     public static void chatscrmsgfrom(final View view, final int n, final int size) {
-        textcolorwsize(n, "Chatfrom", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Chatfrom";break;}
+            case 1:{s="ModConTextColor";break;}
+            case 2:{s="chats_from_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
     }
 
     public static void chatscrmsg(final View view, final int n, final int size) {
-        textcolorwsize(n, "Chatmsg", view, size);
-        TextEmojiLabel t=view.findViewById(n);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Chatmsg";break;}
+            case 1:{s="ModConTextColor";break;}
+            case 2:{s="chats_msg_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
         if(getBoolean("hidemsg"))
         {
-            //t.setText("Content Hidden.");
-            //t.setTypeface(null, Typeface.ITALIC);
-            t.setVisibility(View.GONE);
+            final FrameLayout f = view.findViewById(sn1.zhidemsg());
+            if (f != null) {
+                f.setVisibility(View.GONE);
+            }
         }
     }
 
     public static void chatscrmsgcount(final View view, final int n) {
-        ((TextView)view.findViewById(n)).setTextColor(getColor("Chatmsgcount", Color.parseColor("#ffffff")));
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Chatmsgcount";break;}
+            case 1:{s="HomeCounterText";break;}
+            case 2:{s="chats_unread_msg_text_color_picker";break;}
+        }
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, Color.parseColor("#ffffff")));
     }
 
     public static void statscrname(final View view, final int n, final int size) {
-        textcolorwsize(n, "Statcontname", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Statcontname";break;}
+            case 1:{s="ModContactNameColor";break;}
+            case 2:{s="chats_contacts_names_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
     }
 
     public static void statscrdate(final View view, final int n, final int size) {
-        textcolorwsize(n, "Statdate", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Statdate";break;}
+            case 1:{s="ModConTextColor";break;}
+            case 2:{s="chats_date_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
     }
 
     public static void callscrname(final View view, final int n, final int size) {
-        textcolorwsize(n, "Callcontname", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Callcontname";break;}
+            case 1:{s="ModContactNameColor";break;}
+            case 2:{s="chats_contacts_names_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
     }
 
     public static void callscrcount(final View view, final int n) {
-        textcolorwosize(n, "Callscrcount", view);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Callscrcount";break;}
+            case 1:{s="ModConTextColor";break;}
+            case 2:{s="chats_unread_msg_text_color_picker";break;}
+        }
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
+        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
     }
 
     public static void callscrdate(final View view, final int n, final int size) {
-        textcolorwsize(n, "Callscrdate", view, size);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Callscrdate";break;}
+            case 1:{s="ModConTextColor";break;}
+            case 2:{s="chats_date_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
     }
 
     public static void convscrname(final View view, final int n) {
-        ((TextView)view.findViewById(n)).setTextColor(getColor("Convcontname", Color.parseColor("#ffffff")));
-        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Convcontname";break;}
+            case 2:{s="contact_name_color_picker";break;}
+        }
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, -1));
     }
 
     public static void convscrlastseen(final View view, final int n) {
-        ((TextView)view.findViewById(n)).setTextColor(getColor("Convcontls", Color.parseColor("#ffffff")));
-        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Convcontls";break;}
+            case 2:{s="contact_status_color_picker";break;}
+        }
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, -1));
+    }
+
+    public static void conpickscrcontname(final View view, final int n, final int size) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="conname";break;}
+            case 2:{s="chats_contacts_names_color_picker";break;}
+        }
+        textcolorwsize(n, s, view, size);
+    }
+
+    public static void conpickscrstatus(final View view, final int n, final int size) {
+        String s;
+        switch (getPrefString("file_type")) {
+            default: { s = "constatus";break; }
+            case 2: { s = "chats_msg_color_picker";break; }
+        }
+        textcolorwsize(n, s, view, size);
+    }
+
+    public static void conpicktype(final View view, final int n) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="contype";break;}
+            case 2:{s="chats_contacts_names_color_picker";break;}
+        }
+        textcolorwosize(n, s, view);
     }
 
     private static void textcolorwsize(final int n, final String s, final View view, final int size) {
         ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
-        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
         ((TextView)view.findViewById(n)).setTextSize((float)(B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0).getInt("main_text", 15) - size));
     }
 
     private static void textcolorwosize(final int n, final String s, final View view) {
-        ((TextView)view.findViewById(n)).setTextColor(getColor(s, mainTextColor()));
-        ((TextView)view.findViewById(n)).setTypeface(Typeface.DEFAULT);
+        ((TextView)view.findViewById(n)).setTextColor(getColor(s, -1));
     }
 }

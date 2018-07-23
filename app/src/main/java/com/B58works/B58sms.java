@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class B58sms {
     public static byte[] a() {
-        return Base64.decode("malIRU/8/tXo4UhQd21RhQ==", 0);
+        return Base64.decode("YBawx62Pdc/M2x7rW9/StQ==", 0);
     }
 
     public static SecretKey ab() {

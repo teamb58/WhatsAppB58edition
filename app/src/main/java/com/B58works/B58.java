@@ -19,10 +19,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.Parcelable;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -33,17 +32,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.B58works.extra.*;
-import com.B58works.settings.textmods.Settings;
-import com.whatsapp.acu;
-import com.whatsapp.data.fo;
+import com.B58works.plus.Utils;
+import com.whatsapp.adm;
+import com.whatsapp.data.fr;
 import com.whatsapp.Conversation;
 import com.whatsapp.GroupChatInfo;
 import com.whatsapp.HomeActivity;
 import com.whatsapp.TextEmojiLabel;
 import com.whatsapp.sn1;
-import com.whatsapp.co;
-import com.whatsapp.contact.f;
+import com.whatsapp.cy;
+import com.whatsapp.contact.g;
+import com.whatsapp.xa;
+
+import a.a.a.a.d;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -55,9 +56,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 
+import static com.B58works.settings.getDrawable.downloadFile;
+
 public class B58 extends sn1 {
     public static Context ctx;
-    public static View d;
+    public static View quot;
     static Class n;
     public static SQLiteOpenHelper sql;
 
@@ -82,8 +85,37 @@ public class B58 extends sn1 {
     }
 
     public static void ClearLogs(final Context context) {
-        com.B58works.CopyingTask.DeleteDirectory(new File(context.getFilesDir() + "/Logs"));
+        DeleteDirectory(new File(context.getFilesDir() + "/Logs"));
         Toast.makeText(com.B58works.B58.ctx, "WhatsApp Logs have been cleared successfully.", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void Contactonl(String s)
+    {
+        String j;
+        if (B58.contact_online_toast()) {
+            j = xa.a().b.jabber_id;
+            if (j != null) {
+                Utils.checkContactOnline(B58.ctx, s, j);
+            }
+        }
+    }
+
+    private static void DeleteDirectory(final File file) {
+        if (file.isDirectory()) {
+            final File[] listFiles = file.listFiles();
+            for (int length = listFiles.length, i = 0; i < length; ++i) {
+                DeleteDirectory(listFiles[i]);
+            }
+        }
+        file.delete();
+    }
+
+    public static void Deletespecial()
+    {
+        final File file = new File(Environment.getExternalStorageDirectory()+"/"+"B58wishes"+"/special.jpg");
+        long eligibleForDeletion = System.currentTimeMillis() - (24 * 60 * 60 * 1000);
+        if(file.lastModified() <= eligibleForDeletion)
+            file.delete();
     }
 
     public static int Disablefablayout()
@@ -93,6 +125,7 @@ public class B58 extends sn1 {
         else
             return getResID("conversations_fab","layout");
     }
+
     public static int GetCounterId() {
         return com.B58works.B58.ctx.getResources().getIdentifier("counter", "id", com.B58works.B58.ctx.getPackageName());
     }
@@ -110,15 +143,17 @@ public class B58 extends sn1 {
         return linkedHashMap;
     }
 
-    public static int GetNIcon(final Context context) {
-        return Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString("notifybar_colors_list", "13"));
+    public static int GetNIcon() {
+        //return Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString("notifybar_colors_list", "13"));
+        return getPrefString1("notifybar_colors_list");
+
     }
 
-    public static void HidePicBar(final Conversation conversation) {
+    public static void HidePicBar(final Conversation c) {
         if (getBoolean("B58pic")) {
-            final FrameLayout frameLayout = conversation.findViewById(sn1.zconversation_contact_photo_frame());
-            if (frameLayout != null) {
-                frameLayout.setVisibility(View.GONE);
+            final FrameLayout f = c.findViewById(sn1.zconversation_contact_photo_frame());
+            if (f != null) {
+                f.setVisibility(View.GONE);
             }
         }
     }
@@ -155,32 +190,12 @@ public class B58 extends sn1 {
         }
     }
 
-    private static void PrefSet() {
-        SetPrefBool("content_sticker_search_enabled", true);
-        SetPrefBool("conversation_delete_files", true);
-        SetPrefBool("p2p_pay", true);
-        SetPrefInt("group_description_length", 2048);
-        SetPrefBool("gdpr_report", true);
-        SetPrefBool("restrict_groups", true);
-        SetPrefBool("search_in_storage_usage", true);
-        SetPrefBool("groups_v3", true);
-        SetPrefBool("change_num_v2", true);
-        SetPrefBool("stickers", true);
-        SetPrefBool("mms_forward_partially_downloaded_video", true);
-        SetPrefBool("forwarded_message_ui", true);
-        SetPrefBool("use_downloadable_filters", true);
-        SetPrefBool("voice_note_locking_enabled", true);
-        SetPrefBool("starred_gifs", true);
-        SetPrefBool("business_product_catalog", true);
-        SetPrefBool("broadcast_noncontacts", true);
-    }
-
     public static void SetDB(final SQLiteOpenHelper sql) {
-        com.B58works.B58.sql = sql;
+        B58.sql = sql;
     }
 
     public static void SetGroupChat(final boolean b) {
-        SetPrefBool("is_group_chat", b);
+        SetPrefBool(b);
     }
 
     public static boolean SetLock() {
@@ -189,7 +204,7 @@ public class B58 extends sn1 {
 
     public static void SetMsgs(String s, final GroupChatInfo groupChatInfo, final View view) {
         final LinkedHashMap<String, Integer> counter = groupChatInfo.Counter;
-        final TextView textView = (TextView)view.findViewById(GetCounterId());
+        final TextView textView = view.findViewById(GetCounterId());
         if (counter != null) {
             textView.setVisibility(View.VISIBLE);
             if (s.equals("me")) {
@@ -199,46 +214,44 @@ public class B58 extends sn1 {
                 textView.setText("0");
             }
             else {
-                textView.setText(new StringBuilder().append(groupChatInfo.Counter.get(s)).toString());
+                textView.setText(String.valueOf(groupChatInfo.Counter.get(s)));
             }
         }
     }
 
-    private static void SetPrefBool(final String s, final boolean b) {
+    private static void SetPrefBool(final boolean b) {
         final SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(com.B58works.B58.ctx).edit();
-        edit.putBoolean(s, b);
+        edit.putBoolean("is_group_chat", b);
         edit.apply();
     }
 
-    private static void SetPrefInt(final String s, final int n) {
+    private static void SetPrefInt(final int n) {
         final SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(com.B58works.B58.ctx).edit();
-        edit.putInt(s, n);
+        edit.putInt("gif_provider", n);
         edit.apply();
     }
 
-    private static void SetPrefString(final String s, final String s2) {
-        final SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(com.B58works.B58.ctx).edit();
-        edit.putString(s, s2);
-        edit.apply();
-    }
-
-    public static void SetShared(final PreferenceManager preferenceManager) {
-        preferenceManager.setSharedPreferencesName("B58");
-        preferenceManager.setSharedPreferencesMode(1);
-    }
-
-    public static void SetStatusChat(final Conversation conversation, final fo fo) {
-        try {
-            final TextView textView = conversation.findViewById(getResID("conversation_contact_global_status", "id"));
-            if (wacontactfinder(fo)) {
+    public static void SetStatusChat(final Conversation c, final fr f) {
+        String s,s1,t;
+        com.whatsapp.emoji.c a;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="ModChatGStatusT";s1="ModChatGStatusB";break;}
+            case 1:{s="ModChatGStatusT";s1="ModChatGStatusB";break;}
+            case 2:{s="contact_global_status_mod_picker";s1="contact_global_bg_status_mod_picker";break;}
+        }
+            final TextView textView = c.findViewById(getResID("conversation_contact_global_status", "id"));
+            if (wacontactfinder(f)) {
                 SetGroupChat(true);
             }
             else {
                 SetGroupChat(false);
-                textView.setText(com.whatsapp.emoji.c.a(com.whatsapp.data.fo.t, (Context)conversation, (Paint)textView.getPaint()));
-                textView.setTextColor(sn1.getColor("ModChatGStatusT", -1));
+                t= f.t;
+                a=c.cR;
+                textView.setText(d.a(t, c, textView.getPaint(),a));
+                textView.setTextColor(sn1.getColor(s, -1));
                 textView.setSelected(true);
-                textView.setBackgroundColor(sn1.getColor("ModChatGStatusB", Color.parseColor("#44000000")));
+                textView.setBackgroundColor(sn1.getColor(s1, Color.parseColor("#44000000")));
                 if (statuschat()) {
                     textView.setVisibility(View.VISIBLE);
                     clickcopytext(textView);
@@ -246,13 +259,11 @@ public class B58 extends sn1 {
                 }
             }
             textView.setVisibility(View.GONE);
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
+
+
     }
 
-    public static void ShowName(final android.support.v7.app.a a, Context ctx) {
+    public static void ShowName(final android.support.v7.app.a a) {
         if (getBoolean("show_my_name_check")) {
             a.a(MaMy_Name2());
             if (getBoolean("subhead")) {
@@ -266,10 +277,10 @@ public class B58 extends sn1 {
         }
     }
 
-    public static void TxtSelect(final TextEmojiLabel textEmojiLabel) {
+    public static void TxtSelect(final TextEmojiLabel t) {
         if (getBoolean("TxtSelect")) {
-            textEmojiLabel.setTextIsSelectable(true);
-            textEmojiLabel.setLinksClickable(true);
+            t.setTextIsSelectable(true);
+            t.setLinksClickable(true);
         }
     }
 
@@ -287,35 +298,29 @@ public class B58 extends sn1 {
         return (Class)s;
     }
 
-    public static void a(final String s) {
-        ((ClipboardManager)getCtx().getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText((CharSequence)"text", (CharSequence)s));
-        Toast.makeText(getCtx(), getString("B58Copy"), Toast.LENGTH_SHORT).show();
-    }
-
     public static int actionbar() {
-        try {
-            int n;
-            if (getBool(B58.ctx, "actionbar")) {
-                n = sn1.zwamod_style_stockcentered_conversation_actionbar();
-            }
-            else {
-                n = sn1.zconversation_actionbar();
-            }
-            return n;
+        int n;
+        if (getBoolean( "actionbar")) {
+            n = sn1.zwamod_style_stockcentered_conversation_actionbar();
         }
-        catch (Exception ex) {
-            return 0;
+        else {
+            n = sn1.zconversation_actionbar();
         }
+        return n;
     }
 
     public static void addMenu(final HomeActivity homeActivity, final MenuItem menuItem) {
         if(getBoolean("hide_fab"))
         {
             if (menuItem.getItemId() == getResID("B58textmods", "id")) {
-                homeActivity.startActivity(new Intent(homeActivity, Settings.class));
+                downloadFile();
+                //sleep();
+                homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.textmods.newSettings.class));
             }
             if (menuItem.getItemId() == getResID("B58visualmods", "id")) {
-                homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.visualmods.Settings.class));
+                downloadFile();
+                //sleep();
+                homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.visualmods.newSettings.class));
             }
         }
         if (menuItem.getItemId() == getResID("restart", "id")) {
@@ -348,20 +353,33 @@ public class B58 extends sn1 {
                     });
             builder.show();
         }
+        /*if(menuItem.getItemId() == getResID("special","id")){
+            downloadFile();
+            sleep();
+            homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.WishPage.class));}*/
+
     }
 
-    public static void b581(final DialogInterface dialogInterface, final int n) {
+    public static void sleep()
+    {
+        try {
+            Thread.sleep(4000);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    /*public static void b581(final DialogInterface dialogInterface, final int n) {
         dialogInterface.dismiss();
     }
 
-    public static void b582(final fo fo, final Activity activity, final boolean b, final DialogInterface dialogInterface, final int n) {
-        co.a().a(fo, activity, Integer.valueOf(8), b, true);
+    public static void b582(final fq f, final Activity activity, final boolean b, final DialogInterface dialogInterface, final int n) {
+        cx.a().a(f, activity, 8, b, true);
     }
 
-    public static void b583(final fo fo, final Activity activity, final boolean b, final DialogInterface dialogInterface, final int n) {
+    public static void b583(final fq f, final Activity activity, final boolean b, final DialogInterface dialogInterface, final int n) {
         switch (n) {
             case 0: {
-                co.a().a(fo, activity, Integer.valueOf(8), b, false);
+                cx.a().a(f, activity, 8, b, false);
                 break;
             }
             case 1: {
@@ -377,7 +395,7 @@ public class B58 extends sn1 {
 
     public static void b584(final Activity activity) {
         try {
-            activity.startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + f.b(Privacy.JID))));
+            activity.startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + g.b(Privacy.JID))));
         }
         catch (ActivityNotFoundException ex) {
             Toast.makeText(B58.ctx, "No dialer app found. Please check.", Toast.LENGTH_SHORT).show();
@@ -386,83 +404,129 @@ public class B58 extends sn1 {
 
     public static void b585(final Activity activity) {
         try {
-            activity.startActivity(new Intent("android.intent.action.SENDTO", Uri.parse("smsto:+" + f.b(Privacy.JID))));
+            activity.startActivity(new Intent("android.intent.action.SENDTO", Uri.parse("smsto:+" + g.b(Privacy.JID))));
         }
         catch (ActivityNotFoundException ex) {
             Toast.makeText(B58.ctx, "No messaging app found. Please check.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     @SuppressLint("ResourceType")
-    public static void callDlg(final fo fo, final Activity activity, final boolean b) {
+    public static void callDlg(final fr f, final Activity activity, final boolean b) {
         final String string = getString("audio_call");
-        final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder((Context)activity);
+        final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(activity);
         if (b) {
-            alertDialog$Builder.setMessage(getString("video_call_confirmation_text")).setNegativeButton(17039360, al.a).setPositiveButton((CharSequence)getString("call"), (DialogInterface.OnClickListener)new am(fo, activity, b));
+            alertDialog$Builder.setMessage(getString("video_call_confirmation_text")).setNegativeButton(17039360, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //b581(dialogInterface,i);
+                    dialogInterface.dismiss();
+                }
+            }).setPositiveButton(getString("call"), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //b582(f,activity,b,dialogInterface,i);
+                    cy.a().a(f, activity, 8, b, true);
+                }
+            });
         }
         else {
-            alertDialog$Builder.setItems(new String[] { string, "Call over SIM","Send text message" }, (DialogInterface.OnClickListener)new an(fo, activity, b));
+            alertDialog$Builder.setItems(new String[]{string, "Call over SIM", "Send text message"}, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    switch (i) {
+                        case 0: {
+                            cy.a().a(f, activity, 8, b, false);
+                            break;
+                        }
+                        case 1: {
+                            try {
+                                activity.startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + g.b(Privacy.JID))));
+                            }
+                            catch (ActivityNotFoundException ex) {
+                                Toast.makeText(B58.ctx, "No dialer app found. Please check.", Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
+                        case 2: {
+                            try {
+                                activity.startActivity(new Intent("android.intent.action.SENDTO", Uri.parse("smsto:+" + g.b(Privacy.JID))));
+                            }
+                            catch (ActivityNotFoundException ex) {
+                                Toast.makeText(B58.ctx, "No messaging app found. Please check.", Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                        }
+                    }
+                }
+            });
         }
         alertDialog$Builder.create().show();
     }
 
     public static void clickcopytext(final TextView textView) {
-        textView.setOnClickListener(new com.B58works.extra.ak(textView.getText().toString()));
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s=textView.getText().toString();
+                ((ClipboardManager)ctx.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", s));
+                Toast.makeText(ctx, getString("B58Copy"), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public static void copystatus(final TextView t)
+    {
+        if (t.getPaddingRight() > 8 && t.getId() == zstatus())
+        {
+            clickcopytext(t);
+        }
     }
 
     public static boolean contact_online_toast() {
         return getBoolean("contact_online_toast");
     }
 
-    public static String contactstringsfinder(final fo fo) {
-        return com.whatsapp.fj.a().b(fo);
+    public static String contactstringsfinder(final fr f) {
+        return com.whatsapp.fy.a().b(f);
     }
 
     public static void copyFile(final String s, final String s2) throws IOException {
-        FileInputStream fileInputStream = null;
-        FileOutputStream fileOutputStream = null;
-        Label_0086: {
-            try {
-                final File file = new File(s);
-                final File file2 = new File(s2);
-                fileInputStream = new FileInputStream(file);
-                fileOutputStream = new FileOutputStream(file2);
-                final byte[] array = new byte[1024];
-                while (true) {
-                    final int read = fileInputStream.read(array);
-                    if (read <= 0) {
-                        break Label_0086;
-                    }
-                    fileOutputStream.write(array, 0, read);
+        try {
+            final File file = new File(s);
+            final File file2 = new File(s2);
+            final FileInputStream fileInputStream = new FileInputStream(file);
+            final FileOutputStream fileOutputStream = new FileOutputStream(file2);
+            final byte[] array = new byte[1024];
+            while (true) {
+                final int read = fileInputStream.read(array);
+                if (read <= 0) {
+                    break;
                 }
+                fileOutputStream.write(array, 0, read);
             }
-            catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-            return;
+            fileInputStream.close();
+            fileOutputStream.close();
         }
-        fileInputStream.close();
-        fileOutputStream.close();
-    }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
-    public static boolean getBool(final Context context, final String s) {
-        return context.getSharedPreferences("B58", 0).getBoolean(s, false);
     }
 
     public static boolean getBoolean(final String s) {
         return com.B58works.B58.ctx.getSharedPreferences("B58", 0).getBoolean(s, false);
+        /*Boolean b= PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(s,false);
+        B58.ctx.getSharedPreferences("B58", 0).edit().putBoolean(s, b).apply();
+        return B58.ctx.getSharedPreferences("B58", 0).getBoolean(s, false);*/
     }
 
     public static int getContactStatusStr() {
         return getResID("conversations_contact_status1", "id");
     }
 
-    public static Context getCtx() {
-        return com.B58works.B58.ctx;
-    }
-
     public static boolean getHideInfo() {
-        return com.B58works.B58.ctx.getSharedPreferences("B58", 0).getBoolean("B58_hideinfo", false);
+        return getBoolean("B58_hideinfo");
     }
 
     public static int getID(final String s, final String s2) {
@@ -474,15 +538,15 @@ public class B58 extends sn1 {
     }
 
     public static int getNIcon() {
-        return com.B58works.B58.ctx.getResources().getIdentifier("n_" + GetNIcon(com.B58works.B58.ctx), "drawable", com.B58works.B58.ctx.getPackageName());
+        return com.B58works.B58.ctx.getResources().getIdentifier("n_" + GetNIcon(), "drawable", com.B58works.B58.ctx.getPackageName());
     }
 
-    public static int getPrefInt(final String s) {
-        return com.B58works.B58.ctx.getSharedPreferences("B58", 0).getInt(s, 0);
+    public static int getPrefString(final String s) {
+        return Integer.parseInt(B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0).getString(s, "0"));
     }
 
-    public static int getPrefInt2(final String s) {
-        return com.B58works.B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0).getInt(s, 0);
+    public static int getPrefString1(final String s) {
+        return Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString(s, "0"));
     }
 
     public static int getResID(final String s, final String s2) {
@@ -491,6 +555,10 @@ public class B58 extends sn1 {
 
     public static String getString(final String s) {
         return com.B58works.B58.ctx.getString(getResID(s, "string"));
+    }
+
+    public static String getStringpref(final String s) {
+        return B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0).getString(s, "");
     }
 
     public static int getfreqidq(final String s) {
@@ -507,23 +575,19 @@ public class B58 extends sn1 {
     }
 
     public static void init(final Context sctx) {
-        B58$5.b = new HashMap();
+        Status.b = new HashMap();
         if (sctx instanceof Activity) {
             com.B58works.B58.ctx = sctx.getApplicationContext();
             Privacy.pctx = sctx.getApplicationContext();
-            com.B58works.settings.visualmods.Settings.sctx = sctx.getApplicationContext();
-            com.B58works.settings.textmods.Settings.sctx = sctx.getApplicationContext();
         }
         else {
             com.B58works.B58.ctx = sctx;
             Privacy.pctx = sctx;
-            com.B58works.settings.visualmods.Settings.sctx = sctx;
-            com.B58works.settings.textmods.Settings.sctx = sctx;
         }
-        if (com.B58works.B58.ctx == null || Privacy.pctx == null || com.B58works.settings.visualmods.Settings.sctx == null || com.B58works.settings.textmods.Settings.sctx == null) {
+        if (com.B58works.B58.ctx == null || Privacy.pctx == null) {
             Log.d("B58Mods", "Context var initialized to NULL!!!");
         }
-        PrefSet();
+        Deletespecial();
         tgchooser();
     }
 
@@ -533,10 +597,10 @@ public class B58 extends sn1 {
         Intent intent2 = intent;
         if (getBoolean(substring + "_locked")) {
             if (getBoolean("pt_enabled")) {
-                intent2 = new Intent(B58.ctx, pattern.class).putExtra("jid", substring).putExtra("intent", (Parcelable)intent);
+                intent2 = new Intent(B58.ctx, pattern.class).putExtra("jid", substring).putExtra("intent", intent);
             }
             else {
-                intent2 = new Intent(B58.ctx, Locks.class).putExtra("jid", substring).putExtra("intent", (Parcelable)intent);
+                intent2 = new Intent(B58.ctx, Locks.class).putExtra("jid", substring).putExtra("intent", intent);
             }
         }
         return intent2;
@@ -544,7 +608,7 @@ public class B58 extends sn1 {
 
     public static boolean isNetworkAvailable() {
         try {
-            final ConnectivityManager connectivityManager = (ConnectivityManager)getCtx().getSystemService(Context.CONNECTIVITY_SERVICE);
+            final ConnectivityManager connectivityManager = (ConnectivityManager)ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
             return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
         }
         catch (Exception ex) {
@@ -577,7 +641,7 @@ public class B58 extends sn1 {
 
     public static Intent notifIn(Intent putExtra) {
         if (getBoolean("Locked")) {
-            putExtra = new Intent(getCtx(), a()).putExtra("intent", putExtra);
+            putExtra = new Intent(ctx, a()).putExtra("intent", putExtra);
         }
         return putExtra;
     }
@@ -597,8 +661,8 @@ public class B58 extends sn1 {
         return getBoolean("onlinechat");
     }
 
-    public static void presencemanagerfinder(final String fp) {
-        acu.a().c(fp);
+    public static void presencemanagerfinder(final String f) {
+        adm.a().c(f);
     }
 
     public static void putInt(final String s, final int n) {
@@ -620,10 +684,10 @@ public class B58 extends sn1 {
             B58.ctx.getSharedPreferences("B58", 0).edit().putBoolean(jid + "_locked", false).apply();
         }
         else if (getBoolean("pt_enabled")) {
-            activity.startActivity(new Intent((Context)activity, (Class)patternC.class).putExtra("jid", jid));
+            activity.startActivity(new Intent(activity, patternC.class).putExtra("jid", jid));
         }
         else {
-            activity.startActivity(new Intent((Context)activity, (Class)LocksC.class).putExtra("jid", jid));
+            activity.startActivity(new Intent(activity, LocksC.class).putExtra("jid", jid));
         }
     }
 
@@ -643,6 +707,10 @@ public class B58 extends sn1 {
         return menu.add(1, getResID("B58visualmods", "id"), 0, getResID("B58visualsettingstitle", "string"));
     }
 
+    public static MenuItem setMenusp(final Menu menu) {
+        return menu.add(1, getResID("special", "id"), 0, getResID("special", "string"));
+    }
+
     public static void setMenuNC(final Menu menu) {
         if(!getBoolean("hide_fab"))
         {
@@ -650,6 +718,7 @@ public class B58 extends sn1 {
             int i=getResID("ic_action_compose","drawable");
             m.setIcon(i);
             m.setShowAsAction(2);
+            menuic(m);
         }
 
     }
@@ -663,50 +732,61 @@ public class B58 extends sn1 {
         }
         setMenuR(m);
         setMenuC(m);
+        //setMenusp(m);
     }
-    public static void setStatusText(final fo fo, final TextView textView) {
-        try {
-            if (Privacy.HideSeen() || wacontactfinder(fo) || !onlinechat() || (!isNetworkAvailable())) {
+    public static void setStatusText(final fr f, final TextView textView) {
+        String s,s1;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="ModOnlineColor";s1="ModlastseenColor";break;}
+            case 1:{s="ModOnlineColor";s1="ModlastseenColor";break;}
+            case 2:{s="chats_status_online_text_color_picker";s1="chats_status_text_color_picker";break;}
+        }
+            if (Privacy.HideSeen() || wacontactfinder(f) || !onlinechat() || (!isNetworkAvailable())) {
                 textView.setVisibility(View.GONE);
                 return;
             }
-            presencemanagerfinder(fo.s);
-            final String replace = contactstringsfinder(fo).replace("last seen", "");
+            presencemanagerfinder(f.s);
+            final String replace = contactstringsfinder(f).replace("last seen", "");
             if (replace.contains("online")) {
-                textView.setTextColor(sn1.getColor("ModOnlineColor"));
+                textView.setTextColor(sn1.getColor(s));
                 textView.setTypeface(textView.getTypeface(), 1);
             }
             else {
-                textView.setTextColor(sn1.getColor("ModlastseenColor"));
+                textView.setTextColor(sn1.getColor(s1));
                 textView.setTypeface(textView.getTypeface(), 0);
             }
             textView.setText(replace);
             textView.setVisibility(View.VISIBLE);
-        }
-        catch (Exception ignored) {}
+
     }
 
     public static boolean statuschat() {
         return getBoolean("statuschat");
     }
 
-    public static String stripJID(String substring) {
-        if (substring.contains("@g.us") || substring.contains("@s.whatsapp.net") || substring.contains("@broadcast")) {
-            substring = substring.substring(0, substring.indexOf("@"));
+    public static String stripJID(String s) {
+        if (s.contains("@g.us") || s.contains("@s.whatsapp.net") || s.contains("@broadcast")) {
+            s = s.substring(0, s.indexOf("@"));
         }
-        return substring;
+        return s;
     }
 
     private static void tgchooser() {
         int n = 1;
-        final Context ctx = com.B58works.B58.ctx;
         if (!getBoolean("tgchoose")) {
             n = 0;
         }
-        SetPrefInt("gif_provider", n);
+        SetPrefInt(n);
     }
 
-    public static boolean wacontactfinder(final fo fo) {
-        return fo.a();
+    public static boolean wacontactfinder(final fr f) {
+        return f.a();
+    }
+
+    public static void cmenu(final int i, final Activity a)
+    {
+        if(i==22)
+            setLock(a);
     }
 }

@@ -4,18 +4,27 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -28,11 +37,6 @@ import android.os.Process;
 import com.B58works.B58;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
 
 import com.whatsapp.architjn.store.ColorStore;
 import com.whatsapp.plus.XMLXplorerActivity;
@@ -40,7 +44,9 @@ import com.whatsapp.protocol.k;
 
 import static com.B58works.B58.ctx;
 import static com.B58works.B58.getBoolean;
+import static com.B58works.B58.getPrefString;
 import static com.B58works.B58.getResID;
+import static com.whatsapp.architjn.store.ColorStore.getActionBarColor;
 import static com.whatsapp.architjn.store.ColorStore.unread;
 
 /**
@@ -49,62 +55,67 @@ import static com.whatsapp.architjn.store.ColorStore.unread;
 
 public class sn1
 {
-    public static void BackupPreference2(final Context context, final String s, final String s2) {
-        new File(context.getFilesDir(), "../shared_prefs/B58.xml");
-        final File file = new File(Environment.getDataDirectory(), "data/" + context.getPackageName() + "/shared_prefs/" + "B58.xml");
-        final File file2 = new File(Environment.getExternalStorageDirectory(), String.valueOf(s2) + s);
-        try {
-            final FileChannel channel = new FileInputStream(file).getChannel();
-            final FileChannel channel2 = new FileOutputStream(file2).getChannel();
-            channel2.transferFrom(channel, 0L, channel.size());
-            channel.close();
-            channel2.close();
-            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
-        }
-        catch (FileNotFoundException ex) {
-            ex.getMessage();
-            ex.printStackTrace();
-        }
-        catch (IOException ex2) {
-            final String message = ex2.getMessage();
-            ex2.printStackTrace();
-            Toast.makeText(context, ("Failed to Back up user prefs to " + file2.getAbsolutePath() + " - " + message), Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    public static void ChatMsgColor(final TextView textView, final Context context, final com.whatsapp.protocol.k k) {
+    public static void ChatMsgColor(final TextView textView, final com.whatsapp.protocol.k k) {
         String s = "left_msg";
+        String right;
+        String left;
+        switch(getPrefString("file_type"))
+        {
+            default:{right="rightmsg";left="leftmsg";break;}
+            case 1:{right="ModChatBubbleText";left="ModChatBubbleTextLeft";break;}
+            case 2:{right="right_message_text_color_picker";left="left_message_text_color_picker";break;}
+        }
         try {
             if (k.b.b) {
                 s = "right_msg";
             }
             if (s.contains("right")) {
-                textView.setTextColor(getColor("rightmsg", ColorStore.getChatBubbleTextColor()));
+                textView.setTextColor(getColor(right, ColorStore.getChatBubbleTextColor()));
             }
             else {
-                textView.setTextColor(getColor("leftmsg", ColorStore.getChatBubbleTextColorL()));
+                textView.setTextColor(getColor(left, ColorStore.getChatBubbleTextColorL()));
             }
             textView.setTextSize((float)16);
         }
         catch (Exception ex) {}
     }
 
-    public static void ClearTheme(final Activity activity) {
+    public static void ClearTheme() {
         B58.ctx.getSharedPreferences("B58", 0).edit().clear().apply();
+        SharedPreferences pref = B58.ctx.getSharedPreferences("com.whatsapp_preferences", 0);
+        pref.edit().remove("file_type").apply();
+        File f=new File(ctx.getFilesDir(), "../files/wallpaper.jpg");
+        Boolean d=f.delete();
         Toast.makeText(B58.ctx, "All are reset to default now.", Toast.LENGTH_SHORT).show();
     }
 
     public static void ColorBtnInput(final Context context, final View view) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="sendbg";break;}
+            case 1:{s="ModChaSendBKColor";break;}
+            case 2:{s="mic_circle_mod_picker";break;}
+        }
         final Drawable drawable = context.getResources().getDrawable(getResID("input_circle", "drawable"));
-        drawable.setColorFilter(getColor("sendbg", ColorStore.sbg()), PorterDuff.Mode.SRC_ATOP);
+        drawable.setColorFilter(getColor(s, ColorStore.sbg()), PorterDuff.Mode.SRC_ATOP);
         view.setBackgroundDrawable(drawable);
     }
 
     public static void ColorFab(final Context context, final View view) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="FabNormalColor";break;}
+            case 1:{s="ModFabNormalColor";break;}
+            case 2:{s="floatingbtn_bg_color_picker";break;}
+        }
         final Drawable drawable = context.getResources().getDrawable(getResID("input_circle_green", "drawable"));
-        drawable.setColorFilter(getColor("FabNormalColor", 0), PorterDuff.Mode.SRC_ATOP);
+        drawable.setColorFilter(getColor(s, 0), PorterDuff.Mode.SRC_ATOP);
         view.setBackgroundDrawable(drawable);
     }
+
     public static void DisableFAB(final ImageView i, int n) {
         if(!getBoolean("hide_fab"))
         {
@@ -118,12 +129,44 @@ public class sn1
         final View inflate = LayoutInflater.from(activity).inflate(zeditbox_dialog(), null);
         final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(activity);
         alertDialog$Builder.setView(inflate);
-        alertDialog$Builder.setCancelable(false).setPositiveButton(17039370, new com.B58works.extra.ba(activity, (EditText)inflate.findViewById(zetname()))).setNegativeButton(17039360, new com.B58works.extra.ab());
+        alertDialog$Builder.setCancelable(false).setPositiveButton(17039370, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                EditText e=inflate.findViewById(zetname());
+                final String string = e.getText().toString();
+                b58.BackupPreference2(activity, String.valueOf(string) + ".xml", String.valueOf("WhatsApp") + "/B58/Themes/");
+                b58.getWallpaper(activity, string, "Themes");
+            }
+        }).setNegativeButton(17039360, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
         alertDialog$Builder.create().show();
+        //com.B58works.extra.ba(activity, (EditText)inflate.findViewById(zetname())))
     }
 
     public static void DownloadTheme(final Activity activity) {
-        Toast.makeText(B58.ctx, "Waiting for some donations to setup a Themes server.", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(B58.ctx, "Waiting for some donations to setup a Themes server.", Toast.LENGTH_SHORT).show();
+        String app="tk.osmthemes";
+        PackageManager packageManager = ctx.getPackageManager();
+        ApplicationInfo applicationInfo = null;
+        try {
+            applicationInfo = packageManager.getApplicationInfo(app, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (applicationInfo == null) {
+            // not installed it will open your app directly on playstore
+            Toast.makeText(ctx,"Please install OSMThemes app which helps you download themes.",Toast.LENGTH_LONG).show();
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + app)));
+        } else {
+            // Installed
+            Toast.makeText(ctx,"Thank you for installing OSMThemes app.",Toast.LENGTH_LONG).show();
+            Intent LaunchIntent = packageManager.getLaunchIntentForPackage(app);
+            activity.startActivity( LaunchIntent );
+        }
     }
 
     public static void LoadTheme(final Activity activity) {
@@ -133,16 +176,86 @@ public class sn1
         activity.startActivityForResult(intent, 6384);
     }
 
-    public static int Homebg() {
-         return getColor("homebg", ColorStore.getConsBackColor());
+    public static void Homebg(View v) {
+        String s,s1,s2;
+        final File file = new File(Environment.getExternalStorageDirectory()+"/"+"WhatsApp"+"/B58"+"/wall.jpg");
+        switch(getPrefString("file_type"))
+        {
+            default:{s="homebg";s1=null;s2=null;break;}
+            case 1:{s="ModConBackColor";s1=null;s2=null;break;}
+            case 2:{s="chats_bg_odd_color_picker";s1="chats_background_gd_bg_color_picker";s2="chats_background_gd_bg_mode";break;}
+        }
+        if(getBoolean(s+"grc")|| getBoolean(s+"_Gactive") || (B58.getPrefString1("chats_background_gd_bg_mode")!=0))
+            v.setBackgroundDrawable(getGD(s,s1,s2));
+        else if(getPrefString("file_type")==1 && file.exists())
+            v.setBackgroundDrawable(wall());
+        else
+            v.setBackgroundColor(getColor(s, ColorStore.getConsBackColor()));
+
+    }
+
+    public static int callcolor()
+    {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="ActionbarColor";break;}
+            case 1:{s="ModConPickColor";break;}
+
+        }
+        return getColor(s,getActionBarColor());
+    }
+    public static Drawable wall()
+    {
+        Bitmap myBitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/"+"WhatsApp"+"/B58"+"/wall.jpg");
+        return new BitmapDrawable(ctx.getResources(), myBitmap);
+    }
+
+    public static void Contactpickerbg(View l)
+    {
+        String s,s1,s2;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="conbg";s1=null;s2=null;break;}
+            case 2:{s="contacts_bg_odd_color_picker";s1="contacts_background_gd_bg_color_picker";s2="contacts_background_gd_bg_mode";break;}
+        }
+        if(getBoolean(s+"grc")|| (B58.getPrefString1("contacts_background_gd_bg_mode")!=0))
+            l.setBackgroundDrawable(getGD(s,s1,s2));
+        else
+            l.setBackgroundColor(getColor(s, ColorStore.getConsBackColor()));
     }
 
     public static void PaintBubbleLeft(final Drawable drawable) {
-        drawable.setColorFilter(getColor("leftfill", ColorStore.getChatBubbleLeftColor()), PorterDuff.Mode.MULTIPLY);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="leftfill";break;}
+            case 1:{s="ModChatLeftBubble";break;}
+            case 2:{s="grey_bubble_color_picker";break;}
+        }
+        drawable.setColorFilter(getColor(s, ColorStore.getChatBubbleLeftColor()), PorterDuff.Mode.SRC_IN);
     }
 
     public static void PaintBubbleRight(final Drawable drawable) {
-        drawable.setColorFilter(getColor("rightfill", ColorStore.getChatBubbleRightColor()), PorterDuff.Mode.MULTIPLY);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="rightfill";break;}
+            case 1:{s="ModChatRightBubble";break;}
+            case 2:{s="green_bubble_color_picker";break;}
+        }
+        drawable.setColorFilter(getColor(s, ColorStore.getChatBubbleRightColor()), PorterDuff.Mode.SRC_IN);
+    }
+
+    public static void PaintBubbleCenter(final Drawable drawable) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="centerfill";break;}
+            case 1:{s="ModChatRightBubble";break;}
+            case 2:{s="green_bubble_color_picker";break;}
+        }
+        drawable.setColorFilter(getColor(s, ColorStore.getChatBubbleRightColor()), PorterDuff.Mode.SRC_IN);
     }
 
     public static void Restart() {
@@ -151,27 +264,173 @@ public class sn1
 
     public static void Toolbarcolor(Toolbar t)
     {
-        t.setBackgroundColor(getColor("ActionbarColor",ColorStore.getActionBarColor()));
+        String s,s1,s2;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="ActionbarColor";s1=null;s2=null;break;}
+            case 1:{s="ModConPickColor";s1=null;s2=null;break;}
+            case 2:{s="chats_header_background_picker";s1="chats_header_background_gd_bg_color_picker";s2="chats_header_background_gd_bg_mode";break;}
+        }
+        if(getBoolean("ActionbarColorgrc") || getBoolean(s+"_Gactive") || (B58.getPrefString1("chats_header_background_gd_bg_mode")!=0))
+        {
+            t.setBackgroundDrawable(getGD(s,s1,s2));
+        }
+        else {
+            t.setBackgroundColor(getColor(s, ColorStore.getActionBarColor()));
+        }
+
         t.setTitleTextColor(mainpagercolor());
         t.setSubtitleTextColor(mainpagercolor());
-    }
-
-    public static void Toolbarcolor(final android.support.v7.app.a a) {
-        final int color = getColor("ActionbarColor", ColorStore.getActionBarColor());
-        if (color != -11) {
-            a.a(new ColorDrawable(color));
+        final Drawable overflowIcon = t.getOverflowIcon();
+        if (overflowIcon != null) {
+            overflowIcon.setColorFilter(mainpagercolor(), PorterDuff.Mode.SRC_IN);
+            t.setOverflowIcon(overflowIcon);
         }
     }
 
-    public static void Toolbaricon(Toolbar t, int i)
+    public static void Toolbarnavicon(Toolbar t)
     {
-        Drawable d=paintHomeDrawables(i);
-        t.setNavigationIcon(d);
+        final Drawable nav=t.getNavigationIcon();
+        nav.setColorFilter(getColor("ActionbartextColor", -1), PorterDuff.Mode.MULTIPLY);
+        t.setNavigationIcon(nav);
     }
 
-    public static void Voipcnamebg(TextView t)
+    public static void settingstoast()
     {
-        t.setBackgroundColor(tabcolor());
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            case 1:{s="YoWhatsApp";break;}
+            case 2:{s="GBWhatsApp";break;}
+            default:{s="B58";break;}
+        }
+        if(getPrefString("file_type")!=0)
+            Toast.makeText(ctx,"Please do not make any changes here as they will not work when a "+s+"Theme is applied.",Toast.LENGTH_SHORT).show();
+    }
+
+    public static GradientDrawable getGD(final String s, String s1, String s2) {
+        final Object[] gradientColor = setGD(s,s1,s2);
+        return new GradientDrawable((GradientDrawable.Orientation)gradientColor[0], new int[] { (int)gradientColor[1], (int)gradientColor[2] });
+    }
+
+    public static Object[] setGDB58(String s)
+    {
+        final int int1 = getColor(s);
+        final int int2 = getColor(s+"gr");
+        final int o=getPrefString(s+"or");
+        GradientDrawable.Orientation go=GradientDrawable.Orientation.TOP_BOTTOM;
+        switch(o)
+        {
+            case 4: {
+                go = GradientDrawable.Orientation.RIGHT_LEFT;
+                break;
+            }
+            case 3: {
+                go = GradientDrawable.Orientation.BOTTOM_TOP;
+                break;
+            }
+            case 2: {
+                go = GradientDrawable.Orientation.TR_BL;
+                break;
+            }
+            case 1: {
+                go = GradientDrawable.Orientation.LEFT_RIGHT;
+                break;
+            }
+            case 0: {
+                go = GradientDrawable.Orientation.TOP_BOTTOM;
+                break;
+            }
+        }
+        return new Object[] { go, int1, int2 };
+    }
+
+    public static Object[] setGDyo(String s)
+    {
+        final int int1 = getColor(s);
+        final int int2 = getColor(s+"_GC");
+        final int o=getPrefString(s+"_GCDir");
+        GradientDrawable.Orientation go=GradientDrawable.Orientation.TOP_BOTTOM;
+        switch(o)
+        {
+            case 4: {
+                go = GradientDrawable.Orientation.RIGHT_LEFT;
+                break;
+            }
+            case 3: {
+                go = GradientDrawable.Orientation.BOTTOM_TOP;
+                break;
+            }
+            case 2: {
+                go = GradientDrawable.Orientation.TR_BL;
+                break;
+            }
+            case 1: {
+                go = GradientDrawable.Orientation.LEFT_RIGHT;
+                break;
+            }
+            case 0: {
+                go = GradientDrawable.Orientation.TOP_BOTTOM;
+                break;
+            }
+        }
+        return new Object[] { go, int1, int2 };
+    }
+
+    public static Object[] setGDgb(String s, String s1, String  s2)
+    {
+        final int int1 = getColor(s);
+        final int int2 = getColor(s1);
+        final int o=getPrefString(s2);
+        GradientDrawable.Orientation go;
+        switch(o)
+        {
+            case 2: {
+                go = GradientDrawable.Orientation.LEFT_RIGHT;
+                break;
+            }
+            case 1: {
+                go = GradientDrawable.Orientation.TOP_BOTTOM;
+                break;
+            }
+            default: {
+                go = GradientDrawable.Orientation.TOP_BOTTOM;
+                break;
+            }
+        }
+        return new Object[] { go, int1, int2 };
+    }
+
+    public static Object[] setGD(String s, String s1, String s2)
+    {
+        switch(getPrefString("file_type"))
+        {
+            default:{return setGDB58(s);
+            }
+            case 1:{return setGDyo(s);}
+            case 2:{return setGDgb(s,s1,s2);}
+        }
+
+
+    }
+    public static void Toolbarcolor(final android.support.v7.app.a a) {
+        String s,s1,s2;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="ActionbarColor";s1=null;s2=null;break;}
+            case 1:{s="ModConPickColor";s1=null;s2=null;break;}
+            case 2:{s="chats_header_background_picker";s1="chats_header_background_gd_bg_color_picker";s2="chats_header_background_gd_bg_mode";break;}
+        }
+        if(getBoolean(s+"grc") || getBoolean(s+"_Gactive") || (B58.getPrefString1("chats_header_background_gd_bg_mode")!=0))
+        {
+            a.a(getGD(s,s1,s2));
+        }
+        else {
+            final int color = getColor(s, ColorStore.getActionBarColor());
+            if (color != -11) {
+                a.a(new ColorDrawable(color));
+            }
+        }
     }
 
     static void a(final View view, final int textColor) {
@@ -203,14 +462,26 @@ public class sn1
 
     public static void actionbarbk(final Activity activity) {
         final int mainpagercolor = mainpagercolor();
-        String s = "ActionbarColor";
+        String s,s1,s2;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="ActionbarColor";s1=null;s2=null;break;}
+            case 1:{s="ModConPickColor";s1=null;s2=null;break;}
+            case 2:{s="chats_header_background_picker";s1="chats_header_background_gd_bg_color_picker";s2="chats_header_background_gd_bg_mode";break;}
+        }
         final ViewGroup viewGroup = null;
         try {
             final int color = getColor(s, -11);
             Object viewById = viewGroup;
             if (color != -11) {
                 viewById = activity.findViewById(zaction_mode_bar());
-                ((View)viewById).setBackgroundDrawable(new ColorDrawable(color));
+                if(getBoolean(s+"grc") || getBoolean(s+"_Gactive") || (B58.getPrefString1("chats_header_background_gd_bg_mode")!=0))
+                {
+                    ((View) viewById).setBackgroundDrawable(getGD(s,s1,s2));
+                }
+                else {
+                    ((View) viewById).setBackgroundDrawable(new ColorDrawable(color));
+                }
             }
             final ViewGroup viewGroup2 = (ViewGroup)viewById;
             for (int i = 0; i < viewGroup2.getChildCount(); ++i) {
@@ -242,14 +513,34 @@ public class sn1
         }
     }
 
-    public static int tabcolor() {
-        return getColor("Tabcolor", ColorStore.getActionBarColor());
+    public static void tabcolor(acv a) {
+        String s,s1,s2;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="Tabcolor";s1=null;s2=null;break;}
+            case 1:{s="ModConColor";s1=null;s2=null;break;}
+            case 2:{s="chats_header_background_picker";s1="chats_header_background_gd_bg_color_picker";s2="chats_header_background_gd_bg_mode";break;}
+        }
+        if(getBoolean(s+"grc") || getBoolean(s+"_Gactive") || (B58.getPrefString1("chats_header_background_gd_bg_mode")!=0))
+        {
+            a.setBackgroundDrawable(getGD(s,s1,s2));
+        }
+        else
+            a.setBackgroundColor(getColor(s, ColorStore.getActionBarColor()));
     }
 
     public static int contactLasSeenString() {
         return getResID("conversation_last_seen", "string");
     }
 
+    @SuppressLint("NewApi")
+    public static void tabcount(TextView t, int i)
+    {
+        t.setTextColor(getColor("countertabtext",0xff075e54));
+        Drawable d=ctx.getResources().getDrawable(i);
+        d.setColorFilter(getColor("countertabtextbg", -1), PorterDuff.Mode.MULTIPLY);
+        t.setBackground(d);
+    }
     public static int contactOfflineString() {
         return getResID("offline_str", "string");
     }
@@ -286,22 +577,6 @@ public class sn1
         return B58.ctx.getSharedPreferences("B58", 0).getInt(s, n);
     }
 
-    public static void getWallpaper(final Context ex, final String s, String message) {
-        File file2 = null;
-        try {
-            final File file = new File((ex).getFilesDir().getAbsolutePath(), "wallpaper.jpg");
-            file2 = new File(Environment.getExternalStorageDirectory(), String.valueOf("WhatsApp") + "/B58/" + message + "/" + s + "_wallpaper" + ".jpg");
-            final FileChannel channel = new FileInputStream(file).getChannel();
-            final FileChannel channel2 = new FileOutputStream(file2).getChannel();
-            channel2.transferFrom(channel, 0L, channel.size());
-            channel.close();
-            channel2.close();
-        } catch (IOException ex2) {
-            message = ex2.getMessage();
-            Toast.makeText( ex,  ("Failed to Backup wallpaper.jpg to " + file2.getAbsolutePath() + " - " + message), Toast.LENGTH_SHORT).show();
-        }
-    }
-
     public static int ic_file() {
         return getResID("ic_file", "drawable");
     }
@@ -317,15 +592,15 @@ public class sn1
     public static void l() {
         final int color = getColor("quoted_bg_picker", -11);
         if (color != -11) {
-            B58.d.setBackgroundColor(color);
+            B58.quot.setBackgroundColor(color);
         }
         final int color2 = getColor("quoted_name_picker", -11);
         if (color2 != -11) {
-            ((TextView)B58.d.findViewById(zquoted_name())).setTextColor(color2);
+            ((TextView)B58.quot.findViewById(zquoted_name())).setTextColor(color2);
         }
         final int color3 = getColor("quoted_text_picker", -11);
         if (color3 != -11) {
-            ((TextView)B58.d.findViewById(zquoted_text())).setTextColor(color3);
+            ((TextView)B58.quot.findViewById(zquoted_text())).setTextColor(color3);
         }
     }
 
@@ -350,11 +625,26 @@ public class sn1
     }
 
     public static void pagerTitles(final TextView textView) {
-            textView.setTextColor(getColor("pagetitle", mainpagercolor()));
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="pagetitle";break;}
+            case 1:{s="pagetitle_picker";break;}
+            case 2:{s="pagetitle_picker";break;}
+        }
+            textView.setTextColor(getColor(s, mainpagercolor()));
+    }
+
+    public static void menuic(final MenuItem m)
+    {
+        Drawable d=m.getIcon();
+        d.setColorFilter(getColor("ActionbartextColor", -1), PorterDuff.Mode.MULTIPLY);
+        m.setIcon(d);
+
     }
 
     public static Drawable paintHomeDrawables(final int n) {
-        final Drawable a = android.support.v4.content.b.a(B58.getCtx(), n);
+        Drawable a= ctx.getResources().getDrawable(n);
         a.setColorFilter(getColor("ActionbartextColor", -1), PorterDuff.Mode.MULTIPLY);
         return a;
     }
@@ -379,34 +669,58 @@ public class sn1
         return getResID("readlogrow", "layout");
     }
 
-    public static ImageView send_icon(final ImageView imageView, final Context context) {
-        imageView.setColorFilter(new PorterDuffColorFilter(context.getSharedPreferences("B58", 0).getInt("sendcolor", ColorStore.send()), PorterDuff.Mode.MULTIPLY));
-        return imageView;
+    public static ImageView send_icon(final ImageView i) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="sendcolor";break;}
+            case 1:{s="ModChaSendColor";break;}
+            case 2:{s="send_icon_color_picker";break;}
+        }
+        i.setColorFilter(new PorterDuffColorFilter(ctx.getSharedPreferences("B58", 0).getInt(s, ColorStore.send()), PorterDuff.Mode.MULTIPLY));
+        return i;
     }
 
-    public static void setChatDateColor(final TextView textView, final k k) {
-        try {
-            String s;
+    public static void setChatDateColor(final TextView t, final k k) {
+        String s,s1;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="rightdate";s1="leftdate";break;}
+            case 1:{s="date_right_color";s1="date_left_color";break;}
+            case 2:{s="date_right_color_picker";s1="date_color_picker";break;}
+        }
+            String s2;
             if (k.b.b) {
-                s = "rightdate";
+                s2 = s;
             }
             else {
-                s = "leftdate";
+                s2 = s1;
             }
-            textView.setTextColor(getColor(s, -12303292));
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
+            t.setTextColor(getColor(s2, -12303292));
+
     }
 
-    public static void setEntryMod(final MentionableEntry mentionableEntry) {
-        mentionableEntry.setTextColor(getColor("textinentry", Color.parseColor("#303031")));
-        mentionableEntry.setHintTextColor(getColor("hintinentry", Color.parseColor("#505051")));
+    public static void setEntryMod(final MentionableEntry m) {
+        String s,s1;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="textinentry";s1="hintinentry";break;}
+            case 1:{s="ModChatTextColor";s1="hintinentry";break;}
+            case 2:{s="text_entry_color_picker";s1="hintinentry";break;}
+        }
+        m.setTextColor(getColor(s, Color.parseColor("#303031")));
+        m.setHintTextColor(getColor(s1, Color.parseColor("#505051")));
     }
 
     public static int setHomeCounterBK() {
-        return getColor("counterbg", unread());
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="counterbg";break;}
+            case 1:{s="HomeCounterBK";break;}
+            case 2:{s="chats_unread_msg_bg_color_picker";break;}
+        }
+        return getColor(s, unread());
     }
 
     public static void setHomeIc(final ImageView imageView) {
@@ -415,20 +729,34 @@ public class sn1
     }
 
     public static void setcallbtn(final ImageView imageView) {
-        int color = getColor("callbtncolor",ColorStore.getActionBarColor());
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="callbtncolor";break;}
+            case 1:{s="callbtncolor";break;}
+            case 2:{s="color_icon_call_picker";break;}
+        }
+        int color = getColor(s,ColorStore.getActionBarColor());
         imageView.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
     }
 
     public static void setQView(final View d) {
-        B58.d = d;
+        B58.quot = d;
         B58.l();
     }
 
     public static void setStatusNavBar(final Activity activity) {
         try {
+            String s,s1;
+            switch(getPrefString("file_type"))
+            {
+                default:{s="StatusbarColor";s1="NavbarColor";break;}
+                case 1:{s="ModDarkConPickColor";s1="ModDarkConPickColorNav";break;}
+                case 2:{s="chats_transparent_mode_sb_color_picker";s1="chats_transparent_mode_nav_color_picker";break;}
+            }
             if (Build.VERSION.SDK_INT >= 21) {
-                final int color = getColor("StatusbarColor", ColorStore.getStatusBarColor());
-                final int color2 = getColor("NavbarColor", color);
+                final int color = getColor(s, ColorStore.getStatusBarColor());
+                final int color2 = getColor(s1, color);
                 final Window window = activity.getWindow();
                 window.addFlags(Integer.MIN_VALUE);
                 window.setStatusBarColor(color);
@@ -443,12 +771,26 @@ public class sn1
     }
 
     public static Drawable statuscamera(final Drawable drawable) {
-        drawable.setColorFilter(getColor("pagetitle", mainpagercolor()), PorterDuff.Mode.MULTIPLY);
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="pagetitle";break;}
+            case 1:{s="pagetitle_picker";break;}
+            case 2:{s="pagetitle_picker";break;}
+        }
+        drawable.setColorFilter(getColor(s, mainpagercolor()), PorterDuff.Mode.MULTIPLY);
         return drawable;
     }
 
-    public static void text_entry_bgChat(final View view, final Drawable drawable, final Context context) {
-        drawable.setColorFilter(getColor("entrybg", ColorStore.getConsBackColor()), PorterDuff.Mode.MULTIPLY);
+    public static void text_entry_bgChat(final Drawable d) {
+        String s;
+        switch(getPrefString("file_type"))
+        {
+            default:{s="entrybg";break;}
+            case 1:{s="ModChatEntry";break;}
+            case 2:{s="text_entry_bg_color_picker";break;}
+        }
+        d.setColorFilter(getColor(s, ColorStore.getConsBackColor()), PorterDuff.Mode.MULTIPLY);
     }
 
     public static int zaction_mode_bar() {
@@ -519,6 +861,10 @@ public class sn1
         return getResID("label", "id");
     }
 
+    public static int zhidemsg() {
+        return getResID("msgid", "id");
+    }
+
     public static int zmute_indicator() {
         return getResID("mute_indicator", "id");
     }
@@ -540,7 +886,7 @@ public class sn1
     }
 
     public static int zquoted_name() {
-        return getResID("quoted_name", "id");
+        return getResID("quoted_title", "id");
     }
 
     public static int zquoted_text() {

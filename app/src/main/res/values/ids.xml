@@ -120,4 +120,38 @@
     <item type="id" name="folder_icon">false</item>
     <item type="id" name="folder_name">false</item>
     <item type="id" name="input_circle">false</item>
+    <item type="id" name="msgid">false</item>
+    <item name="div2" type="id">false</item>
+    <item name="vthemes" type="id">false</item>
+    <item name="vuniversal" type="id">false</item>
+    <item name="vhome" type="id">false</item>
+    <item name="vchat" type="id">false</item>
+    <item name="vfab" type="id">false</item>
+    <item name="vconpick" type="id">false</item>
+    <item name="vsl" type="id">false</item>
+    <item name="aboutb58" type="id">false</item>
+    <item name="tprivacy" type="id">false</item>
+    <item name="thome" type="id">false</item>
+    <item name="tchat" type="id">false</item>
+    <item name="tmedia" type="id">false</item>
+    <item name="tlog" type="id">false</item>
+    <item name="tpass" type="id">false</item>
+    <item name="tchooser" type="id">false</item>
+    <item name="contact_selector" type="id">false</item>
+    <item name="aboutus" type="id">false</item>
+    <item name="special" type="id">false</item>
+    <item name="aboutus2" type="id">false</item>
+    <item name="t1" type="id">false</item>
+    <item name="t2" type="id">false</item>
+    <item name="t3" type="id">false</item>
+    <item name="t4" type="id">false</item>
+    <item name="t5" type="id">false</item>
+    <item name="t6" type="id">false</item>
+    <item name="t7" type="id">false</item>
+    <item name="v1" type="id">false</item>
+    <item name="v2" type="id">false</item>
+    <item name="v3" type="id">false</item>
+    <item name="v4" type="id">false</item>
+    <item name="v5" type="id">false</item>
+    <item name="v6" type="id">false</item>
 </resources>

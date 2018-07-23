@@ -50,7 +50,12 @@ public class ColorPref extends Preference {
 
     private void b() {
         final String key = this.getKey();
-        new ColorSelectorDialog(this.getContext(),  new com.B58works.extra.b(this, key), B58.ctx.getSharedPreferences("B58", 0).getInt(key, this.b)).show();
+        new ColorSelectorDialog(this.getContext(), new ColorSelectorDialog.OnColorChangedListener() {
+            @Override
+            public void colorChanged(int p0) {
+                a(key,p0);
+            }
+        }, B58.ctx.getSharedPreferences("B58", 0).getInt(key, this.b)).show();
     }
 
     public void a(final View view) {
@@ -65,8 +70,13 @@ public class ColorPref extends Preference {
 
     public void onBindView(final View view) {
         super.onBindView(view);
-        view.setOnClickListener((View.OnClickListener) new com.B58works.extra.a(this));
-        this.a = (ImageView) view.findViewById(B58.getResID("imageViewIcon", "id"));
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                a(view);
+            }
+        });
+        this.a = view.findViewById(B58.getResID("imageViewIcon", "id"));
         if (this.a != null) {
             this.a();
             this.a.setClickable(true);

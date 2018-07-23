@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import static com.B58works.B58.getResID;
 import static com.whatsapp.sn1.zseekBarPrefBarContainer;
 import static com.whatsapp.sn1.zseekBarPrefUnitsLeft;
 import static com.whatsapp.sn1.zseekBarPrefUnitsRight;
@@ -31,134 +30,105 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
     private int c;
     private int d;
     private int e;
-    private String f;
-    private String g;
-    private SeekBar h;
-    private TextView i;
-    private RelativeLayout j;
+    private SeekBar f;
+    private TextView g;
+    private String h;
+    private String i;
+    private int j;
 
     public SeekBarPreference(final Context context, final AttributeSet set) {
         super(context, set);
         this.a = this.getClass().getName();
-        this.b = 100;
-        this.c = 0;
-        this.d = 1;
-        this.f = "";
-        this.g = "";
-        this.j = null;
+        this.d = 100;
+        this.e = 0;
+        this.c = 1;
+        this.h = "";
+        this.i = "";
         this.a(context, set);
     }
 
     public SeekBarPreference(final Context context, final AttributeSet set, final int n) {
         super(context, set, n);
         this.a = this.getClass().getName();
-        this.b = 100;
-        this.c = 0;
-        this.d = 1;
-        this.f = "";
-        this.g = "";
-        this.j = null;
+        this.d = 100;
+        this.e = 0;
+        this.c = 1;
+        this.h = "";
+        this.i = "";
         this.a(context, set);
     }
 
-    private static String a(final AttributeSet set, final String s, final String s2, String s3) {
-        final String attributeValue = set.getAttributeValue(s, s2);
-        if (attributeValue != null) {
-            s3 = attributeValue;
+    private String a(final AttributeSet set, String s, final String s2, final String s3) {
+        String attributeValue;
+        s = (attributeValue = set.getAttributeValue(s, s2));
+        if (s == null) {
+            attributeValue = s3;
         }
-        return s3;
+        return attributeValue;
     }
 
     private void a(final Context context, final AttributeSet set) {
-        this.b = set.getAttributeIntValue("http://schemas.android.com/apk/res/android", "max", 100);
-        this.c = set.getAttributeIntValue("http://robobunny.com", "min", 0);
-        this.f = a(set, "http://robobunny.com", "unitsLeft", "");
-        this.g = a(set, "http://robobunny.com", "unitsRight", a(set, "http://robobunny.com", "units", ""));
-        while (true) {
-            try {
-                final String attributeValue = set.getAttributeValue("http://robobunny.com", "interval");
-                if (attributeValue != null) {
-                    this.d = Integer.parseInt(attributeValue);
-                }
-                (this.h = new SeekBar(context, set)).setMax(this.b - this.c);
-                this.h.setOnSeekBarChangeListener(this);
+        this.a(set);
+        (this.f = new SeekBar(context, set)).setMax(this.d - this.e);
+        this.f.setOnSeekBarChangeListener(this);
+    }
+
+    private void a(final AttributeSet set) {
+        this.d = set.getAttributeIntValue("http://schemas.android.com/apk/res/android", "max", 100);
+        this.e = set.getAttributeIntValue("http://robobunny.com", "min", 0);
+        this.j = set.getAttributeIntValue("http://schemas.android.com/apk/res/android", "defaultValue", 0);
+        this.h = this.a(set, "http://robobunny.com", "unitsLeft", "");
+        this.i = this.a(set, "http://robobunny.com", "unitsRight", this.a(set, "http://robobunny.com", "units", ""));
+        try {
+            final String attributeValue = set.getAttributeValue("http://robobunny.com", "interval");
+            if (attributeValue != null) {
+                this.c = Integer.parseInt(attributeValue);
             }
-            catch (Exception ex) {
-                Log.e(this.a, "Invalid interval value", (Throwable)ex);
-                continue;
-            }
-            break;
+        }
+        catch (Exception ex) {
+            Log.e(this.a, "Invalid interval value", ex);
         }
     }
 
-    public void onBindView(View paramView)
-    {
-        try
-        {
-            super.onBindView(paramView);
-            try
-            {
-                ViewParent localViewParent = this.h.getParent();
-                ViewGroup localViewGroup = paramView.findViewById(zseekBarPrefBarContainer());
-                if (localViewParent != localViewGroup)
-                {
-                    if (localViewParent != null)
-                        ((ViewGroup)localViewParent).removeView(this.h);
-                    localViewGroup.removeAllViews();
-                    localViewGroup.addView(this.h, -1, -2);
-                }
-                if ((!this.j.isEnabled()) && (this.j != null))
-                    this.h.setEnabled(false);
-            }
-            catch (Exception localException1)
-            {
-                try
-                {
-                    RelativeLayout localRelativeLayout = (RelativeLayout)paramView;
-                    this.i = (localRelativeLayout.findViewById(zseekBarPrefValue()));
-                    this.i.setText(String.valueOf(this.e));
-                    this.i.setMinimumWidth(30);
-                    this.h.setProgress(this.e - this.c);
-                    ((TextView)localRelativeLayout.findViewById(zseekBarPrefUnitsRight())).setText(this.g);
-                    ((TextView)localRelativeLayout.findViewById(zseekBarPrefUnitsLeft())).setText(this.f);
-                    localException1 = localException1;
-                    Log.e(this.a, "Error binding view: " + localException1.toString());
-                    label184: return;
-                }
-                catch (Exception localException2)
-                {
-                    while (true)
-                        Log.e(this.a, "Error updating seek bar preference", localException2);
-                }
-            }
-        }
-        catch (NullPointerException localNullPointerException)
-        {
+    public int getdef() {
+        return this.j;
+    }
 
+    public int myVal() {
+        return this.b;
+    }
+
+    public void onBindView(final View view) {
+        super.onBindView(view);
+        try {
+            final ViewParent parent = this.f.getParent();
+            final ViewGroup viewGroup = view.findViewById(zseekBarPrefBarContainer());
+            if (parent != viewGroup) {
+                if (parent != null) {
+                    ((ViewGroup)parent).removeView(this.f);
+                }
+                viewGroup.removeAllViews();
+                viewGroup.addView(this.f, -1, -2);
+            }
         }
+        catch (Exception ex) {
+            final String a = this.a;
+            final StringBuilder sb = new StringBuilder();
+            sb.append("Error binding view: ");
+            sb.append(ex.toString());
+            Log.e(a, sb.toString());
+        }
+        this.updateView(view);
     }
 
     protected View onCreateView(final ViewGroup viewGroup) {
         super.onCreateView(viewGroup);
         try {
-            this.j = (RelativeLayout) ((LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(zseek_bar_preference(), viewGroup, false);
-            return (View) this.j;
-        } catch (Exception ex) {
-            Log.e(this.a, "Error creating seek bar preference", ex);
-            return (View) this.j;
+            return LayoutInflater.from(this.getContext()).inflate(zseek_bar_preference(), viewGroup, false);
         }
-    }
-
-    public void onDependencyChanged(final Preference preference, final boolean b) {
-        super.onDependencyChanged(preference, b);
-        if (this.j != null) {
-            this.h.setEnabled(!b);
-            final TextView i = this.i;
-            boolean enabled = false;
-            if (!b) {
-                enabled = true;
-            }
-            i.setEnabled(enabled);
+        catch (Exception ex) {
+            Log.e(this.a, "Error creating seek bar preference", ex);
+            return null;
         }
     }
 
@@ -166,49 +136,52 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
         return typedArray.getInt(n, 50);
     }
 
-    public void onProgressChanged(final SeekBar seekBar, final int n, final boolean b) {
-        try {
-            int e = n + this.c;
-            if (e > this.b) {
-                e = this.b;
-            }
-            else if (e < this.c) {
-                e = this.c;
-            }
-            else if (this.d != 1 && e % this.d != 0) {
-                e = Math.round(e / this.d) * this.d;
-            }
-            if (!this.callChangeListener((Object)e)) {
-                seekBar.setProgress(this.e - this.c);
-            }
-            else {
-                this.e = e;
-                this.i.setText((CharSequence)String.valueOf(e));
-                this.persistInt(e);
+    public void onProgressChanged(final SeekBar seekBar, int b, final boolean b2) {
+        final int n = b + this.e;
+        if (n > this.d) {
+            b = this.d;
+        }
+        else if (n < this.e) {
+            b = this.e;
+        }
+        else {
+            b = n;
+            if (this.c != 1) {
+                b = n;
+                if (n % this.c != 0) {
+                    b = Math.round(n / this.c) * this.c;
+                }
             }
         }
-        catch (NullPointerException ex) {}
+        if (this.callChangeListener(b)) {
+            this.b = b;
+            this.g.setText(String.valueOf(b));
+            this.persistInt(b);
+            return;
+        }
+        seekBar.setProgress(this.b - this.e);
     }
 
     protected void onSetInitialValue(final boolean b, final Object o) {
+        int b2;
         if (b) {
-            this.e = this.getPersistedInt(this.e);
+            b2 = this.getPersistedInt(this.b);
         }
         else {
-            while (true) {
-                try {
-                    final int intValue = (int)o;
-                    this.persistInt(intValue);
-                    this.e = intValue;
-                }
-                catch (Exception ex) {
-                    Log.e(this.a, "Invalid default value: " + o.toString());
-                    final int intValue = 0;
-                    continue;
-                }
-                break;
+            b2 = 0;
+            try {
+                b2 = (int)o;
             }
+            catch (Exception ex) {
+                final String a = this.a;
+                final StringBuilder sb = new StringBuilder();
+                sb.append("Invalid default value: ");
+                sb.append(o.toString());
+                Log.e(a, sb.toString());
+            }
+            this.persistInt(b2);
         }
+        this.b = b2;
     }
 
     public void onStartTrackingTouch(final SeekBar seekBar) {
@@ -216,14 +189,24 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
 
     public void onStopTrackingTouch(final SeekBar seekBar) {
         this.notifyChanged();
-        if (this.g.contains("r") || this.g.contains("Mb")) {
-            //com.whatsapp.plus.fv.d(this.getContext());
-        }
     }
 
-    public void setEnabled(final boolean b) {
-        super.setEnabled(b);
-        this.h.setEnabled(b);
+    public void setmyVal(final int b) {
+        this.b = b;
+    }
+
+    protected void updateView(final View view) {
+        try {
+            final RelativeLayout relativeLayout = (RelativeLayout)view;
+            (this.g = relativeLayout.findViewById(zseekBarPrefValue())).setText(String.valueOf(this.b));
+            this.g.setMinimumWidth(30);
+            this.f.setProgress(this.b - this.e);
+            ((TextView)relativeLayout.findViewById(zseekBarPrefUnitsRight())).setText(this.i);
+            ((TextView)relativeLayout.findViewById(zseekBarPrefUnitsLeft())).setText(this.h);
+        }
+        catch (Exception ex) {
+            Log.e(this.a, "Error updating seek bar preference", ex);
+        }
     }
 }
 

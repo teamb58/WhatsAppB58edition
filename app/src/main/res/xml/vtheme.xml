@@ -4,5 +4,7 @@
     <Preference android:title="@string/downloadtheme" android:key="download" android:summary="@string/downloadthemesum" />
     <Preference android:title="@string/savetheme" android:key="save_temp" android:summary="@string/savethemesum" />
     <Preference android:title="@string/restoretheme" android:key="load_pref_file" android:summary="@string/restorethemesum" />
+    <ListPreference android:entries="@array/theme_style" android:title="Choose which theme style" android:key="file_type" android:summary="Choose which app theme will be restored" android:defaultValue="0" android:entryValues="@array/themeStyleListValues" />
     <Preference android:title="@string/cleartheme" android:key="clear_pref_file" android:summary="@string/clearthemesum" />
+    <Preference android:key="clearyo" />
 </PreferenceScreen>

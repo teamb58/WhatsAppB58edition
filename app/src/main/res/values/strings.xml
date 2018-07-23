@@ -141,37 +141,37 @@
     <string name="univnavbarsum">Choose a color for Navigation Bar.</string>
     <string name="tabcolor">v3.2 Home Tabs color</string>
     <string name="tabcolorsum">Choose a color for Chats,Status and Calls tab.</string>
-    <string name="unreadc">v3.3 Unread Counter BG</string>
+    <string name="unreadc">v3.5 Unread Counter BG</string>
     <string name="unreadcsum">Choose a color for background of Unread counter.</string>
-    <string name="onlinec">v3.4 \"Online\" color</string>
+    <string name="onlinec">v3.6 \"Online\" color</string>
     <string name="onlinecsum">Choose a color for \"Online\" text if Last Seen in Main Screen is enabled.</string>
-    <string name="ls">v3.5 \"Last Seen at\" Color</string>
+    <string name="ls">v3.7 \"Last Seen at\" Color</string>
     <string name="lssum">Choose a color for \"Last Seen at\" if Last Seen in Main Screen is enabled.</string>
     <string name="homebg">v3.1 Home screen background</string>
     <string name="homebgsum">Choose a color for background of chats in homescreen.</string>
-    <string name="tabtitle">v3.6 Tabs title Color</string>
+    <string name="tabtitle">v3.8 Tabs title Color</string>
     <string name="tabtitlesum">Choose a color for CALLS, STATUS and CHATS texts.</string>
-    <string name="chatconname">v3.8 Contact name color</string>
+    <string name="chatconname">v3.10 Contact name color</string>
     <string name="chatconnamesum">Choose a color for Contact\'s name in Chats tab.</string>
-    <string name="chatdate">v3.9 Date Color</string>
+    <string name="chatdate">v3.11 Date Color</string>
     <string name="chatdatesum">Choose a color for Date in Chats tab.</string>
-    <string name="chatmsgfrom">v3.10 From message color</string>
+    <string name="chatmsgfrom">v3.12 From message color</string>
     <string name="chatmsgfromsum">Choose a color for the recent sender\'s name in a group.</string>
-    <string name="chatmsg">v3.11 Chat Message Color</string>
+    <string name="chatmsg">v3.13 Chat Message Color</string>
     <string name="chatmsgsum">Choose a color for incoming message in chat tab.</string>
-    <string name="chatmsgcount">v3.12 Message count Color</string>
+    <string name="chatmsgcount">v3.14 Message count Color</string>
     <string name="chatmsgcountsum">Choose a color for the message count in chats tab.</string>
-    <string name="statname">v3.13 Contact Name in Status Tab color</string>
+    <string name="statname">v3.15 Contact Name in Status Tab color</string>
     <string name="statnamesum">Choose a color for Contact\'s name in Status tab.</string>
-    <string name="statdate">v3.14 Status upload time color</string>
+    <string name="statdate">v3.16 Status upload time color</string>
     <string name="statdatesum">Choose a color for the time when status is uploaded.</string>
-    <string name="callsname">v3.15 Contact\'s name in Calls tab color</string>
+    <string name="callsname">v3.17 Contact\'s name in Calls tab color</string>
     <string name="callsnamesum">Choose a color for Contact\'s name in calls tab.</string>
-    <string name="callscount">v3.16 Calls count color</string>
+    <string name="callscount">v3.18 Calls count color</string>
     <string name="callscountsum">Choose a color for calls count in calls tab.</string>
-    <string name="callsdate">v3.17 Calls date color</string>
+    <string name="callsdate">v3.19 Calls date color</string>
     <string name="callsdatesum">Choose a color for time of call in calls tab.</string>
-    <string name="Textsize">v3.7 Text size</string>
+    <string name="Textsize">v3.9 Text size</string>
     <string name="Textsizesum">Change Text size for entire main screen.</string>
     <string name="contname">v4.1 Contact Name Color</string>
     <string name="contnamesum">Choose a color for Contact Name in Actionbar.</string>
@@ -238,8 +238,45 @@
     <string name="Hidenamesum">Enable to hide the sender\'s/group\'s name.</string>
     <string name="lock">Lock Conversation</string>
     <string name="unlock">Unlock Conversation</string>
-    <string name="callsicon">v3.18 Call icon</string>
+    <string name="callsicon">v3.20 Call icon</string>
     <string name="callsiconsum">Choose a color for call button.</string>
     <string name="textsettingconfuse">Getting confused? Click <a href="https://androtechupdates.com/guide-text/">this link</a> for a visual explanation.</string>
     <string name="visualsettingconfuse">Getting confused? Click <a href="https://androtechupdates.com/guide-visual/">this link</a> for a visual explanation.</string>
+    <string name="univactionbargr">Gradient for Action Bar</string>
+    <string name="univactionbargrsum">Enable Gradient colors for Action Bar.</string>
+    <string name="homebggr">Gradient for Home screen Background</string>
+    <string name="homebggrsum">Enable gradient for Home screen Background.</string>
+    <string name="tabcolorgr">Gradient for Tab color</string>
+    <string name="tabcolorgrsum">Enable Gradient for Tab color.</string>
+    <string name="B58ShareSbj">WhatsApp</string>
+    <string name="B58ShareBdy">"Hey, do you like WhatsApp but do you want more privacy and additional features like
+\u0009\u00091.Themes to change colors as per your wish
+\u0009\u00092.Privacy
+\u0009\u00093.Text selection
+\u0009\u00094.Hide Archived chats
+\u0009\u00095.Your name and phone number in action bar and much more???
+\u0009\u0009Check this http://destyy.com/w0unh8 .
+\u0009\u0009NOTE:I can add more features upon request. Thanks in advance."</string>
+    <string name="unreadctab">v3.3 Unread count in tabs</string>
+    <string name="unreadctabsum">Choose a color for unread count text in tabs.</string>
+    <string name="unreadctabbg">v3.4 Unread count in tabs Background</string>
+    <string name="unreadctabbgsum">Choose a color for the background of unread count in tabs.</string>
+    <string name="conpickmods">v6. ContactPicker Screen mods</string>
+    <string name="conpickmodssum">Options that modify colors in ContactPicker screen.</string>
+    <string name="conbggr">Gradient for ContactPicker screen background</string>
+    <string name="conbggrsum">Enable Gradient for ContactPicker screen background.</string>
+    <string name="conbg">v6.1 ContactPicker screen background</string>
+    <string name="conbgsum">Choose a color for background of contacts in ContactPicker screen.</string>
+    <string name="conconname">v6.2 Contact name color</string>
+    <string name="conconnamesum">Choose a color for Contact\'s name in ContactPicker screen.</string>
+    <string name="constatus">v6.3 Contact Status color</string>
+    <string name="constatussum">Choose a color for status of contact below name.</string>
+    <string name="conphtype">v6.4 Contact Phone type color</string>
+    <string name="conphtypesum">Choose a color for phone type of contact.</string>
+    <string name="special">B58\s wishes.</string>
+    <string name="aboutb58">Click here to know more about us</string>
+    <string name="settingstext">Text color in Settings</string>
+    <string name="settingstextsum">Choose a color for texts in Settings page.</string>
+    <string name="enspecial">Enable Special Wallpaper</string>
+    <string name="enspecialsum">Enable to have a Special event wallpaper for Settings.</string>
 </resources>

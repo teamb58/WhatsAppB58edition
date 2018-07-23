@@ -39,7 +39,7 @@ public class listpref extends ListPreference
     }
 
     protected void onPrepareDialogBuilder(final AlertDialog.Builder alertDialog$Builder) {
-        alertDialog$Builder.setAdapter((ListAdapter)new ImageArrayAdapter(this.getContext(), this.getResID("listitem", "layout"), this.getEntries(), this.resourceIds, this.findIndexOfValue(this.getSharedPreferences().getString(this.getKey(), "1"))), this);
+        alertDialog$Builder.setAdapter(new ImageArrayAdapter(this.getContext(), this.getResID("listitem", "layout"), this.getEntries(), this.resourceIds, this.findIndexOfValue(this.getSharedPreferences().getString(this.getKey(), "1"))), this);
         super.onPrepareDialogBuilder(alertDialog$Builder);
     }
 }

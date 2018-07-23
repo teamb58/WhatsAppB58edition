@@ -12,4 +12,5 @@
     <color name="pathColor">#ff000000</color>
     <color name="circleColor">#ff000000</color>
     <color name="dotColor">#ff000000</color>
+    <color name="list_item_selected">#660099cc</color>
 </resources>

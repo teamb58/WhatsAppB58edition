@@ -50,16 +50,16 @@ public class Activities extends Preference
                 intent.setType("text/plain");
                 intent.putExtra("android.intent.extra.SUBJECT", this.getContext().getString(B58.getResID("B58ShareSbj", "string")));
                 intent.putExtra("android.intent.extra.TEXT", string);
-                this.getContext().startActivity(Intent.createChooser(intent, (CharSequence)this.getContext().getString(B58.getResID("B58Share", "string"))));
+                this.getContext().startActivity(Intent.createChooser(intent, this.getContext().getString(B58.getResID("B58Share", "string"))));
                 break;
             }
             case "credits": {
                 final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
-                alertDialog$Builder.setTitle((CharSequence)"Credits");
+                alertDialog$Builder.setTitle("Credits");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("file:///android_asset/credits.html");
-                alertDialog$Builder.setView((View)view);
-                alertDialog$Builder.setNeutralButton("OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
+                alertDialog$Builder.setView(view);
+                alertDialog$Builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }
@@ -69,11 +69,11 @@ public class Activities extends Preference
             }
             case "clogs": {
                 final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
-                alertDialog$Builder.setTitle((CharSequence)"Changelogs");
+                alertDialog$Builder.setTitle("Changelogs");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("file:///android_asset/clog.html");
-                alertDialog$Builder.setView((View)view);
-                alertDialog$Builder.setNeutralButton((CharSequence)"OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
+                alertDialog$Builder.setView(view);
+                alertDialog$Builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }
@@ -86,8 +86,8 @@ public class Activities extends Preference
                 alertDialog$Builder.setTitle((CharSequence)"Developer Message");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("https://androtechupdates.com/wp-content/uploads/devmsg.html");
-                alertDialog$Builder.setView((View)view);
-                alertDialog$Builder.setNeutralButton((CharSequence)"OK", (DialogInterface.OnClickListener)new DialogInterface.OnClickListener() {
+                alertDialog$Builder.setView(view);
+                alertDialog$Builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }

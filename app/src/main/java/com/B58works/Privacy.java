@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.os.Process;
 import android.preference.Preference;
 
-import com.whatsapp.nc;
+import com.whatsapp.nx;
 import com.whatsapp.protocol.k;
 
 import java.lang.reflect.Field;
 
-public class Privacy extends nc {
+public class Privacy extends nx {
     static String JID;
     static Context pctx;
 
@@ -74,8 +74,9 @@ public class Privacy extends nc {
         return s2;
     }
 
-    public static boolean HideCR(final String s, final int n) {
-        boolean b = false;
+    public static boolean HideCR(final int n) {
+        String s=JID;
+        boolean b;
         switch (n) {
             default: {
                 if (getPrivacyB(s)) {

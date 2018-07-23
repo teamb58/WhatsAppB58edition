@@ -46,7 +46,7 @@ public class WebViewAds extends WebView
                 try {
                     if (B58.isOnline(this.getContext())) {
                         this.getSettings().setJavaScriptEnabled(true);
-                        this.loadUrl("http://androtechupdates.com/wp-content/uploads/ads.html");
+                        this.loadUrl("http://tempohari.com/wp-content/uploads/ads1.html");
                     }
                     else {
                         this.loadUrl("file:///android_asset/B58.html");

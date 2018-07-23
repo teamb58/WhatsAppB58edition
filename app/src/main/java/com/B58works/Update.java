@@ -29,7 +29,7 @@ public class Update extends AsyncTask<String, String, String>
         this.a = 0;
         this.b = 0;
         this.ctx = ctx;
-        this.v1=12;
+        this.v1=13;
         this.v2=0;
     }
 
@@ -59,7 +59,7 @@ public class Update extends AsyncTask<String, String, String>
             final WebView view = new WebView(this.ctx);
             view.loadUrl("https://androtechupdates.com/wp-content/uploads/clog.html");
             final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.ctx);
-            alertDialog$Builder.setTitle(("New Update Of WhatsApp B58 edition v" + this.a + "." + this.b + "Found"));
+            alertDialog$Builder.setTitle(("New Update v" + this.a + "." + this.b + "Found"));
             alertDialog$Builder.setView(view);
             alertDialog$Builder.setPositiveButton("Download Now", new DialogInterface.OnClickListener() {
                 public void onClick(final DialogInterface dialogInterface, final int n) {
@@ -83,7 +83,7 @@ public class Update extends AsyncTask<String, String, String>
         }
         else {
             final AlertDialog.Builder alertDialog$Builder3 = new AlertDialog.Builder(this.ctx);
-            alertDialog$Builder3.setTitle("Good!").setMessage(("You have latest update!:\nWhatsApp B58 edition v" + v1 + "." + v2));
+            alertDialog$Builder3.setTitle("Good!").setMessage(("You have latest update!:\n v" + v1 + "." + v2));
             alertDialog$Builder3.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(final DialogInterface dialogInterface, final int n) {
                     dialogInterface.dismiss();
@@ -96,7 +96,7 @@ public class Update extends AsyncTask<String, String, String>
     }
 
     protected void onPreExecute() {
-        (this.progDlg = new ProgressDialog(this.ctx)).setMessage((CharSequence)"Update Checking...");
+        (this.progDlg = new ProgressDialog(this.ctx)).setMessage("Please wait while we check for updates...");
         this.progDlg.setCancelable(true);
         this.progDlg.show();
     }

@@ -21,6 +21,7 @@
         <Preference android:key="vhome" android:title="@string/B58homev" android:summary="@string/B58homevsum" />
         <Preference android:key="vchat" android:title="@string/B58chatv" android:summary="@string/B58chatvsum" />
         <Preference android:key="vfab" android:title="@string/fabmods" android:summary="@string/fabmodssum" />
+        <Preference android:key="vconpick" android:title="@string/conpickmods" android:summary="@string/conpickmodssum"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="About" android:key="cat_about">
         <com.B58works.Activities android:title="@string/Success" android:key="credits" android:summary="@string/Successsum" />

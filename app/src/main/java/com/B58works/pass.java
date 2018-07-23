@@ -1,21 +1,18 @@
 package com.B58works;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.TwoStatePreference;
 
-import com.B58works.extra.*;
-import com.whatsapp.nc;
+import com.whatsapp.nx;
 
-public class pass extends nc implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener
+public class pass extends nx implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener
 {
     public static Context con;
     public SharedPreferences.Editor editor;
@@ -40,8 +37,20 @@ public class pass extends nc implements SharedPreferences.OnSharedPreferenceChan
         this.addPreferencesFromResource(B58.getResID("tlock", "xml"));
         final Preference preference = this.findPreference("lockC");
         final Preference preference2 = this.findPreference("patternC");
-        preference.setOnPreferenceClickListener(new bs(this));
-        preference2.setOnPreferenceClickListener(new bt(this));
+        preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(con, LocksC.class));
+                return false;
+            }
+        });
+        preference2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(con, patternC.class));
+                return false;
+            }
+        });
     }
 
     protected void onPause() {

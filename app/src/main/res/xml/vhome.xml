@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen android:title="@string/B58homev"
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:robobunny="http://robobunny.com">
+    <SwitchPreference android:title="@string/homebggr" android:key="homebggrc" android:summary="@string/homebggrsum" android:defaultValue="false" />
     <com.B58works.ColorPref android:title="@string/homebg" android:key="homebg" android:summary="@string/homebgsum" />
+    <com.B58works.ColorPref android:key="homebggr" android:dependency="homebggrc" />
+    <ListPreference android:entries="@array/gr_style" android:title="Gradient Style" android:key="homebgor" android:defaultValue="0" android:entryValues="@array/actionbarStyleListValues" />
+    <SwitchPreference android:title="@string/tabcolorgr" android:key="Tabcolorgrc" android:summary="@string/tabcolorgrsum" android:defaultValue="false" />
     <com.B58works.ColorPref android:title="@string/tabcolor" android:key="Tabcolor" android:summary="@string/tabcolorsum" />
+    <com.B58works.ColorPref  android:key="Tabcolorgr" android:dependency="Tabcolorgrc" />
+    <ListPreference android:entries="@array/gr_style" android:title="Gradient Style" android:key="Tabcoloror" android:defaultValue="0" android:entryValues="@array/actionbarStyleListValues" />
+    <com.B58works.ColorPref android:title="@string/unreadctab" android:key="countertabtext" android:summary="@string/unreadctabsum" />
+    <com.B58works.ColorPref android:title="@string/unreadctabbg" android:key="countertabtextbg" android:summary="@string/unreadctabbgsum" />
     <com.B58works.ColorPref android:title="@string/unreadc" android:key="counterbg" android:summary="@string/unreadcsum" />
     <com.B58works.ColorPref android:title="@string/onlinec" android:key="ModOnlineColor" android:summary="@string/onlinecsum" />
     <com.B58works.ColorPref android:title="@string/ls" android:key="ModlastseenColor" android:summary="@string/lssum" />

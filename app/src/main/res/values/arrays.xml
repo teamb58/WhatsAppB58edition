@@ -285,4 +285,28 @@
         <item>18</item>
         <item>19</item>
     </string-array>
+    <string-array name="gr_style">
+        <item>TOP-BOTTOM</item>
+        <item>LEFT-RIGHT</item>
+        <item>TR-BL</item>
+        <item>BOTTOM-TOP</item>
+        <item>RIGHT-LEFT</item>
+    </string-array>
+    <string-array name="actionbarStyleListValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="theme_style">
+        <item>WhatsApp B58 edition</item>
+        <item>YoWhatsApp</item>
+        <item>GBWhatsApp</item>
+    </string-array>
+    <string-array name="themeStyleListValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

@@ -20,18 +20,17 @@ public class patternC extends Activity
     private PatternView b;
     private String c;
 
-    public static PatternView a(final patternC patternC) {
-        return patternC.b;
+    public static PatternView a(final patternC p) {
+        return p.b;
     }
 
-    public static String a(final patternC patternC, final String c) {
-        return patternC.c = c;
+    public static String a(final patternC p, final String c) {
+        return p.c = c;
     }
 
     private void a() {
         String string = "pat";
         if (this.getIntent() != null) {
-            string = string;
             if (this.getIntent().hasExtra("jid")) {
                 final String stringExtra = this.getIntent().getStringExtra("jid");
                 string = stringExtra + "_pat";
@@ -55,10 +54,18 @@ public class patternC extends Activity
         patternC.ctx = B58.ctx;
         this.a = this.getSharedPreferences("B58", 0).edit();
         this.setContentView(getID("activity_pattern", "layout"));
-        ((RelativeLayout)this.findViewById(getID("relmain", "id"))).setBackgroundDrawable(pass.getWall());
-        this.b = (PatternView)this.findViewById(getID("patternView", "id"));
-        Toast.makeText(this.getApplicationContext(), (CharSequence)"Draw your new pattern", Toast.LENGTH_SHORT).show();
-        this.b.setOnPatternDetectedListener((PatternView.OnPatternDetectedListener)new com.B58works.extra.cc(this));
+        (this.findViewById(getID("relmain", "id"))).setBackgroundDrawable(pass.getWall());
+        this.b = this.findViewById(getID("patternView", "id"));
+        Toast.makeText(this.getApplicationContext(), "Draw your new pattern", Toast.LENGTH_SHORT).show();
+        this.b.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
+            @Override
+            public void onPatternDetected() {
+                c=b.getPatternString();
+                a();
+                Toast.makeText(patternC.ctx, "New pattern Set!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }
 
