@@ -14,6 +14,7 @@ import com.B58works.B58;
 import com.B58works.Privacy;
 import com.B58works.settings.About;
 import com.whatsapp.Settings;
+import com.whatsapp.sn1;
 
 
 import java.io.File;
@@ -82,7 +83,7 @@ public class newSettings extends Settings {
         });
         ll =findViewById(getResID("vsl","id"));
 
-        final File file = new File(Environment.getExternalStorageDirectory()+"/"+"B58wishes"+"/special.jpg");
+        /*final File file = new File(Environment.getExternalStorageDirectory()+"/"+"B58wishes"+"/special.jpg");
         if(getBoolean("special"))
         {
             if(file.exists())
@@ -91,7 +92,8 @@ public class newSettings extends Settings {
                 ll.setBackgroundResource(getResID("wall","drawable"));
         }
         else
-            ll.setBackgroundColor(-1);
+            ll.setBackgroundColor(-1);*/
+        ll.setBackgroundColor(sn1.getColor("bgcolor",-1));
         super.setTitle("B58 Text mods");
         setviews();
         TextView t=findViewById(getResID("aboutus","id"));

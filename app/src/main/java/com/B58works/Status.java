@@ -1,111 +1,165 @@
 package com.B58works;
 
+import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
-import android.view.View;
+import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.whatsapp.MediaData;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.nio.channels.FileChannel;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class Status {
+import static com.B58works.B58.ctx;
+import static com.B58works.B58.getResID;
 
-    static int a;
-    static HashMap b;
-    static String c;
-    private static File d;
+public class Status{
 
-    public static void a() throws IOException {
-        if (b()) {
-            if (d()) {
-                Toast.makeText(B58.ctx, "Status saved to WhatsApp/Media/Contacts Status", Toast.LENGTH_LONG).show();
-            }
-        }
-        else {
-            Toast.makeText(B58.ctx, "Connection Error..Try again later", Toast.LENGTH_LONG).show();
-        }
-    }
+    public static int S=0;
+    public static HashMap T;
 
-    private static boolean b() {
-        try {
-            d = ((MediaData)((com.whatsapp.protocol.k)((List)b.get(c)).get(a)).s).file;
-            return true;
-        }
-        catch (Exception ex) {
-            return false;
-        }
-    }
-
-    private static String c() {
-        try {
-            final File file = new File(Environment.getExternalStorageDirectory() + File.separator + "WhatsApp" + File.separator + "Media" + File.separator + "Contacts Status");
-            if (!file.exists() && !file.mkdirs()) {
-                return null;
-            }
-            return file.getPath() + File.separator + (B58.stripJID(c) + "_status_" + d.getName());
-        }
-        catch (Exception ex) {
-            return null;
-        }
-    }
-
-    private static boolean d() throws IOException {
-        String c;
-        try {
-            c = c();
-            if (c == null) {
-                throw new IOException();
-            }
-        }
-        catch (Exception ex) {
-            Toast.makeText(B58.ctx, ("Error accessing file: " + ex.getMessage()), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (new File(c).exists()) {
-            Toast.makeText(B58.ctx, "Already saved!", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        B58.copyFile(d.getPath(), c);
-        B58.ctx.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.fromFile(new File(c))));
-        return true;
-    }
-
-    public static void collectStories(final List list, final String s) {
-        b.put(s, list);
-    }
-
-    public static void setCP(final int ab) {
-        a = ab;
-    }
-
-    public static void setVw(final View view) {
-        if (view == null) {
-            return;
-        }
-        try {
-            (view.findViewById(B58.getID("div2", "id"))).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    try {
-                        a();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+    public static void za(final Activity activity, String d) {
+        if (T != null && !T.isEmpty()) {
+            final List<com.whatsapp.protocol.a.p> list = (List<com.whatsapp.protocol.a.p>) T.get(d);
+            if (list.get(S) instanceof com.whatsapp.protocol.a.p && list.get(S).L != null) {
+                final MediaData m=list.get(S).L;
+                File file = m.file;
+                if (file != null) {
+                    if (file.getAbsolutePath().endsWith("mp4")) {
+                        e(activity, file, "video/*");
+                    }
+                    else {
+                        e(activity, file, "image/*");
                     }
                 }
-            });
+            }
+            else {
+                final List<com.whatsapp.protocol.n> list1 = (List<com.whatsapp.protocol.n>) T.get(d);
+                d = list1.get(S).b();
+                if (d != null) {
+                    if (Build.VERSION.SDK_INT < 11) {
+                        ((ClipboardManager)activity.getSystemService(Context.CLIPBOARD_SERVICE)).setText(d);
+                    }
+                    else {
+                        ((android.content.ClipboardManager)activity.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("textlabel", d));
+                    }
+                    Toast.makeText(ctx,"Status copied to clipboard",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    public static void e(final Activity ex, final File file, final String s) {
+        Serializable s2 = new SimpleDateFormat("yyyyMMddHHmmss");
+        final Date date = new Date();
+        if (s.equals("video/*"))
+            s2 = new File(Environment.getExternalStorageDirectory(), "/WhatsApp/Media/WhatsApp Status/VID-" + ((DateFormat)s2).format(date) + ".mp4");
+        else if(s.equals("image/*"))
+            s2 = new File(Environment.getExternalStorageDirectory(), "/WhatsApp/Media/WhatsApp Status/IMG-" + ((DateFormat)s2).format(date) + ".jpg");
+        if (!new File(Environment.getExternalStorageDirectory(), "/WhatsApp/Media/WhatsApp Status").exists()) {
+            p();
+        }
+        try {
+            final FileChannel channel = new FileInputStream(file).getChannel();
+            final FileChannel channel2 = new FileOutputStream((File)s2).getChannel();
+            channel2.transferFrom(channel, 0L, channel.size());
+            channel.close();
+            channel2.close();
+            a(ex, (File)s2, s);
+            Toast.makeText(ex, "Status media successfully saved to WhatsApp/Media/WhatsApp Status .", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException ex2) {
+            Toast.makeText(ex, ("Failed to save photo " + ((File)s2).getAbsolutePath() + " - " + ex2.getMessage()), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static void p() {
+        try {
+            final File externalStorageDirectory = Environment.getExternalStorageDirectory();
+            for (int i = 0; i <= 2; ++i) {
+                if (i == 0) {
+                    new File(externalStorageDirectory + "/WhatsApp").mkdir();
+                }
+                else if (i == 1) {
+                    new File(externalStorageDirectory + "/WhatsApp/Media").mkdir();
+                }
+                else if (i == 2)
+                    new File(externalStorageDirectory + "/WhatsApp/Media/WhatsApp Status").mkdir();
+            }
         }
         catch (Exception ex) {}
     }
 
-    public static void setplaying(final String c1) {
-        if (c != null && (!c.equals(c1))) {
-            setCP(0);
+    public static void a(final Context context, final File file, final String s) {
+        if (Build.VERSION.SDK_INT >= 20) {
+            if (s.equals("video/*")) {
+                final ContentValues contentValues = new ContentValues();
+                contentValues.put("_data", file.getAbsolutePath());
+                contentValues.put("mime_type", "video/mp4");
+                contentValues.put("date_added", System.currentTimeMillis());
+                context.getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, contentValues);
+            }
+            else if (s.equals("image/*")) {
+                final ContentValues contentValues2 = new ContentValues();
+                contentValues2.put("_data", file.getAbsolutePath());
+                contentValues2.put("mime_type", "image/jpeg");
+                contentValues2.put("date_added", System.currentTimeMillis());
+                context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues2);
+            }
         }
-        c = c1;
+        else if (Build.VERSION.SDK_INT >= 19) {
+            final Intent intent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+            intent.setData(Uri.fromFile(file));
+            context.sendBroadcast(intent);
+        }
+        else {
+            context.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", Uri.fromFile(file)));
+        }
+    }
+
+    public static String g(final String s) {
+        if (T != null) {
+            if (T.isEmpty()) {
+                return ctx.getString(getResID("mediadownload","string"));
+            }
+            final List<com.whatsapp.protocol.a.p> list = (List<com.whatsapp.protocol.a.p>) T.get(s);
+            if (list.get(S) instanceof com.whatsapp.protocol.a.p && list.get(S).L != null) {
+                return ctx.getString(getResID("mediadownload","string"));
+            }
+        }
+        return ctx.getString(getResID("textcopy","string"));
+    }
+
+    public static Object y(final Object o, final String s) {
+        HashMap t;
+        if (o instanceof List) {
+            T.put(s, o);
+            t = T;
+        }
+        else {
+            t = null;
+        }
+        return t;
+    }
+
+    public static int statusmenu()
+    {
+        return com.B58works.B58.getResID("statusmenu","id");
     }
 }

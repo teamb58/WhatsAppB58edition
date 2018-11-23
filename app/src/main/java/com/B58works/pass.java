@@ -10,9 +10,9 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.TwoStatePreference;
 
-import com.whatsapp.nx;
+import com.whatsapp.ow;
 
-public class pass extends nx implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener
+public class pass extends ow implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener
 {
     public static Context con;
     public SharedPreferences.Editor editor;

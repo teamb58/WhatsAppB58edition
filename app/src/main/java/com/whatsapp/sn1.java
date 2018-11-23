@@ -21,6 +21,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+//import android.support.v4.content.ContextCompat;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +42,7 @@ import java.io.File;
 
 import com.whatsapp.architjn.store.ColorStore;
 import com.whatsapp.plus.XMLXplorerActivity;
-import com.whatsapp.protocol.k;
+import com.whatsapp.protocol.n;
 
 import static com.B58works.B58.ctx;
 import static com.B58works.B58.getBoolean;
@@ -56,7 +58,7 @@ import static com.whatsapp.architjn.store.ColorStore.unread;
 public class sn1
 {
 
-    public static void ChatMsgColor(final TextView textView, final com.whatsapp.protocol.k k) {
+    public static void ChatMsgColor(final TextView textView, final n k) {
         String s = "left_msg";
         String right;
         String left;
@@ -513,7 +515,7 @@ public class sn1
         }
     }
 
-    public static void tabcolor(acv a) {
+    public static void tabcolor(adu a) {
         String s,s1,s2;
         switch(getPrefString("file_type"))
         {
@@ -537,9 +539,13 @@ public class sn1
     public static void tabcount(TextView t, int i)
     {
         t.setTextColor(getColor("countertabtext",0xff075e54));
-        Drawable d=ctx.getResources().getDrawable(i);
+        Drawable d=ctx.getResources().getDrawable(i);//check this once
+        //Drawable d= ContextCompat.getDrawable(ctx,i);
         d.setColorFilter(getColor("countertabtextbg", -1), PorterDuff.Mode.MULTIPLY);
-        t.setBackground(d);
+        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
+            t.setBackground(d);
+        else
+            t.setBackgroundDrawable(d);
     }
     public static int contactOfflineString() {
         return getResID("offline_str", "string");
@@ -681,7 +687,7 @@ public class sn1
         return i;
     }
 
-    public static void setChatDateColor(final TextView t, final k k) {
+    public static void setChatDateColor(final TextView t, final n k) {
         String s,s1;
         switch(getPrefString("file_type"))
         {

@@ -154,4 +154,5 @@
     <item name="v4" type="id">false</item>
     <item name="v5" type="id">false</item>
     <item name="v6" type="id">false</item>
+    <item name="statusmenu" type="id">false</item>
 </resources>

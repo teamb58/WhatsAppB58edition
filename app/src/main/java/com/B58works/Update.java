@@ -20,6 +20,7 @@ public class Update extends AsyncTask<String, String, String>
 {
     private int a;
     private int b;
+    private String c;
     private Context ctx;
     private ProgressDialog progDlg;
     private int v1;
@@ -28,9 +29,10 @@ public class Update extends AsyncTask<String, String, String>
     Update(final Context ctx) {
         this.a = 0;
         this.b = 0;
+        c=null;
         this.ctx = ctx;
         this.v1=13;
-        this.v2=0;
+        this.v2=1;
     }
 
     protected String doInBackground(final String... array) {
@@ -47,6 +49,7 @@ public class Update extends AsyncTask<String, String, String>
             final JSONObject jsonObject = new JSONObject(string);
             this.a = jsonObject.getInt("ver1");
             this.b = jsonObject.getInt("ver2");
+            c=jsonObject.getString("url");
             return "1";
         }
         catch (Exception ex) {
@@ -55,6 +58,7 @@ public class Update extends AsyncTask<String, String, String>
     }
 
     protected void onPostExecute(final String s) {
+        final String url=c;
         if (this.a > v1 || this.b > v2 ) {
             final WebView view = new WebView(this.ctx);
             view.loadUrl("https://androtechupdates.com/wp-content/uploads/clog.html");
@@ -63,7 +67,7 @@ public class Update extends AsyncTask<String, String, String>
             alertDialog$Builder.setView(view);
             alertDialog$Builder.setPositiveButton("Download Now", new DialogInterface.OnClickListener() {
                 public void onClick(final DialogInterface dialogInterface, final int n) {
-                    Update.this.ctx.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://destyy.com/w0unh8")));
+                    Update.this.ctx.startActivity(new Intent("android.intent.action.VIEW", Uri.parse(url)));
                 }
             });
             alertDialog$Builder.setNegativeButton("Later", new DialogInterface.OnClickListener() {

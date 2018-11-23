@@ -277,6 +277,8 @@
     <string name="aboutb58">Click here to know more about us</string>
     <string name="settingstext">Text color in Settings</string>
     <string name="settingstextsum">Choose a color for texts in Settings page.</string>
-    <string name="enspecial">Enable Special Wallpaper</string>
-    <string name="enspecialsum">Enable to have a Special event wallpaper for Settings.</string>
+    <string name="mediadownload">Save this media.</string>
+    <string name="textcopy">Copy this text.</string>
+    <string name="settingsbg">Settings Background</string>
+    <string name="settingsbgsum">Choose a color for background of settings page.</string>
 </resources>

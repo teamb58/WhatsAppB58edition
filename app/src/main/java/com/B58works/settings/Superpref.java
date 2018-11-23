@@ -9,11 +9,11 @@ import android.preference.TwoStatePreference;
 
 import com.B58works.B58;
 import com.B58works.SeekBarPreference;
-import com.whatsapp.nx;
+import com.whatsapp.ow;
 
 import static com.B58works.B58.ctx;
 
-public class Superpref extends nx implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener{
+public class Superpref extends ow implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener{
 
     public boolean onPreferenceClick(Preference preference) {
         return false;

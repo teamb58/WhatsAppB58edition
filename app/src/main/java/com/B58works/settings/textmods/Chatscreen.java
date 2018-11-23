@@ -14,9 +14,6 @@ public class Chatscreen extends Superpref{
     public void onCreate(Bundle b) {
         super.onCreate(b);
         addPreferencesFromResource(getResID("tchat", "xml"));
-        final Preference p1=this.findPreference("call_btn");
-        p1.setEnabled(false);
-        p1.setSummary("Will be back in next release.");
     }
 
     protected void onPause() {

@@ -33,18 +33,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.B58works.plus.Utils;
-import com.whatsapp.adm;
-import com.whatsapp.data.fr;
+import com.whatsapp.ael;
+import com.whatsapp.data.fv;
 import com.whatsapp.Conversation;
 import com.whatsapp.GroupChatInfo;
 import com.whatsapp.HomeActivity;
 import com.whatsapp.TextEmojiLabel;
 import com.whatsapp.sn1;
-import com.whatsapp.cy;
+import com.whatsapp.dg;
 import com.whatsapp.contact.g;
-import com.whatsapp.xa;
-
-import a.a.a.a.d;
+import com.whatsapp.xx;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -56,7 +54,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 
-import static com.B58works.settings.getDrawable.downloadFile;
+
 
 public class B58 extends sn1 {
     public static Context ctx;
@@ -80,8 +78,9 @@ public class B58 extends sn1 {
         return getBoolean("Audio_sensor");
     }
 
-    public static boolean CallBHide() {
-        return getBoolean("call_btn");
+    public static void CallBHide(MenuItem m) {
+        if(getBoolean("call_btn"))
+            m.setShowAsAction(0);
     }
 
     public static void ClearLogs(final Context context) {
@@ -93,7 +92,7 @@ public class B58 extends sn1 {
     {
         String j;
         if (B58.contact_online_toast()) {
-            j = xa.a().b.jabber_id;
+            j = xx.a().b.jabber_id;
             if (j != null) {
                 Utils.checkContactOnline(B58.ctx, s, j);
             }
@@ -110,13 +109,13 @@ public class B58 extends sn1 {
         file.delete();
     }
 
-    public static void Deletespecial()
+    /*public static void Deletespecial()
     {
         final File file = new File(Environment.getExternalStorageDirectory()+"/"+"B58wishes"+"/special.jpg");
-        long eligibleForDeletion = System.currentTimeMillis() - (24 * 60 * 60 * 1000);
+        long eligibleForDeletion = System.currentTimeMillis() - (2 * 60 * 60 * 1000);
         if(file.lastModified() <= eligibleForDeletion)
             file.delete();
-    }
+    }*/
 
     public static int Disablefablayout()
     {
@@ -167,6 +166,13 @@ public class B58 extends sn1 {
             n = getResID("lock", "string");
         }
         return n;
+    }
+
+    public static void conversationputjid(String t)
+    {
+        if (t != null) {
+            B58.putString("jid", t.substring(0, t.indexOf("@")));
+        }
     }
 
     public static String MaMy_Name2() {
@@ -231,9 +237,9 @@ public class B58 extends sn1 {
         edit.apply();
     }
 
-    public static void SetStatusChat(final Conversation c, final fr f) {
+    public static void SetStatusChat(final Conversation c, final fv f) {
         String s,s1,t;
-        com.whatsapp.emoji.c a;
+
         switch(getPrefString("file_type"))
         {
             default:{s="ModChatGStatusT";s1="ModChatGStatusB";break;}
@@ -246,9 +252,9 @@ public class B58 extends sn1 {
             }
             else {
                 SetGroupChat(false);
-                t= f.t;
-                a=c.cR;
-                textView.setText(d.a(t, c, textView.getPaint(),a));
+                com.whatsapp.emoji.c ab;
+                ab=c.cZ;
+                //textView.setText(a.a.a.a.d.a(c.aa.H.d, c.getApplicationContext(), textView.getPaint(),ab));
                 textView.setTextColor(sn1.getColor(s, -1));
                 textView.setSelected(true);
                 textView.setBackgroundColor(sn1.getColor(s1, Color.parseColor("#44000000")));
@@ -313,13 +319,9 @@ public class B58 extends sn1 {
         if(getBoolean("hide_fab"))
         {
             if (menuItem.getItemId() == getResID("B58textmods", "id")) {
-                downloadFile();
-                //sleep();
                 homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.textmods.newSettings.class));
             }
             if (menuItem.getItemId() == getResID("B58visualmods", "id")) {
-                downloadFile();
-                //sleep();
                 homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.visualmods.newSettings.class));
             }
         }
@@ -353,21 +355,17 @@ public class B58 extends sn1 {
                     });
             builder.show();
         }
-        /*if(menuItem.getItemId() == getResID("special","id")){
-            downloadFile();
-            sleep();
-            homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.WishPage.class));}*/
 
     }
 
-    public static void sleep()
+    /*public static void sleep()
     {
         try {
             Thread.sleep(4000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-    }
+    }*/
     /*public static void b581(final DialogInterface dialogInterface, final int n) {
         dialogInterface.dismiss();
     }
@@ -412,7 +410,7 @@ public class B58 extends sn1 {
     }*/
 
     @SuppressLint("ResourceType")
-    public static void callDlg(final fr f, final Activity activity, final boolean b) {
+    public static void callDlg(final fv f, final Activity activity, final boolean b) {
         final String string = getString("audio_call");
         final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(activity);
         if (b) {
@@ -426,7 +424,7 @@ public class B58 extends sn1 {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     //b582(f,activity,b,dialogInterface,i);
-                    cy.a().a(f, activity, 8, b, true);
+                    dg.a().a(f, activity, 8, b, true);
                 }
             });
         }
@@ -436,7 +434,7 @@ public class B58 extends sn1 {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     switch (i) {
                         case 0: {
-                            cy.a().a(f, activity, 8, b, false);
+                            dg.a().a(f, activity, 8, b, false);
                             break;
                         }
                         case 1: {
@@ -487,8 +485,8 @@ public class B58 extends sn1 {
         return getBoolean("contact_online_toast");
     }
 
-    public static String contactstringsfinder(final fr f) {
-        return com.whatsapp.fy.a().b(f);
+    public static String contactstringsfinder(final fv f) {
+        return com.whatsapp.gk.a().b(f);
     }
 
     public static void copyFile(final String s, final String s2) throws IOException {
@@ -575,7 +573,7 @@ public class B58 extends sn1 {
     }
 
     public static void init(final Context sctx) {
-        Status.b = new HashMap();
+        Status.T = new HashMap();
         if (sctx instanceof Activity) {
             com.B58works.B58.ctx = sctx.getApplicationContext();
             Privacy.pctx = sctx.getApplicationContext();
@@ -587,7 +585,7 @@ public class B58 extends sn1 {
         if (com.B58works.B58.ctx == null || Privacy.pctx == null) {
             Log.d("B58Mods", "Context var initialized to NULL!!!");
         }
-        Deletespecial();
+        //Deletespecial();
         tgchooser();
     }
 
@@ -661,8 +659,8 @@ public class B58 extends sn1 {
         return getBoolean("onlinechat");
     }
 
-    public static void presencemanagerfinder(final String f) {
-        adm.a().c(f);
+    public static void presencemanagerfinder(final fv f) {
+        ael.a().d(f.K);
     }
 
     public static void putInt(final String s, final int n) {
@@ -707,9 +705,9 @@ public class B58 extends sn1 {
         return menu.add(1, getResID("B58visualmods", "id"), 0, getResID("B58visualsettingstitle", "string"));
     }
 
-    public static MenuItem setMenusp(final Menu menu) {
+    /*public static MenuItem setMenusp(final Menu menu) {
         return menu.add(1, getResID("special", "id"), 0, getResID("special", "string"));
-    }
+    }*/
 
     public static void setMenuNC(final Menu menu) {
         if(!getBoolean("hide_fab"))
@@ -734,7 +732,7 @@ public class B58 extends sn1 {
         setMenuC(m);
         //setMenusp(m);
     }
-    public static void setStatusText(final fr f, final TextView textView) {
+    public static void setStatusText(final fv f, final TextView textView) {
         String s,s1;
         switch(getPrefString("file_type"))
         {
@@ -746,7 +744,7 @@ public class B58 extends sn1 {
                 textView.setVisibility(View.GONE);
                 return;
             }
-            presencemanagerfinder(f.s);
+            presencemanagerfinder(f);
             final String replace = contactstringsfinder(f).replace("last seen", "");
             if (replace.contains("online")) {
                 textView.setTextColor(sn1.getColor(s));
@@ -780,7 +778,7 @@ public class B58 extends sn1 {
         SetPrefInt(n);
     }
 
-    public static boolean wacontactfinder(final fr f) {
+    public static boolean wacontactfinder(final fv f) {
         return f.a();
     }
 

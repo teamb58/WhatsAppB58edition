@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.os.Process;
 import android.preference.Preference;
 
-import com.whatsapp.nx;
-import com.whatsapp.protocol.k;
+import com.whatsapp.ow;
+import com.whatsapp.protocol.n;
 
 import java.lang.reflect.Field;
 
-public class Privacy extends nx {
+public class Privacy extends ow {
     static String JID;
     static Context pctx;
 
@@ -22,7 +22,7 @@ public class Privacy extends nx {
     }
 
     public static boolean AntiRevoke(final Object o) {
-        final String a = ((k)o).b.a;
+        final String a = ((n)o).b.a;
         boolean b;
         if (getPrivacyB(a)) {
             b = getPrivacyB(String.valueOf(a) + "_AR");
@@ -33,9 +33,6 @@ public class Privacy extends nx {
         return b;
     }
 
-    public static boolean Copytext() {
-        return getPrivacyB("copytext");
-    }
 
     private static String GetType(Object o) {
         for (final Field field : o.getClass().getFields()) {
@@ -75,7 +72,7 @@ public class Privacy extends nx {
     }
 
     public static boolean HideCR(final String s, final int n) {
-        boolean b = false;
+        boolean b;
         switch (n) {
             default: {
                 if (getPrivacyB(s)) {
@@ -97,7 +94,7 @@ public class Privacy extends nx {
         return b;
     }
 
-    public static boolean HidePlay(final k k) {
+    public static boolean HidePlay(final n k) {
         final String a = k.b.a;
         boolean b;
         if (getPrivacyB(a)) {

@@ -20,7 +20,7 @@ import static com.whatsapp.sn1.mainTextColor;
 
 public class BT
 {
-    private static String style_str;
+    public static String style_str;
 
     public static int BubbleStyle(int n) {
 
@@ -202,7 +202,7 @@ public class BT
         int n9 = B58.getResID("message_got_read_receipt_from_target_onmedia", "drawable");
         switch (getPrefString1("tick_style")) {
             case 0: {
-                BT.style_str = "stock";
+                style_str = "stock";
                 n2 = B58.getResID("message_unsent", "drawable");
                 n3 = B58.getResID("message_unsent_onmedia", "drawable");
                 n4 = B58.getResID("message_got_receipt_from_server", "drawable");
@@ -214,7 +214,7 @@ public class BT
                 break;
             }
             case 1: {
-                BT.style_str = "bbm";
+                style_str = "bbm";
                 n8 = B58.getResID("bbm_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("bbm_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("bbm_message_got_receipt_from_server", "drawable");
@@ -226,7 +226,7 @@ public class BT
                 break;
             }
             case 2: {
-                BT.style_str = "bpg";
+                style_str = "bpg";
                 n8 = B58.getResID("bpg_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("bpg_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("bpg_message_got_receipt_from_server", "drawable");
@@ -238,7 +238,7 @@ public class BT
                 break;
             }
             case 3: {
-                BT.style_str = "circle";
+                style_str = "circle";
                 n8 = B58.getResID("circle_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("circle_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("circle_message_got_receipt_from_server", "drawable");
@@ -250,7 +250,7 @@ public class BT
                 break;
             }
             case 4: {
-                BT.style_str = "circles";
+                style_str = "circles";
                 n8 = B58.getResID("circles_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("circles_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("circles_message_got_receipt_from_server", "drawable");
@@ -262,7 +262,7 @@ public class BT
                 break;
             }
             case 5: {
-                BT.style_str = "joaquins";
+                style_str = "joaquins";
                 n8 = B58.getResID("coalfield_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("coalfield_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("coalfield_message_got_receipt_from_server", "drawable");
@@ -274,7 +274,7 @@ public class BT
                 break;
             }
             case 6: {
-                BT.style_str = "coalfield";
+                style_str = "coalfield";
                 n8 = B58.getResID("altcrayon_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("altcrayon_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("altcrayon_message_got_receipt_from_server", "drawable");
@@ -286,7 +286,7 @@ public class BT
                 break;
             }
             case 7: {
-                BT.style_str = "bpg";
+                style_str = "bpg";
                 n8 = B58.getResID("flatcircles_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("flatcircles_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("flatcircles_message_got_receipt_from_server", "drawable");
@@ -298,7 +298,7 @@ public class BT
                 break;
             }
             case 8: {
-                BT.style_str = "flatcircles";
+                style_str = "flatcircles";
                 n8 = B58.getResID("google_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("google_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("google_message_got_receipt_from_server", "drawable");
@@ -310,7 +310,7 @@ public class BT
                 break;
             }
             case 9: {
-                BT.style_str = "circle";
+                style_str = "circle";
                 n8 = B58.getResID("ios_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("ios_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("ios_message_got_receipt_from_server", "drawable");
@@ -322,7 +322,7 @@ public class BT
                 break;
             }
             case 10: {
-                BT.style_str = "hike";
+                style_str = "hike";
                 n8 = B58.getResID("hike_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("hike_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("hike_message_got_receipt_from_server", "drawable");
@@ -334,7 +334,7 @@ public class BT
                 break;
             }
             case 11: {
-                BT.style_str = "letter";
+                style_str = "letter";
                 n8 = B58.getResID("letter_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("letter_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("letter_message_got_receipt_from_server", "drawable");
@@ -346,7 +346,7 @@ public class BT
                 break;
             }
             case 12: {
-                BT.style_str = "messenger";
+                style_str = "messenger";
                 n8 = B58.getResID("messenger_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("messenger_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("messenger_message_got_receipt_from_server", "drawable");
@@ -358,7 +358,7 @@ public class BT
                 break;
             }
             case 13: {
-                BT.style_str = "smiley";
+                style_str = "smiley";
                 n8 = B58.getResID("smiley_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("smiley_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("smiley_message_got_receipt_from_server", "drawable");
@@ -370,7 +370,7 @@ public class BT
                 break;
             }
             case 14: {
-                BT.style_str = "traffic";
+                style_str = "traffic";
                 n8 = B58.getResID("traffic_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("traffic_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("traffic_message_got_receipt_from_server", "drawable");
@@ -382,7 +382,7 @@ public class BT
                 break;
             }
             case 15: {
-                BT.style_str = "twitter";
+                style_str = "twitter";
                 n8 = B58.getResID("twitter_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("twitter_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("twitter_message_got_receipt_from_server", "drawable");
@@ -394,7 +394,7 @@ public class BT
                 break;
             }
             case 16: {
-                BT.style_str = "wbg";
+                style_str = "wbg";
                 n8 = B58.getResID("newwaca_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("newwaca_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("newwaca_message_got_receipt_from_server", "drawable");
@@ -406,7 +406,7 @@ public class BT
                 break;
             }
             case 17: {
-                BT.style_str = "wbg";
+                style_str = "wbg";
                 n8 = B58.getResID("oldwaca_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("oldwaca_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("oldwaca_message_got_receipt_from_server", "drawable");
@@ -418,7 +418,7 @@ public class BT
                 break;
             }
             case 18: {
-                BT.style_str = "wbg";
+                style_str = "wbg";
                 n8 = B58.getResID("tb_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("tb_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("tb_message_got_receipt_from_server", "drawable");
@@ -430,7 +430,7 @@ public class BT
                 break;
             }
             case 19: {
-                BT.style_str = "wbg";
+                style_str = "wbg";
                 n8 = B58.getResID("joaquins_message_got_read_receipt_from_target", "drawable");
                 n9 = B58.getResID("joaquins_message_got_read_receipt_from_target_onmedia", "drawable");
                 n4 = B58.getResID("joaquins_message_got_receipt_from_server", "drawable");

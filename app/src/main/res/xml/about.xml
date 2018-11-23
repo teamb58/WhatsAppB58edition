@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference android:layout="@layout/ad2" />
     <com.B58works.ColorPref android:title="@string/settingstext" android:key="Textcolor" android:summary="@string/settingstextsum" />
-    <SwitchPreference android:title="@string/enspecial" android:key="special" android:summary="@string/enspecialsum"/>
+    <com.B58works.ColorPref android:title="@string/settingsbg" android:key="bgcolor" android:summary="@string/settingsbgsum" />
     <PreferenceCategory android:title="Misc" android:key="cat_about">
         <PreferenceScreen  android:title="@string/B58Donate" android:summary="@string/B58Donatesum">
             <Preference android:title="@string/B58Donate1" android:summary="@string/B58DonateSum1">
