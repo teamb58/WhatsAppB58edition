@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:key="statusfullbg" />
+    <SwitchPreference android:key="statusscrbggren" />
+    <com.B58works.ColorPref android:key="statusscrbg" />
+    <com.B58works.ColorPref android:key="statusscrbggr" />
+    <ListPreference android:key="statusscrbgor" />
+    <SwitchPreference android:key="statusscrbgalten" />
+    <SwitchPreference android:key="statusscrbggralten" />
+    <com.B58works.ColorPref android:key="statusscraltbg" />
+    <com.B58works.ColorPref android:key="statusscraltbggr" />
+    <ListPreference android:key="statusscraltbgor" />
+</PreferenceScreen>

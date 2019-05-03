@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/B58chatv" xmlns:android="http://schemas.android.com/apk/res/android">
+	<com.B58works.ColorPref android:key="contname" />
+	<com.B58works.ColorPref android:key="contls" />
+	<com.B58works.ColorPref android:key="statusbg" />
+	<com.B58works.ColorPref android:key="statustext" />
+	<!--Preference android:key="rightb" /-->
+	<com.B58works.ColorPref android:key="rbubbleColor" />
+	<com.B58works.ColorPref android:key="rtime" />
+	<com.B58works.ColorPref android:key="rtext" />
+	<!--Preference android:key="leftb" /-->
+	<com.B58works.ColorPref android:key="lbubbleColor" />
+	<com.B58works.ColorPref android:key="ltime" />
+	<com.B58works.ColorPref android:key="ltext" />
+	<com.B58works.ColorPref android:key="textentry" />
+	<com.B58works.ColorPref android:key="entryhint" />
+	<com.B58works.ColorPref android:key="entrybg" />
+	<com.B58works.ColorPref android:key="sendbtn" />
+	<com.B58works.ColorPref android:key="sendbg" />
+	<com.B58works.ColorPref android:key="quotname" />
+	<com.B58works.ColorPref android:key="quottext" />
+	<com.B58works.ColorPref android:key="quotbg" />
+	<Preference android:key="emojihf" />
+	<Preference android:key="emojibg" />
+</PreferenceScreen>

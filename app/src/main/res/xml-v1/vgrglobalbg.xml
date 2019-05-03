@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/globalbgtitle" xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:key="homebggr" />
+    <com.B58works.ColorPref android:key="homebgColor" />
+    <com.B58works.ColorPref android:key="homebgColorgr" />
+    <ListPreference android:key="homebgColoror" />
+</PreferenceScreen>

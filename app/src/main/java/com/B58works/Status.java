@@ -66,7 +66,7 @@ public class Status{
     }
 
     public static void e(final Activity ex, final File file, final String s) {
-        Serializable s2 = new SimpleDateFormat("yyyyMMddHHmmss");
+        /*Serializable s2 = new SimpleDateFormat("yyyyMMddHHmmss");
         final Date date = new Date();
         if (s.equals("video/*"))
             s2 = new File(Environment.getExternalStorageDirectory(), "/WhatsApp/Media/WhatsApp Status/VID-" + ((DateFormat)s2).format(date) + ".mp4");
@@ -86,7 +86,8 @@ public class Status{
         }
         catch (IOException ex2) {
             Toast.makeText(ex, ("Failed to save photo " + ((File)s2).getAbsolutePath() + " - " + ex2.getMessage()), Toast.LENGTH_SHORT).show();
-        }
+        }*/
+        FileUtils
     }
 
     public static void p() {

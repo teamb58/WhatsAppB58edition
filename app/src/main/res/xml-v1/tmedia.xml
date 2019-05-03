@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:robobunny="http://robobunny.com">
+    <PreferenceCategory android:title="Status mods" android:key="cat_misc">
+        <com.B58works.SeekBarPreference android:max="100" android:key="status_image_quality" android:defaultValue="50" robobunny:min="50" robobunny:unitsLeft="" robobunny:unitsRight="%" />
+        <com.B58works.SeekBarPreference android:max="10240" android:key="status_image_max_edge" android:defaultValue="1024" robobunny:min="1024" robobunny:unitsLeft="" robobunny:unitsRight=" KB" />
+        <com.B58works.SeekBarPreference android:max="900" android:key="status_video_max_duration" android:defaultValue="45" robobunny:min="45" robobunny:unitsLeft="" robobunny:unitsRight=" Seconds" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Image/Video/Audio Mods" android:key="cat_misc">
+        <com.B58works.SeekBarPreference android:max="10240" android:key="image_max_kbytes" android:defaultValue="1024" robobunny:min="1024" robobunny:unitsLeft="" robobunny:unitsRight="KB" />
+        <com.B58works.SeekBarPreference android:max="100" android:key="image_quality" android:defaultValue="80" robobunny:min="80" robobunny:unitsLeft="" robobunny:unitsRight="%" />
+        <com.B58works.SeekBarPreference android:max="3840" android:key="image_max_edge" android:defaultValue="1280" robobunny:min="1280" robobunny:unitsLeft="" robobunny:unitsRight="PX" />
+        <SwitchPreference android:key="Audio_sensor" />
+        <SwitchPreference android:key="Audio_ears" />
+    </PreferenceCategory>
+</PreferenceScreen>

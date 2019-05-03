@@ -1,46 +1,59 @@
 package com.B58works.settings.visualmods;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 
-import com.B58works.B58;
+import com.B58works.R;
 import com.B58works.settings.Superpref;
-
-import static com.B58works.B58.getBoolean;
 
 
 public class Universal extends Superpref{
 
-    public void onCreate(Bundle b) {
-        super.onCreate(b);
-        addPreferencesFromResource(B58.getResID("vuniversal", "xml"));
-        this.getPreferenceManager().setSharedPreferencesName("B58");
-        B58.settingstoast();
-        final Preference p2=this.findPreference("ActionbarColor");
-        final Preference p3=this.findPreference("ActionbarColorgr");
-        if(getBoolean("ActionbarColorgrc"))
-        {
-            p2.setTitle("v2.1a Start color for Gradient");
-            p2.setSummary("Choose a start color for Actionbar Gradient");
-            p3.setTitle("v2.1b End color for Gradient");
-            p3.setSummary("Choose an end color for Actionbar Gradient");
-        }
-        else if(!getBoolean("ActionbarColorgrc")) {
-            p2.setTitle("v2.1 Universal Actionbar Color");
-            p2.setSummary("Choose a color for Actionbar.");
-        }
+    Preference p,p4,p5,p6;
+
+    public Universal()
+    {
+        p=this.findPreference("actionbar");
+        p4=findPreference("ActionbartextColor");
+        p5=findPreference("StatusbarColor");
+        p6=findPreference("NavbarColor");
     }
 
-    protected void onPause() {
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+        addPreferencesFromResource(R.xml.vuniversal);
+        b58();
+        p.setTitle(R.string.actionbarc);
+        p.setSummary(R.string.actionbarcsum);
+        p4.setTitle(R.string.univactionbartext);
+        p4.setSummary(R.string.univactionbartextsum);
+        p5.setTitle(R.string.univstatusbar);
+        p5.setSummary(R.string.univstatusbarsum);
+        p6.setTitle(R.string.univnavbar);
+        p6.setSummary(R.string.univnavbarsum);
+    }
+
+    protected void onStart()
+    {
+        super.onStart();
+    }
+
+    public void onPause() {
         super.onPause();
     }
 
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         super.onSharedPreferenceChanged(sharedPreferences, s);
+    }
+
+    private void b58()
+    {
+        p.setIntent(new Intent(getApplicationContext(),grActionbar.class));
     }
 }

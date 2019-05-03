@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:key="emojihfgr" />
+    <com.B58works.ColorPref android:key="emojihfColor" />
+    <com.B58works.ColorPref android:key="emojihfColorgr" />
+    <ListPreference android:key="emojihfColoror" />
+</PreferenceScreen>

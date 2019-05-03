@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen android:title="@string/fabmods"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <SwitchPreference android:title="@string/hidefab" android:key="hide_fab" android:summary="@string/hidefabsum" />
-    <com.B58works.ColorPref android:title="@string/fabnormal" android:key="FabNormalColor" android:summary="@string/fabnormalsum" />
-    <com.B58works.ColorPref android:title="@string/fabpressed" android:key="FabPressedColor" android:summary="@string/fabpressedsum" />
-    <com.B58works.ColorPref android:title="@string/fabbg" android:key="FabBgColor" android:summary="@string/fabbgsum" />
-</PreferenceScreen>

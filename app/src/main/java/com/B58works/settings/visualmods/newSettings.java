@@ -2,27 +2,26 @@ package com.B58works.settings.visualmods;
 
 import android.annotation.TargetApi;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
+import android.preference.PreferenceActivity;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.B58works.B58;
+import com.B58works.R;
 import com.B58works.settings.About;
 import com.whatsapp.Settings;
 import com.whatsapp.sn1;
 
-import java.io.File;
 
 import static com.B58works.B58.ctx;
-import static com.B58works.B58.getBoolean;
-import static com.B58works.B58.getResID;
 import static com.B58works.settings.About.setcolor;
-import static com.B58works.settings.getDrawable.getbg;
 
 
 public class newSettings extends Settings {
@@ -32,75 +31,56 @@ public class newSettings extends Settings {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(B58.getResID("visual_settingsl", "layout"));
-        findViewById(B58.getResID("vfab","id")).setOnClickListener(new View.OnClickListener() {
+        //setContentView(B58.getResID("visual_settingsl", "layout"));
+        setContentView(com.B58works.R.layout.visual_settingsl);
+        findViewById(com.B58works.R.id.vfab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx,Fabscreen.class));
             }
         });
-        findViewById(B58.getResID("vhome","id")).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.B58works.R.id.vhome).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx,Homescreen.class));
             }
         });
-        findViewById(B58.getResID("vchat","id")).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.B58works.R.id.vchat).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx,Chatscreen.class));
             }
         });
-        findViewById(B58.getResID("vthemes","id")).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.B58works.R.id.vthemes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx,Themescreen.class));
             }
         });
-        findViewById(B58.getResID("vuniversal","id")).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.B58works.R.id.vuniversal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx,Universal.class));
             }
         });
-        findViewById(B58.getResID("vconpick","id")).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.B58works.R.id.vconpick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx,ContactPicker.class));
             }
         });
-        findViewById(getResID("aboutb58","id")).setOnClickListener(new View.OnClickListener() {
+        findViewById(com.B58works.R.id.aboutb58).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ctx, About.class));
             }
         });
-        ll =findViewById(getResID("vsl","id"));
-        /*final File file = new File(Environment.getExternalStorageDirectory()+"/"+"B58wishes"+"/special.jpg");
-        if(getBoolean("special"))
-        {
-            if(file.exists())
-                ll.setBackgroundDrawable(getbg());
-            else
-                ll.setBackgroundResource(getResID("wall","drawable"));
-        }
-        else
-            ll.setBackgroundColor(-1);*/
+        ll =findViewById(com.B58works.R.id.vsl);
         ll.setBackgroundColor(sn1.getColor("bgcolor",-1));
         super.setTitle("B58 Visual mods");
         setviews();
-        TextView t=findViewById(getResID("aboutus","id"));
-
-        t.setText("Hi "+ B58.MaMy_Name2()+",");
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        Backpress();
-    }
-
-    public static void Backpress() {
-        Toast.makeText(B58.ctx, "Please Restart WhatsApp for the changes to take place if you have made any.", Toast.LENGTH_LONG).show();
+        TextView t=findViewById(com.B58works.R.id.aboutus);
+        t.setText(getApplicationContext().getString(com.B58works.R.string.hitext,B58.MaMy_Name2()));
     }
 
     public void onDestroy()
@@ -115,9 +95,9 @@ public class newSettings extends Settings {
 
     public void setviews()
     {
-        String names[]={"v1","v2","v3","v4","v5","v6","aboutus","aboutus2"};
+        String[] names = {"v1", "v2", "v3", "v4", "v5", "v6", "aboutus", "aboutus2"};
         for (String name : names) {
-            setcolor((TextView) findViewById(getResID(name, "id")));
+            setcolor((TextView) findViewById(getApplicationContext().getResources().getIdentifier(name,"id",getPackageName())));
         }
 
 

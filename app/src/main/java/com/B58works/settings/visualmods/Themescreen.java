@@ -6,12 +6,20 @@ import android.preference.Preference;
 import android.widget.Toast;
 
 import com.B58works.B58;
+import com.B58works.R;
 import com.B58works.settings.Superpref;
 
-import static com.B58works.B58.ctx;
-import static com.B58works.B58.getPrefString1;
+public class Themescreen extends Superpref implements Preference.OnPreferenceClickListener {
 
-public class Themescreen extends Superpref{
+    Preference p101,p102,p103,p104;
+
+    public Themescreen()
+    {
+        p101=findPreference("save_temp");
+        p102=findPreference("load_pref_file");
+        p103=findPreference("clear_pref_file");
+        p104=findPreference("download");
+    }
 
     public boolean onPreferenceClick(final Preference preference) {
         switch (preference.getKey()) {
@@ -20,6 +28,7 @@ public class Themescreen extends Superpref{
                 break;
             case "load_pref_file":
                 B58.LoadTheme(this);
+                //Toast.makeText(this,"Work in progress",Toast.LENGTH_SHORT).show();
                 break;
             case "clear_pref_file":
                 B58.ClearTheme();
@@ -31,39 +40,36 @@ public class Themescreen extends Superpref{
         return true;
     }
 
-    private void cyo() {
-        if(getPrefString1("file_type")==1)
-        {
-            SharedPreferences pref = B58.ctx.getSharedPreferences("B58", 0);
-            pref.edit().remove("bubble_style").apply();
-            pref.edit().remove("tick_style").apply();
-        }
-    }
-
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(B58.getResID("vtheme", "xml"));
+        addPreferencesFromResource(R.xml.vtheme);b58();
         this.getPreferenceManager().setSharedPreferencesName("B58");
-        findPreference("save_temp").setOnPreferenceClickListener(this);
-        findPreference("load_pref_file").setOnPreferenceClickListener(this);
-        findPreference("clear_pref_file").setOnPreferenceClickListener(this);
-        findPreference("download").setOnPreferenceClickListener(this);
+        p101.setOnPreferenceClickListener(this);
+        p102.setOnPreferenceClickListener(this);
+        p103.setOnPreferenceClickListener(this);
+        p104.setOnPreferenceClickListener(this);
 
     }
 
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        cyo();
-    }
-
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
     }
 
-    protected void onResume(){super.onResume();}
+    public void onResume(){super.onResume();}
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         super.onSharedPreferenceChanged(sharedPreferences, s);
+    }
+
+    private void b58()
+    {
+        p101.setTitle(R.string.savetheme);
+        p101.setSummary(R.string.savethemesum);
+        p102.setTitle(R.string.loadtheme);
+        p102.setSummary(R.string.loadthemesum);
+        p103.setTitle(R.string.cleartheme);
+        p103.setSummary(R.string.clearthemesum);
+        p104.setTitle(R.string.downloadtheme);
+        p104.setSummary(R.string.downloadthemesum);
     }
 }

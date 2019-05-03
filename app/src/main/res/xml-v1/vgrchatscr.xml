@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:key="chatfullbg" />
+    <SwitchPreference android:key="chatscrbggren" />
+    <com.B58works.ColorPref android:key="chatscrbg" />
+    <com.B58works.ColorPref android:key="chatscrbggr" />
+    <ListPreference android:key="chatscrbgor" />
+    <SwitchPreference android:key="chatscrbgalten" />
+    <SwitchPreference android:key="chatscrbggralten" />
+    <com.B58works.ColorPref android:key="chatscraltbg" />
+    <com.B58works.ColorPref android:key="chatscraltbggr" />
+    <ListPreference android:key="chatscraltbgor" />
+</PreferenceScreen>

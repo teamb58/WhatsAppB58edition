@@ -4,57 +4,8 @@ package com.getbase.floatingactionbutton;
  * Created by Bharath.R(58) on 31-03-2018.
  */
 
-import static com.B58works.B58.getResID;
-
 public final class R
 {
-    public static final class attr
-    {
-        public static final int fab_addButtonColorNormal = getResID("fab_addButtonColorNormal","attr");
-        public static final int fab_addButtonColorPressed = getResID("fab_addButtonColorPressed","attr");
-        public static final int fab_addButtonPlusIconColor = getResID("fab_addButtonPlusIconColor","attr");
-        public static final int fab_colorNormal = getResID("fab_colorNormal","attr");
-        public static final int fab_colorPressed = getResID("fab_colorPressed","attr");
-        public static final int fab_expandDirection = getResID("fab_expandDirection","attr");
-        public static final int fab_icon = getResID("fab_icon","attr");
-        public static final int fab_labelStyle = getResID("fab_labelStyle","attr");
-        public static final int fab_plusIconColor = getResID("fab_plusIconColor","attr");
-        public static final int fab_size = getResID("fab_size","attr");
-        public static final int fab_title = getResID("fab_title","attr");
-    }
-
-    public static final class dimen
-    {
-        public static final int fab_actions_spacing = getResID("fab_actions_spacing","dimen");
-        public static final int fab_icon_size = getResID("fab_icon_size","dimen");;
-        public static final int fab_labels_margin = getResID("fab_labels_margin","dimen");
-        public static final int fab_plus_icon_size = getResID("fab_plus_icon_size","dimen");
-        public static final int fab_plus_icon_stroke = getResID("fab_plus_icon_stroke","dimen");
-        public static final int fab_shadow_offset = getResID("fab_shadow_offset","dimen");
-        public static final int fab_shadow_radius = getResID("fab_shadow_radius","dimen");
-        public static final int fab_size_mini = getResID("fab_size_mini","dimen");
-        public static final int fab_size_normal = getResID("fab_size_normal","dimen");
-        public static final int fab_stroke_width = getResID("fab_stroke_width","dimen");
-    }
-
-    public static final class drawable
-    {
-        public static final int fab_bg_mini = getResID("fab_bg_mini","drawable");
-        public static final int fab_bg_normal = getResID("fab_bg_normal","drawable");
-    }
-
-    public static final class id
-    {
-        public static final int down = getResID("down","id");
-        public static final int fab_expand_menu_button = getResID("fab_expand_menu_button","id");
-        public static final int fab_label = getResID("fab_label","id");
-        public static final int left = getResID("left","id");
-        public static final int mini = getResID("mini","id");
-        public static final int normal = getResID("normal","id");
-        public static final int right = getResID("right","id");
-        public static final int up = getResID("up","id");
-    }
-
     public static final class styleable
     {
         public static final int[] AddFloatingActionButton;
@@ -73,9 +24,9 @@ public final class R
         public static final int FloatingActionsMenu_fab_labelStyle = 3;
 
         static {
-            AddFloatingActionButton = new int[] { getResID("fab_colorNormal","attr") };
-            FloatingActionButton = new int[] { getResID("fab_plusIconColor","attr"), getResID("fab_colorPressed","attr"), getResID("fab_icon","attr"), getResID("fab_size","attr"), getResID("fab_title","attr") };
-            FloatingActionsMenu = new int[] { getResID("fab_addButtonColorPressed","attr"), getResID("fab_addButtonColorNormal","attr"), getResID("fab_addButtonPlusIconColor","attr"), getResID("fab_labelStyle","attr"), getResID("fab_expandDirection","attr") };
+            AddFloatingActionButton = new int[] {com.B58works.R.attr.fab_colorNormal};
+            FloatingActionButton = new int[] {com.B58works.R.attr.fab_plusIconColor, com.B58works.R.attr.fab_colorPressed, com.B58works.R.attr.fab_icon, com.B58works.R.attr.fab_size, com.B58works.R.attr.fab_title };
+            FloatingActionsMenu = new int[] { com.B58works.R.attr.fab_addButtonColorPressed, com.B58works.R.attr.fab_addButtonColorNormal, com.B58works.R.attr.fab_addButtonPlusIconColor, com.B58works.R.attr.fab_labelStyle, com.B58works.R.attr.fab_expandDirection };
         }
     }
 }

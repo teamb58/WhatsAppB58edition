@@ -13,12 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import static com.whatsapp.sn1.zseekBarPrefBarContainer;
-import static com.whatsapp.sn1.zseekBarPrefUnitsLeft;
-import static com.whatsapp.sn1.zseekBarPrefUnitsRight;
-import static com.whatsapp.sn1.zseekBarPrefValue;
-import static com.whatsapp.sn1.zseek_bar_preference;
-
 /**
  * Created by Bharath.R(58) on 28-12-2017.
  */
@@ -102,7 +96,7 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
         super.onBindView(view);
         try {
             final ViewParent parent = this.f.getParent();
-            final ViewGroup viewGroup = view.findViewById(zseekBarPrefBarContainer());
+            final ViewGroup viewGroup = view.findViewById(R.id.seekBarPrefBarContainer);
             if (parent != viewGroup) {
                 if (parent != null) {
                     ((ViewGroup)parent).removeView(this.f);
@@ -113,10 +107,9 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
         }
         catch (Exception ex) {
             final String a = this.a;
-            final StringBuilder sb = new StringBuilder();
-            sb.append("Error binding view: ");
-            sb.append(ex.toString());
-            Log.e(a, sb.toString());
+            String sb = "Error binding view: " +
+                    ex.toString();
+            Log.e(a, sb);
         }
         this.updateView(view);
     }
@@ -124,7 +117,7 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
     protected View onCreateView(final ViewGroup viewGroup) {
         super.onCreateView(viewGroup);
         try {
-            return LayoutInflater.from(this.getContext()).inflate(zseek_bar_preference(), viewGroup, false);
+            return LayoutInflater.from(this.getContext()).inflate(R.layout.seek_bar_preference, viewGroup, false);
         }
         catch (Exception ex) {
             Log.e(this.a, "Error creating seek bar preference", ex);
@@ -174,10 +167,9 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
             }
             catch (Exception ex) {
                 final String a = this.a;
-                final StringBuilder sb = new StringBuilder();
-                sb.append("Invalid default value: ");
-                sb.append(o.toString());
-                Log.e(a, sb.toString());
+                String sb = "Invalid default value: " +
+                        o.toString();
+                Log.e(a, sb);
             }
             this.persistInt(b2);
         }
@@ -195,14 +187,14 @@ public class SeekBarPreference extends Preference implements SeekBar.OnSeekBarCh
         this.b = b;
     }
 
-    protected void updateView(final View view) {
+    private void updateView(final View view) {
         try {
             final RelativeLayout relativeLayout = (RelativeLayout)view;
-            (this.g = relativeLayout.findViewById(zseekBarPrefValue())).setText(String.valueOf(this.b));
+            (this.g = relativeLayout.findViewById(R.id.seekBarPrefValue)).setText(String.valueOf(this.b));
             this.g.setMinimumWidth(30);
             this.f.setProgress(this.b - this.e);
-            ((TextView)relativeLayout.findViewById(zseekBarPrefUnitsRight())).setText(this.i);
-            ((TextView)relativeLayout.findViewById(zseekBarPrefUnitsLeft())).setText(this.h);
+            ((TextView)relativeLayout.findViewById(R.id.seekBarPrefUnitsRight)).setText(this.i);
+            ((TextView)relativeLayout.findViewById(R.id.seekBarPrefUnitsLeft)).setText(this.h);
         }
         catch (Exception ex) {
             Log.e(this.a, "Error updating seek bar preference", ex);

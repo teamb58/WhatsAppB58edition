@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.whatsapp.architjn.colorPicker.ColorSelectorDialog;
+import com.B58works.colorPicker.ColorSelectorDialog;
 
 /**
  * Created by Bharath.R(58) on 28-12-2017.
@@ -22,26 +22,26 @@ public class ColorPref extends Preference {
     public ColorPref(final Context context) {
         super(context);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(B58.getResID("color_pref", "layout"));
+        this.setWidgetLayoutResource(R.layout.color_pref);
     }
 
     public ColorPref(final Context context, final AttributeSet set) {
         super(context, set);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(B58.getResID("color_pref", "layout"));
+        this.setWidgetLayoutResource(R.layout.color_pref);
     }
 
     public ColorPref(final Context context, final AttributeSet set, final int n) {
         super(context, set, n);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(B58.getResID("color_pref", "layout"));
+        this.setWidgetLayoutResource(R.layout.color_pref);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ColorPref(final Context context, final AttributeSet set, final int n, final int n2) {
         super(context, set, n, n2);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(B58.getResID("color_pref", "layout"));
+        this.setWidgetLayoutResource(R.layout.color_pref);
     }
 
     private void a() {
@@ -76,7 +76,7 @@ public class ColorPref extends Preference {
                 a(view);
             }
         });
-        this.a = view.findViewById(B58.getResID("imageViewIcon", "id"));
+        this.a = view.findViewById(R.id.imageViewIcon);
         if (this.a != null) {
             this.a();
             this.a.setClickable(true);

@@ -4,31 +4,37 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.whatsapp.sn1;
+import com.B58works.R;
+import com.B58works.B58;
 
-import static com.B58works.B58.getResID;
 
 public class About extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(getResID("about", "xml"));
+        addPreferencesFromResource(R.xml.about);
     }
 
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
     }
 
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
+    }
+
+    protected void onStart()
+    {
+        super.onStart();
     }
 
     public static void setcolor(TextView t)
     {
-        t.setTextColor(sn1.getColor("Textcolor", 0xff000000));
+        t.setTextColor(B58.getColor("Textcolor", 0xff000000));
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         super.onSharedPreferenceChanged(sharedPreferences, s);
+        onStart();
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:key="actionbar" />
+    <com.B58works.ColorPref android:key="ActionbartextColor" />
+    <com.B58works.ColorPref android:key="StatusbarColor" />
+    <com.B58works.ColorPref android:key="NavbarColor" />
+</PreferenceScreen>

@@ -1,0 +1,18 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="conversations_row_height">76.0dip</dimen>
+    <dimen name="pref_profile_small_photo_size">70.0dip</dimen>
+    <dimen name="list_row_padding">14.0dip</dimen>
+    <dimen name="info_screen_padding">16.0dip</dimen>
+    <dimen name="info_screen_row">58.0dip</dimen>
+    <dimen name="fab_actions_spacing">16.0dip</dimen>
+    <dimen name="fab_icon_size">24.0dip</dimen>
+    <dimen name="fab_labels_margin">6.0dip</dimen>
+    <dimen name="fab_plus_icon_size">14.0dip</dimen>
+    <dimen name="fab_plus_icon_stroke">2.0dip</dimen>
+    <dimen name="fab_shadow_offset">3.0dip</dimen>
+    <dimen name="fab_shadow_radius">9.0dip</dimen>
+    <dimen name="fab_size_mini">40.0dip</dimen>
+    <dimen name="fab_size_normal">56.0dip</dimen>
+    <dimen name="fab_stroke_width">0.5dip</dimen>
+</resources>

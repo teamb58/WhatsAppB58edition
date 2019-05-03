@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:key="callfullbg" />
+    <SwitchPreference android:key="callscrbggren" />
+    <com.B58works.ColorPref android:key="callscrbg" />
+    <com.B58works.ColorPref android:key="callscrbggr" />
+    <ListPreference android:key="callscrbgor" />
+    <SwitchPreference android:key="callscrbgalten" />
+    <SwitchPreference android:key="callscrbggralten" />
+    <com.B58works.ColorPref android:key="callscraltbg" />
+    <com.B58works.ColorPref android:key="callscraltbggr" />
+    <ListPreference android:key="callscraltbgor" />
+</PreferenceScreen>

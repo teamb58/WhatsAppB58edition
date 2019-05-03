@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/gractionbar" xmlns:android="http://schemas.android.com/apk/res/android">
+	<SwitchPreference android:key="actionbargr" />
+	<com.B58works.ColorPref android:key="ActionbarColor" />
+	<com.B58works.ColorPref android:key="ActionbarColorgr" />
+	<ListPreference android:key="ActionbarColoror" />
+</PreferenceScreen>

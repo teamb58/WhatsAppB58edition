@@ -1,10 +1,7 @@
 package com.getbase.floatingactionbutton;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.TimeInterpolator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -14,6 +11,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -23,630 +22,518 @@ import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
-/**
- * Created by Bharath.R(58) on 31-03-2018.
- */
-
-public class FloatingActionsMenu extends ViewGroup
-{
-    private static final int ANIMATION_DURATION = 300;
-    private static final float COLLAPSED_PLUS_ROTATION = 0.0f;
-    private static final float EXPANDED_PLUS_ROTATION = 135.0f;
+public class FloatingActionsMenu extends ViewGroup {
+    public static final int EXPAND_UP = 0;
     public static final int EXPAND_DOWN = 1;
     public static final int EXPAND_LEFT = 2;
     public static final int EXPAND_RIGHT = 3;
-    public static final int EXPAND_UP = 0;
-    private static Interpolator sAlphaExpandInterpolator;
-    private static Interpolator sCollapseInterpolator;
-    private static Interpolator sExpandInterpolator;
-    private AddFloatingActionButton mAddButton;
+
+    private static final int ANIMATION_DURATION = 300;
+    private static final float COLLAPSED_PLUS_ROTATION = 0f;
+    private static final float EXPANDED_PLUS_ROTATION = 90f + 45f;
+
+    private int mAddButtonPlusColor;
     private int mAddButtonColorNormal;
     private int mAddButtonColorPressed;
-    private int mAddButtonPlusColor;
-    private int mButtonSpacing;
-    private int mButtonsCount;
-    private AnimatorSet mCollapseAnimation;
-    private AnimatorSet mExpandAnimation;
     private int mExpandDirection;
-    private boolean mExpanded;
-    private int mLabelsMargin;
-    private int mLabelsStyle;
-    private int mLabelsVerticalOffset;
-    private OnFloatingActionsMenuUpdateListener mListener;
-    private RotatingDrawable mRotatingDrawable;
 
-    static {
-        FloatingActionsMenu.sExpandInterpolator = new OvershootInterpolator();
-        FloatingActionsMenu.sCollapseInterpolator = new DecelerateInterpolator(3.0f);
-        FloatingActionsMenu.sAlphaExpandInterpolator = new DecelerateInterpolator();
+    private int mButtonSpacing;
+    private int mLabelsMargin;
+    private int mLabelsVerticalOffset;
+
+    private boolean mExpanded;
+
+    private AnimatorSet mExpandAnimation = new AnimatorSet().setDuration(ANIMATION_DURATION);
+    private AnimatorSet mCollapseAnimation = new AnimatorSet().setDuration(ANIMATION_DURATION);
+    private AddFloatingActionButton mAddButton;
+    private RotatingDrawable mRotatingDrawable;
+    private int mLabelsStyle;
+    private int mButtonsCount;
+
+    private OnFloatingActionsMenuUpdateListener mListener;
+
+    public interface OnFloatingActionsMenuUpdateListener {
+        void onMenuExpanded();
+
+        void onMenuCollapsed();
     }
 
-    public FloatingActionsMenu(final Context context) {
+    public FloatingActionsMenu(Context context) {
         this(context, null);
     }
 
-    public FloatingActionsMenu(final Context context, final AttributeSet set) {
-        super(context, set);
-        this.mExpandAnimation = new AnimatorSet().setDuration(300L);
-        this.mCollapseAnimation = new AnimatorSet().setDuration(300L);
-        this.init(context, set);
+    public FloatingActionsMenu(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
     }
 
-    public FloatingActionsMenu(final Context context, final AttributeSet set, final int n) {
-        super(context, set, n);
-        this.mExpandAnimation = new AnimatorSet().setDuration(300L);
-        this.mCollapseAnimation = new AnimatorSet().setDuration(300L);
-        this.init(context, set);
+    public FloatingActionsMenu(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init(context, attrs);
     }
 
-    /*public static int access$000(final FloatingActionsMenu floatingActionsMenu) {
-        return floatingActionsMenu.mAddButtonPlusColor;
-    }
+    private void init(Context context, AttributeSet attributeSet) {
+        mButtonSpacing = (int) (getResources().getDimension(com.B58works.R.dimen.fab_actions_spacing) - getResources().getDimension(com.B58works.R.dimen.fab_shadow_radius) - getResources().getDimension(com.B58works.R.dimen.fab_shadow_offset));
+        mLabelsMargin = getResources().getDimensionPixelSize(com.B58works.R.dimen.fab_labels_margin);
+        mLabelsVerticalOffset = getResources().getDimensionPixelSize(com.B58works.R.dimen.fab_shadow_offset);
 
-    public static int access$100(final FloatingActionsMenu floatingActionsMenu) {
-        return floatingActionsMenu.mAddButtonColorNormal;
-    }
+        TypedArray attr = context.obtainStyledAttributes(attributeSet, R.styleable.FloatingActionsMenu, 0, 0);
+        mAddButtonPlusColor = attr.getColor(R.styleable.FloatingActionsMenu_fab_addButtonPlusIconColor, getColor(android.R.color.white));
+        mAddButtonColorNormal = attr.getColor(R.styleable.FloatingActionsMenu_fab_addButtonColorNormal, getColor(android.R.color.holo_blue_dark));
+        mAddButtonColorPressed = attr.getColor(R.styleable.FloatingActionsMenu_fab_addButtonColorPressed, getColor(android.R.color.holo_blue_light));
+        mExpandDirection = attr.getInt(R.styleable.FloatingActionsMenu_fab_expandDirection, EXPAND_UP);
+        mLabelsStyle = attr.getResourceId(R.styleable.FloatingActionsMenu_fab_labelStyle, 0);
+        attr.recycle();
 
-    public static Interpolator access$1000() {
-        return FloatingActionsMenu.sCollapseInterpolator;
-    }
+        SharedPreferences shp = context.getSharedPreferences("architMod", Context.MODE_PRIVATE);
+        mAddButtonColorNormal = shp.getInt("architModFabNormalColor", Color.parseColor("#4db6ac"));
+        mAddButtonColorPressed = shp.getInt("architModFabPressedColor", Color.parseColor("#4db6ac"));
 
-    public static int access$1100(final FloatingActionsMenu floatingActionsMenu) {
-        return floatingActionsMenu.mExpandDirection;
-    }
-
-    public static int access$200(final FloatingActionsMenu floatingActionsMenu) {
-        return floatingActionsMenu.mAddButtonColorPressed;
-    }*/
-
-    public static RotatingDrawable access$302(final FloatingActionsMenu floatingActionsMenu, final RotatingDrawable mRotatingDrawable) {
-        return floatingActionsMenu.mRotatingDrawable = mRotatingDrawable;
-    }
-
-    /*public static AnimatorSet access$400(final FloatingActionsMenu floatingActionsMenu) {
-        return floatingActionsMenu.mExpandAnimation;
-    }
-
-    public static AnimatorSet access$500(final FloatingActionsMenu floatingActionsMenu) {
-        return floatingActionsMenu.mCollapseAnimation;
-    }
-
-    public static Interpolator access$800() {
-        return FloatingActionsMenu.sExpandInterpolator;
-    }
-
-    public static Interpolator access$900() {
-        return FloatingActionsMenu.sAlphaExpandInterpolator;
-    }*/
-
-    private int adjustForOvershoot(final int n) {
-        return n * 12 / 10;
-    }
-
-    private void createAddButton(final Context context) {
-        (this.mAddButton = new AddFloatingActionButton(context) {
-            @Override
-            public Drawable getIconDrawable() {
-                final RotatingDrawable rotatingDrawable = new RotatingDrawable(super.getIconDrawable());
-                FloatingActionsMenu.access$302(FloatingActionsMenu.this, rotatingDrawable);
-                final OvershootInterpolator overshootInterpolator = new OvershootInterpolator();
-                final ObjectAnimator ofFloat = ObjectAnimator.ofFloat(rotatingDrawable, "rotation", new float[] { 135.0f, 0.0f });
-                final ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(rotatingDrawable, "rotation", new float[] { 0.0f, 135.0f });
-                ofFloat.setInterpolator(overshootInterpolator);
-                ofFloat2.setInterpolator(overshootInterpolator);
-                FloatingActionsMenu.this.mExpandAnimation.play(ofFloat2);
-                FloatingActionsMenu.this.mCollapseAnimation.play(ofFloat);
-                return rotatingDrawable;
-            }
-
-            @Override
-            void updateBackground() {
-                this.mPlusColor = FloatingActionsMenu.this.mAddButtonPlusColor;
-                this.mColorNormal = FloatingActionsMenu.this.mAddButtonColorNormal;
-                this.mColorPressed = FloatingActionsMenu.this.mAddButtonColorPressed;
-                super.updateBackground();
-            }
-        }).setId(R.id.fab_expand_menu_button);
-        this.mAddButton.setOnClickListener((View.OnClickListener)new View.OnClickListener() {
-            public void onClick(final View view) {
-                FloatingActionsMenu.this.toggle();
-            }
-        });
-        this.addView((View)this.mAddButton, super.generateDefaultLayoutParams());
-    }
-
-    private void createLabels() {
-        final int fab_label = R.id.fab_label;
-        final ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(this.getContext(), this.mLabelsStyle);
-        for (int i = 0; i < this.mButtonsCount; ++i) {
-            final FloatingActionButton floatingActionButton = (FloatingActionButton)this.getChildAt(i);
-            final String title = floatingActionButton.getTitle();
-            if (floatingActionButton != this.mAddButton && title != null && floatingActionButton.getTag(fab_label) == null) {
-                final TextView textView = new TextView(contextThemeWrapper);
-                this.addView(textView);
-                floatingActionButton.setTag(fab_label, textView);
-                floatingActionButton.setTitle(title);
-                textView.setClickable(false);
-            }
+        if (mLabelsStyle != 0 && expandsHorizontally()) {
+            throw new IllegalStateException("Action labels in horizontal expand orientation is not supported.");
         }
+
+        createAddButton(context);
+    }
+
+    public void setOnFloatingActionsMenuUpdateListener(OnFloatingActionsMenuUpdateListener listener) {
+        mListener = listener;
     }
 
     private boolean expandsHorizontally() {
-        return this.mExpandDirection == 2 || this.mExpandDirection == 3;
+        return mExpandDirection == EXPAND_LEFT || mExpandDirection == EXPAND_RIGHT;
     }
 
-    private int getColor(final int n) {
-        return this.getResources().getColor(n);
-    }
-
-    @SuppressLint("ResourceType")
-    private void init(final Context context, final AttributeSet set) {
-        final int fab_shadow_offset = R.dimen.fab_shadow_offset;
-        this.mButtonSpacing = (int)(this.getResources().getDimension(R.dimen.fab_actions_spacing) - this.getResources().getDimension(R.dimen.fab_shadow_radius) - this.getResources().getDimension(fab_shadow_offset));
-        this.mLabelsMargin = this.getResources().getDimensionPixelSize(R.dimen.fab_labels_margin);
-        this.mLabelsVerticalOffset = this.getResources().getDimensionPixelSize(fab_shadow_offset);
-        final TypedArray obtainStyledAttributes = context.obtainStyledAttributes(set, R.styleable.FloatingActionsMenu, 0, 0);
-        this.mAddButtonPlusColor = obtainStyledAttributes.getColor(2, this.getColor(17170443));
-        this.mAddButtonColorNormal = obtainStyledAttributes.getColor(1, this.getColor(17170451));
-        this.mAddButtonColorPressed = obtainStyledAttributes.getColor(0, this.getColor(17170450));
-        this.mExpandDirection = obtainStyledAttributes.getInt(4, 0);
-        this.mLabelsStyle = obtainStyledAttributes.getResourceId(3, 0);
-        obtainStyledAttributes.recycle();
-        final SharedPreferences sharedPreferences = context.getSharedPreferences("B58", 0);
-        this.mAddButtonColorNormal = sharedPreferences.getInt("FabNormalColor", Color.parseColor("#4db6ac"));
-        this.mAddButtonColorPressed = sharedPreferences.getInt("FabPressedColor", Color.parseColor("#4db6ac"));
-        if (this.mLabelsStyle != 0 && this.expandsHorizontally()) {
-            throw new IllegalStateException("Action labels in horizontal expand orientation is not supported.");
+    private static class RotatingDrawable extends LayerDrawable {
+        public RotatingDrawable(Drawable drawable) {
+            super(new Drawable[]{drawable});
         }
-        this.createAddButton(context);
+
+        private float mRotation;
+
+        @SuppressWarnings("UnusedDeclaration")
+        public float getRotation() {
+            return mRotation;
+        }
+
+        @SuppressWarnings("UnusedDeclaration")
+        public void setRotation(float rotation) {
+            mRotation = rotation;
+            invalidateSelf();
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.rotate(mRotation, getBounds().centerX(), getBounds().centerY());
+            super.draw(canvas);
+            canvas.restore();
+        }
     }
 
-    private void setLabelsClickable(final boolean clickable) {
-        for (int i = 0; i < this.getChildCount(); ++i) {
-            final TextView textView = (TextView)this.getChildAt(i).getTag(R.id.fab_label);
-            if (textView != null) {
-                textView.setClickable(clickable);
+    private void createAddButton(Context context) {
+        mAddButton = new AddFloatingActionButton(context) {
+            @Override
+            void updateBackground() {
+                mPlusColor = mAddButtonPlusColor;
+                mColorNormal = mAddButtonColorNormal;
+                mColorPressed = mAddButtonColorPressed;
+                super.updateBackground();
+            }
+
+            @Override
+            Drawable getIconDrawable() {
+                final RotatingDrawable rotatingDrawable = new RotatingDrawable(super.getIconDrawable());
+                mRotatingDrawable = rotatingDrawable;
+
+                final OvershootInterpolator interpolator = new OvershootInterpolator();
+
+                final ObjectAnimator collapseAnimator = ObjectAnimator.ofFloat(rotatingDrawable, "rotation", EXPANDED_PLUS_ROTATION, COLLAPSED_PLUS_ROTATION);
+                final ObjectAnimator expandAnimator = ObjectAnimator.ofFloat(rotatingDrawable, "rotation", COLLAPSED_PLUS_ROTATION, EXPANDED_PLUS_ROTATION);
+
+                collapseAnimator.setInterpolator(interpolator);
+                expandAnimator.setInterpolator(interpolator);
+
+                mExpandAnimation.play(expandAnimator);
+                mCollapseAnimation.play(collapseAnimator);
+
+                return rotatingDrawable;
+            }
+        };
+
+        mAddButton.setId(com.B58works.R.id.fab_expand_menu_button);
+        mAddButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggle();
+            }
+        });
+
+        addView(mAddButton, super.generateDefaultLayoutParams());
+    }
+
+    public void addButton(FloatingActionButton button) {
+        addView(button, mButtonsCount - 1);
+        mButtonsCount++;
+
+        if (mLabelsStyle != 0) {
+            createLabels();
+        }
+    }
+
+    private int getColor(@ColorRes int id) {
+        return getResources().getColor(id);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+
+        int width = 0;
+        int height = 0;
+
+        int maxLabelWidth = 0;
+
+        for (int i = 0; i < mButtonsCount; i++) {
+            View child = getChildAt(i);
+
+            switch (mExpandDirection) {
+                case EXPAND_UP:
+                case EXPAND_DOWN:
+                    width = Math.max(width, child.getMeasuredWidth());
+                    height += child.getMeasuredHeight();
+                    break;
+                case EXPAND_LEFT:
+                case EXPAND_RIGHT:
+                    width += child.getMeasuredWidth();
+                    height = Math.max(height, child.getMeasuredHeight());
+                    break;
+            }
+
+            if (!expandsHorizontally()) {
+                TextView label = (TextView) child.getTag(com.B58works.R.id.fab_label);
+                if (label != null) {
+                    maxLabelWidth = Math.max(maxLabelWidth, label.getMeasuredWidth());
+                }
             }
         }
+
+        if (!expandsHorizontally()) {
+            width += maxLabelWidth + mLabelsMargin;
+        }
+
+        switch (mExpandDirection) {
+            case EXPAND_UP:
+            case EXPAND_DOWN:
+                height += mButtonSpacing * (getChildCount() - 1);
+                height = adjustForOvershoot(height);
+                break;
+            case EXPAND_LEFT:
+            case EXPAND_RIGHT:
+                width += mButtonSpacing * (getChildCount() - 1);
+                width = adjustForOvershoot(width);
+                break;
+        }
+
+        setMeasuredDimension(width, height);
     }
 
-    public void addButton(final FloatingActionButton floatingActionButton) {
-        this.addView((View)floatingActionButton, this.mButtonsCount - 1);
-        ++this.mButtonsCount;
-        if (this.mLabelsStyle != 0) {
-            this.createLabels();
+    private int adjustForOvershoot(int dimension) {
+        return dimension * 12 / 10;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        switch (mExpandDirection) {
+            case EXPAND_UP:
+            case EXPAND_DOWN:
+                boolean expandUp = mExpandDirection == EXPAND_UP;
+
+                int addButtonY = expandUp ? b - t - mAddButton.getMeasuredHeight() : 0;
+                int addButtonLeft = r - l - mAddButton.getMeasuredWidth();
+                mAddButton.layout(addButtonLeft, addButtonY, addButtonLeft + mAddButton.getMeasuredWidth(), addButtonY + mAddButton.getMeasuredHeight());
+
+                int labelsRight = addButtonLeft - mLabelsMargin;
+
+                int nextY = expandUp ?
+                        addButtonY - mButtonSpacing :
+                        addButtonY + mAddButton.getMeasuredHeight() + mButtonSpacing;
+
+                for (int i = mButtonsCount - 1; i >= 0; i--) {
+                    final View child = getChildAt(i);
+
+                    if (child == mAddButton) continue;
+
+                    int childX = addButtonLeft + (mAddButton.getMeasuredWidth() - child.getMeasuredWidth()) / 2;
+                    int childY = expandUp ? nextY - child.getMeasuredHeight() : nextY;
+                    child.layout(childX, childY, childX + child.getMeasuredWidth(), childY + child.getMeasuredHeight());
+
+                    float collapsedTranslation = addButtonY - childY;
+                    float expandedTranslation = 0f;
+
+                    child.setTranslationY(mExpanded ? expandedTranslation : collapsedTranslation);
+                    child.setAlpha(mExpanded ? 1f : 0f);
+
+                    LayoutParams params = (LayoutParams) child.getLayoutParams();
+                    params.mCollapseDir.setFloatValues(expandedTranslation, collapsedTranslation);
+                    params.mExpandDir.setFloatValues(collapsedTranslation, expandedTranslation);
+                    params.setAnimationsTarget(child);
+
+                    View label = (View) child.getTag(com.B58works.R.id.fab_label);
+                    if (label != null) {
+                        int labelLeft = labelsRight - label.getMeasuredWidth();
+                        int labelTop = childY - mLabelsVerticalOffset + (child.getMeasuredHeight() - label.getMeasuredHeight()) / 2;
+
+                        label.layout(labelLeft, labelTop, labelsRight, labelTop + label.getMeasuredHeight());
+
+                        label.setTranslationY(mExpanded ? expandedTranslation : collapsedTranslation);
+                        label.setAlpha(mExpanded ? 1f : 0f);
+
+                        LayoutParams labelParams = (LayoutParams) label.getLayoutParams();
+                        labelParams.mCollapseDir.setFloatValues(expandedTranslation, collapsedTranslation);
+                        labelParams.mExpandDir.setFloatValues(collapsedTranslation, expandedTranslation);
+                        labelParams.setAnimationsTarget(label);
+                    }
+
+                    nextY = expandUp ?
+                            childY - mButtonSpacing :
+                            childY + child.getMeasuredHeight() + mButtonSpacing;
+                }
+                break;
+
+            case EXPAND_LEFT:
+            case EXPAND_RIGHT:
+                boolean expandLeft = mExpandDirection == EXPAND_LEFT;
+
+                int addButtonX = expandLeft ? r - l - mAddButton.getMeasuredWidth() : 0;
+                mAddButton.layout(addButtonX, 0, addButtonX + mAddButton.getMeasuredWidth(), mAddButton.getMeasuredHeight());
+
+                int nextX = expandLeft ?
+                        addButtonX - mButtonSpacing :
+                        addButtonX + mAddButton.getMeasuredWidth() + mButtonSpacing;
+
+                for (int i = mButtonsCount - 1; i >= 0; i--) {
+                    final View child = getChildAt(i);
+
+                    if (child == mAddButton) continue;
+
+                    int childX = expandLeft ? nextX - child.getMeasuredWidth() : nextX;
+                    int childY = (mAddButton.getMeasuredHeight() - child.getMeasuredHeight()) / 2;
+                    child.layout(childX, childY, childX + child.getMeasuredWidth(), childY + child.getMeasuredHeight());
+
+                    float collapsedTranslation = addButtonX - childX;
+                    float expandedTranslation = 0f;
+
+                    child.setTranslationX(mExpanded ? expandedTranslation : collapsedTranslation);
+                    child.setAlpha(mExpanded ? 1f : 0f);
+
+                    LayoutParams params = (LayoutParams) child.getLayoutParams();
+                    params.mCollapseDir.setFloatValues(expandedTranslation, collapsedTranslation);
+                    params.mExpandDir.setFloatValues(collapsedTranslation, expandedTranslation);
+                    params.setAnimationsTarget(child);
+
+                    nextX = expandLeft ?
+                            childX - mButtonSpacing :
+                            childX + child.getMeasuredWidth() + mButtonSpacing;
+                }
+
+                break;
         }
     }
 
-    protected boolean checkLayoutParams(final ViewGroup.LayoutParams viewGroup$LayoutParams) {
-        return super.checkLayoutParams(viewGroup$LayoutParams);
-    }
-
-    public void collapse() {
-        if (this.mExpanded) {
-            this.setLabelsClickable(this.mExpanded = false);
-            this.mCollapseAnimation.start();
-            this.mExpandAnimation.cancel();
-            if (this.mListener != null) {
-                this.mListener.onMenuCollapsed();
-            }
-        }
-    }
-
-    public void expand() {
-        if (!this.mExpanded) {
-            this.setLabelsClickable(this.mExpanded = true);
-            this.mCollapseAnimation.cancel();
-            this.mExpandAnimation.start();
-            if (this.mListener != null) {
-                this.mListener.onMenuExpanded();
-            }
-        }
-    }
-
+    @Override
     protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
         return new LayoutParams(super.generateDefaultLayoutParams());
     }
 
-    public ViewGroup.LayoutParams generateLayoutParams(final AttributeSet set) {
-        return new LayoutParams(super.generateLayoutParams(set));
+    @Override
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(super.generateLayoutParams(attrs));
     }
 
-    protected ViewGroup.LayoutParams generateLayoutParams(final ViewGroup.LayoutParams viewGroup$LayoutParams) {
-        return new LayoutParams(super.generateLayoutParams(viewGroup$LayoutParams));
+    @Override
+    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return new LayoutParams(super.generateLayoutParams(p));
     }
 
-    public boolean isExpanded() {
-        return this.mExpanded;
+    @Override
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+        return super.checkLayoutParams(p);
     }
 
+    private static Interpolator sExpandInterpolator = new OvershootInterpolator();
+    private static Interpolator sCollapseInterpolator = new DecelerateInterpolator(3f);
+    private static Interpolator sAlphaExpandInterpolator = new DecelerateInterpolator();
+
+    private class LayoutParams extends ViewGroup.LayoutParams {
+
+        private ObjectAnimator mExpandDir = new ObjectAnimator();
+        private ObjectAnimator mExpandAlpha = new ObjectAnimator();
+        private ObjectAnimator mCollapseDir = new ObjectAnimator();
+        private ObjectAnimator mCollapseAlpha = new ObjectAnimator();
+
+        public LayoutParams(ViewGroup.LayoutParams source) {
+            super(source);
+
+            mExpandDir.setInterpolator(sExpandInterpolator);
+            mExpandAlpha.setInterpolator(sAlphaExpandInterpolator);
+            mCollapseDir.setInterpolator(sCollapseInterpolator);
+            mCollapseAlpha.setInterpolator(sCollapseInterpolator);
+
+            mCollapseAlpha.setProperty(View.ALPHA);
+            mCollapseAlpha.setFloatValues(1f, 0f);
+
+            mExpandAlpha.setProperty(View.ALPHA);
+            mExpandAlpha.setFloatValues(0f, 1f);
+
+            switch (mExpandDirection) {
+                case EXPAND_UP:
+                case EXPAND_DOWN:
+                    mCollapseDir.setProperty(View.TRANSLATION_Y);
+                    mExpandDir.setProperty(View.TRANSLATION_Y);
+                    break;
+                case EXPAND_LEFT:
+                case EXPAND_RIGHT:
+                    mCollapseDir.setProperty(View.TRANSLATION_X);
+                    mExpandDir.setProperty(View.TRANSLATION_X);
+                    break;
+            }
+
+            mExpandAnimation.play(mExpandAlpha);
+            mExpandAnimation.play(mExpandDir);
+
+            mCollapseAnimation.play(mCollapseAlpha);
+            mCollapseAnimation.play(mCollapseDir);
+        }
+
+        public void setAnimationsTarget(View view) {
+            mCollapseAlpha.setTarget(view);
+            mCollapseDir.setTarget(view);
+            mExpandAlpha.setTarget(view);
+            mExpandDir.setTarget(view);
+        }
+    }
+
+    @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        this.bringChildToFront(this.mAddButton);
-        this.mButtonsCount = this.getChildCount();
-        if (this.mLabelsStyle != 0) {
-            this.createLabels();
+
+        bringChildToFront(mAddButton);
+        mButtonsCount = getChildCount();
+
+        if (mLabelsStyle != 0) {
+            createLabels();
         }
     }
 
-    protected void onLayout(final boolean b, int n, int n2, int i, int j) {
-        switch (this.mExpandDirection) {
-            case 0:
-            case 1: {
-                boolean b2;
-                if (this.mExpandDirection == 0) {
-                    b2 = true;
-                }
-                else {
-                    b2 = false;
-                }
-                if (b2) {
-                    n2 = j - n2 - this.mAddButton.getMeasuredHeight();
-                }
-                else {
-                    n2 = 0;
-                }
-                j = i - n - this.mAddButton.getMeasuredWidth();
-                this.mAddButton.layout(j, n2, this.mAddButton.getMeasuredWidth() + j, this.mAddButton.getMeasuredHeight() + n2);
-                final int n3 = j - this.mLabelsMargin;
-                if (b2) {
-                    n = n2 - this.mButtonSpacing;
-                }
-                else {
-                    n = this.mAddButton.getMeasuredHeight() + n2 + this.mButtonSpacing;
-                }
-                View child;
-                int n4;
-                float n5;
-                float translationY;
-                float alpha;
-                LayoutParams layoutParams;
-                View animationsTarget;
-                int measuredWidth;
-                int n6;
-                float translationY2;
-                float alpha2;
-                LayoutParams layoutParams2;
-                for (i = this.mButtonsCount - 1; i >= 0; --i) {
-                    child = this.getChildAt(i);
-                    if (child != this.mAddButton) {
-                        n4 = j + (this.mAddButton.getMeasuredWidth() - child.getMeasuredWidth()) / 2;
-                        if (b2) {
-                            n -= child.getMeasuredHeight();
-                        }
-                        child.layout(n4, n, child.getMeasuredWidth() + n4, child.getMeasuredHeight() + n);
-                        n5 = n2 - n;
-                        if (this.mExpanded) {
-                            translationY = 0.0f;
-                        }
-                        else {
-                            translationY = n5;
-                        }
-                        child.setTranslationY(translationY);
-                        if (this.mExpanded) {
-                            alpha = 1.0f;
-                        }
-                        else {
-                            alpha = 0.0f;
-                        }
-                        child.setAlpha(alpha);
-                        layoutParams = (LayoutParams)child.getLayoutParams();
-                        layoutParams.mCollapseDir.setFloatValues(new float[] { 0.0f, n5 });
-                        layoutParams.mExpandDir.setFloatValues(new float[] { n5, 0.0f });
-                        layoutParams.setAnimationsTarget(child);
-                        animationsTarget = (View)child.getTag(R.id.fab_label);
-                        if (animationsTarget != null) {
-                            measuredWidth = animationsTarget.getMeasuredWidth();
-                            n6 = n - this.mLabelsVerticalOffset + (child.getMeasuredHeight() - animationsTarget.getMeasuredHeight()) / 2;
-                            animationsTarget.layout(n3 - measuredWidth, n6, n3, animationsTarget.getMeasuredHeight() + n6);
-                            if (this.mExpanded) {
-                                translationY2 = 0.0f;
-                            }
-                            else {
-                                translationY2 = n5;
-                            }
-                            animationsTarget.setTranslationY(translationY2);
-                            if (this.mExpanded) {
-                                alpha2 = 1.0f;
-                            }
-                            else {
-                                alpha2 = 0.0f;
-                            }
-                            animationsTarget.setAlpha(alpha2);
-                            layoutParams2 = (LayoutParams)animationsTarget.getLayoutParams();
-                            layoutParams2.mCollapseDir.setFloatValues(new float[] { 0.0f, n5 });
-                            layoutParams2.mExpandDir.setFloatValues(new float[] { n5, 0.0f });
-                            layoutParams2.setAnimationsTarget(animationsTarget);
-                        }
-                        if (b2) {
-                            n -= this.mButtonSpacing;
-                        }
-                        else {
-                            n = child.getMeasuredHeight() + n + this.mButtonSpacing;
-                        }
-                    }
-                }
-                break;
-            }
-            case 2:
-            case 3: {
-                if (this.mExpandDirection == 2) {
-                    n2 = 1;
-                }
-                else {
-                    n2 = 0;
-                }
-                if (n2 != 0) {
-                    i = i - n - this.mAddButton.getMeasuredWidth();
-                }
-                else {
-                    i = 0;
-                }
-                this.mAddButton.layout(i, 0, this.mAddButton.getMeasuredWidth() + i, this.mAddButton.getMeasuredHeight());
-                if (n2 != 0) {
-                    n = i - this.mButtonSpacing;
-                }
-                else {
-                    n = this.mAddButton.getMeasuredWidth() + i + this.mButtonSpacing;
-                }
-                View child2;
-                int n7;
-                float n8;
-                float translationX;
-                float alpha3;
-                LayoutParams layoutParams3;
-                for (j = this.mButtonsCount - 1; j >= 0; --j) {
-                    child2 = this.getChildAt(j);
-                    if (child2 != this.mAddButton) {
-                        if (n2 != 0) {
-                            n -= child2.getMeasuredWidth();
-                        }
-                        n7 = (this.mAddButton.getMeasuredHeight() - child2.getMeasuredHeight()) / 2;
-                        child2.layout(n, n7, child2.getMeasuredWidth() + n, child2.getMeasuredHeight() + n7);
-                        n8 = i - n;
-                        if (this.mExpanded) {
-                            translationX = 0.0f;
-                        }
-                        else {
-                            translationX = n8;
-                        }
-                        child2.setTranslationX(translationX);
-                        if (this.mExpanded) {
-                            alpha3 = 1.0f;
-                        }
-                        else {
-                            alpha3 = 0.0f;
-                        }
-                        child2.setAlpha(alpha3);
-                        layoutParams3 = (LayoutParams)child2.getLayoutParams();
-                        layoutParams3.mCollapseDir.setFloatValues(new float[] { 0.0f, n8 });
-                        layoutParams3.mExpandDir.setFloatValues(new float[] { n8, 0.0f });
-                        layoutParams3.setAnimationsTarget(child2);
-                        if (n2 != 0) {
-                            n -= this.mButtonSpacing;
-                        }
-                        else {
-                            n = child2.getMeasuredWidth() + n + this.mButtonSpacing;
-                        }
-                    }
-                }
-                break;
-            }
+    private void createLabels() {
+        Context context = new ContextThemeWrapper(getContext(), mLabelsStyle);
+
+        for (int i = 0; i < mButtonsCount; i++) {
+            FloatingActionButton button = (FloatingActionButton) getChildAt(i);
+            String title = button.getTitle();
+
+            if (button == mAddButton || title == null ||
+                    button.getTag(com.B58works.R.id.fab_label) != null) continue;
+
+            TextView label = new TextView(context);
+            label.setText(button.getTitle());
+            addView(label);
+
+            button.setTag(com.B58works.R.id.fab_label, label);
         }
     }
 
-    protected void onMeasure(int n, int max) {
-        this.measureChildren(n, max);
-        max = 0;
-        n = 0;
-        int n2 = 0;
-        int max2;
-        for (int i = 0; i < this.mButtonsCount; ++i, n2 = max2) {
-            final View child = this.getChildAt(i);
-            switch (this.mExpandDirection) {
-                case 0:
-                case 1: {
-                    max = Math.max(max, child.getMeasuredWidth());
-                    n += child.getMeasuredHeight();
-                    break;
-                }
-                case 2:
-                case 3: {
-                    max += child.getMeasuredWidth();
-                    n = Math.max(n, child.getMeasuredHeight());
-                    break;
-                }
-            }
-            max2 = n2;
-            if (!this.expandsHorizontally()) {
-                final TextView textView = (TextView)child.getTag(R.id.fab_label);
-                max2 = n2;
-                if (textView != null) {
-                    max2 = Math.max(n2, textView.getMeasuredWidth());
-                }
-            }
-        }
-        int adjustForOvershoot = max;
-        if (!this.expandsHorizontally()) {
-            adjustForOvershoot = max + (this.mLabelsMargin + n2);
-        }
-        switch (this.mExpandDirection) {
-            case 0:
-            case 1: {
-                n = this.adjustForOvershoot(n + this.mButtonSpacing * (this.getChildCount() - 1));
-                break;
-            }
-            case 2:
-            case 3: {
-                adjustForOvershoot = this.adjustForOvershoot(adjustForOvershoot + this.mButtonSpacing * (this.getChildCount() - 1));
-                break;
-            }
-        }
-        this.setMeasuredDimension(adjustForOvershoot, n);
-    }
+    public void collapse() {
+        if (mExpanded) {
+            mExpanded = false;
+            mCollapseAnimation.start();
+            mExpandAnimation.cancel();
 
-    public void onRestoreInstanceState(final Parcelable parcelable) {
-        if (parcelable instanceof SavedState) {
-            final SavedState savedState = (SavedState)parcelable;
-            this.mExpanded = savedState.mExpanded;
-            if (this.mRotatingDrawable != null) {
-                final RotatingDrawable mRotatingDrawable = this.mRotatingDrawable;
-                float rotation;
-                if (this.mExpanded) {
-                    rotation = 135.0f;
-                }
-                else {
-                    rotation = 0.0f;
-                }
-                mRotatingDrawable.setRotation(rotation);
+            if (mListener != null) {
+                mListener.onMenuCollapsed();
             }
-            super.onRestoreInstanceState(savedState.getSuperState());
         }
-        else {
-            super.onRestoreInstanceState(parcelable);
-        }
-    }
-
-    public Parcelable onSaveInstanceState() {
-        final SavedState savedState = new SavedState(super.onSaveInstanceState());
-        savedState.mExpanded = this.mExpanded;
-        return (Parcelable)savedState;
-    }
-
-    public void setOnFloatingActionsMenuUpdateListener(final OnFloatingActionsMenuUpdateListener mListener) {
-        this.mListener = mListener;
     }
 
     public void toggle() {
-        if (this.mExpanded) {
-            this.collapse();
-        }
-        else {
-            this.expand();
+        if (mExpanded) {
+            collapse();
+        } else {
+            expand();
         }
     }
 
-    private class LayoutParams extends ViewGroup.LayoutParams
-    {
-        private ObjectAnimator mCollapseAlpha;
-        private ObjectAnimator mCollapseDir;
-        private ObjectAnimator mExpandAlpha;
-        private ObjectAnimator mExpandDir;
+    public void expand() {
+        if (!mExpanded) {
+            mExpanded = true;
+            mCollapseAnimation.cancel();
+            mExpandAnimation.start();
 
-        public LayoutParams(final ViewGroup.LayoutParams viewGroup$LayoutParams) {
-            super(viewGroup$LayoutParams);
-            this.mExpandDir = new ObjectAnimator();
-            this.mExpandAlpha = new ObjectAnimator();
-            this.mCollapseDir = new ObjectAnimator();
-            this.mCollapseAlpha = new ObjectAnimator();
-            this.mExpandDir.setInterpolator(FloatingActionsMenu.sExpandInterpolator);
-            this.mExpandAlpha.setInterpolator(FloatingActionsMenu.sAlphaExpandInterpolator);
-            this.mCollapseDir.setInterpolator(FloatingActionsMenu.sCollapseInterpolator);
-            this.mCollapseAlpha.setInterpolator(FloatingActionsMenu.sCollapseInterpolator);
-            this.mCollapseAlpha.setProperty(View.ALPHA);
-            this.mCollapseAlpha.setFloatValues(new float[] { 1.0f, 0.0f });
-            this.mExpandAlpha.setProperty(View.ALPHA);
-            this.mExpandAlpha.setFloatValues(new float[] { 0.0f, 1.0f });
-            switch (FloatingActionsMenu.this.mExpandDirection) {
-                case 0:
-                case 1: {
-                    this.mCollapseDir.setProperty(View.TRANSLATION_Y);
-                    this.mExpandDir.setProperty(View.TRANSLATION_Y);
-                    break;
-                }
-                case 2:
-                case 3: {
-                    this.mCollapseDir.setProperty(View.TRANSLATION_X);
-                    this.mExpandDir.setProperty(View.TRANSLATION_X);
-                    break;
-                }
+            if (mListener != null) {
+                mListener.onMenuExpanded();
             }
-            FloatingActionsMenu.this.mExpandAnimation.play((Animator)this.mExpandAlpha);
-            FloatingActionsMenu.this.mExpandAnimation.play((Animator)this.mExpandDir);
-            FloatingActionsMenu.this.mCollapseAnimation.play((Animator)this.mCollapseAlpha);
-            FloatingActionsMenu.this.mCollapseAnimation.play((Animator)this.mCollapseDir);
-        }
-
-        public void setAnimationsTarget(final View view) {
-            this.mCollapseAlpha.setTarget((Object)view);
-            this.mCollapseDir.setTarget((Object)view);
-            this.mExpandAlpha.setTarget((Object)view);
-            this.mExpandDir.setTarget((Object)view);
         }
     }
 
-    public interface OnFloatingActionsMenuUpdateListener
-    {
-        void onMenuCollapsed();
-
-        void onMenuExpanded();
+    public boolean isExpanded() {
+        return mExpanded;
     }
 
-    private static class RotatingDrawable extends LayerDrawable
-    {
-        private float mRotation;
+    @Override
+    public Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState savedState = new SavedState(superState);
+        savedState.mExpanded = mExpanded;
 
-        public RotatingDrawable(final Drawable drawable) {
-            super(new Drawable[] { drawable });
-        }
+        return savedState;
+    }
 
-        public void draw(final Canvas canvas) {
-            canvas.save();
-            canvas.rotate(this.mRotation, (float)this.getBounds().centerX(), (float)this.getBounds().centerY());
-            super.draw(canvas);
-            canvas.restore();
-        }
+    @Override
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof SavedState) {
+            SavedState savedState = (SavedState) state;
+            mExpanded = savedState.mExpanded;
 
-        public float getRotation() {
-            return this.mRotation;
-        }
+            if (mRotatingDrawable != null) {
+                mRotatingDrawable.setRotation(mExpanded ? EXPANDED_PLUS_ROTATION : COLLAPSED_PLUS_ROTATION);
+            }
 
-        public void setRotation(final float mRotation) {
-            this.mRotation = mRotation;
-            this.invalidateSelf();
+            super.onRestoreInstanceState(savedState.getSuperState());
+        } else {
+            super.onRestoreInstanceState(state);
         }
     }
 
-    public static class SavedState extends View.BaseSavedState
-    {
-        public static final Parcelable.Creator<SavedState> CREATOR;
+    public static class SavedState extends BaseSavedState {
         public boolean mExpanded;
 
-        static {
-            CREATOR = new Parcelable.Creator<SavedState>() {
-                public SavedState createFromParcel(final Parcel parcel) {
-                    return new SavedState(parcel);
-                }
-
-                public SavedState[] newArray(final int n) {
-                    return new SavedState[n];
-                }
-            };
+        public SavedState(Parcelable parcel) {
+            super(parcel);
         }
 
-        private SavedState(final Parcel parcel) {
-			super(parcel);
-            boolean mExpanded = true;
-            if (parcel.readInt() != 1) {
-                mExpanded = false;
+        private SavedState(Parcel in) {
+            super(in);
+            mExpanded = in.readInt() == 1;
+        }
+
+        @Override
+        public void writeToParcel(@NonNull Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeInt(mExpanded ? 1 : 0);
+        }
+
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+
+            @Override
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
             }
-            this.mExpanded = mExpanded;
-        }
 
-        public SavedState(final Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        public void writeToParcel( final Parcel parcel, int n) {
-            super.writeToParcel(parcel, n);
-            if (this.mExpanded) {
-                n = 1;
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
             }
-            else {
-                n = 0;
-            }
-            parcel.writeInt(n);
-        }
+        };
     }
 }
-

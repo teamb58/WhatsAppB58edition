@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gr_style">
+        <item>TOP-BOTTOM</item>
+        <item>LEFT-RIGHT</item>
+        <item>TR-BL</item>
+        <item>BOTTOM-TOP</item>
+        <item>RIGHT-LEFT</item>
+    </string-array>
+    <string-array name="actionbarStyleListValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="notifybar_colors">
+        <item>Notifybar 1</item>
+        <item>Notifybar 2</item>
+        <item>Notifybar 3</item>
+        <item>Notifybar 4</item>
+        <item>Notifybar 5</item>
+        <item>Notifybar 6</item>
+        <item>Notifybar 7</item>
+        <item>Notifybar 8</item>
+        <item>Notifybar 9</item>
+        <item>Notifybar 10</item>
+        <item>Notifybar 11</item>
+        <item>Notifybar 12</item>
+        <item>Notifybar 13</item>
+        <item>Notifybar 14</item>
+        <item>Notifybar 15</item>
+        <item>Notifybar 16</item>
+        <item>Notifybar 17</item>
+        <item>Notifybar 18</item>
+        <item>Notifybar 19</item>
+    </string-array>
+    <string-array name="notifybar_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+    </string-array>
+    <string-array name="conversation_bubbleStyleList">
+        <item>Default</item>
+        <item>Rounded</item>
+        <item>Materialized</item>
+        <item>Hangouts</item>
+        <item>WA+ paper redesigned</item>
+        <item>Whatsapp LB</item>
+        <item>Go SMS</item>
+        <item>Bubble Drop</item>
+        <item>Samyadeep Crayon Alt</item>
+        <item>Transparent</item>
+        <item>iOS</item>
+        <item>Textra</item>
+        <item>Hike</item>
+        <item>Samyadeep Dual</item>
+        <item>In</item>
+        <item>Bryed</item>
+        <item>Fold</item>
+        <item>Fold V2</item>
+        <item>MD</item>
+        <item>Round</item>
+    </string-array>
+    <string-array name="conversation_bubbleStyleListValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+    </string-array>
+    <string-array name="tick_n">
+        <item>Stock</item>
+        <item>BBM</item>
+        <item>BPG</item>
+        <item>Circle</item>
+        <item>Circles</item>
+        <item>Coalfield</item>
+        <item>Alt-Crayon</item>
+        <item>Flat_Circles</item>
+        <item>Google</item>
+        <item>iOS</item>
+        <item>Hike</item>
+        <item>Letter</item>
+        <item>Messenger</item>
+        <item>Smiley</item>
+        <item>Traffic</item>
+        <item>Twitter</item>
+        <item>New-waca</item>
+        <item>Old-waca</item>
+        <item>Time-Bomb</item>
+        <item>Jaoquin</item>
+    </string-array>
+    <string-array name="tick_v">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+    </string-array>
+    <string-array name="subtitile_names">
+        <item>No Subtitle</item>
+        <item>Number</item>
+        <item>Status</item>
+    </string-array>
+    <string-array name="subtitle_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <array name="notifybar_icons">
+        <item>@drawable/n_0</item>
+        <item>@drawable/n_1</item>
+        <item>@drawable/n_2</item>
+        <item>@drawable/n_3</item>
+        <item>@drawable/n_4</item>
+        <item>@drawable/n_5</item>
+        <item>@drawable/n_6</item>
+        <item>@drawable/n_7</item>
+        <item>@drawable/n_8</item>
+        <item>@drawable/n_9</item>
+        <item>@drawable/n_10</item>
+        <item>@drawable/n_11</item>
+        <item>@drawable/n_12</item>
+        <item>@drawable/n_13</item>
+        <item>@drawable/n_14</item>
+        <item>@drawable/n_15</item>
+        <item>@drawable/n_16</item>
+        <item>@drawable/n_17</item>
+        <item>@drawable/n_18</item>
+        <item>@drawable/n_19</item>
+    </array>
+    <array name="conversation_bubbleStyleListP">
+        <item>@drawable/balloon</item>
+        <item>@drawable/rounded</item>
+        <item>@drawable/materialized</item>
+        <item>@drawable/hangouts</item>
+        <item>@drawable/wapaper</item>
+        <item>@drawable/walb</item>
+        <item>@drawable/gosms</item>
+        <item>@drawable/bdrop</item>
+        <item>@drawable/altcr</item>
+        <item>@drawable/trans</item>
+        <item>@drawable/apple</item>
+        <item>@drawable/textra</item>
+        <item>@drawable/hike</item>
+        <item>@drawable/dual</item>
+        <item>@drawable/in</item>
+        <item>@drawable/bryed</item>
+        <item>@drawable/fold</item>
+        <item>@drawable/foldv2</item>
+        <item>@drawable/md</item>
+        <item>@drawable/round</item>
+    </array>
+    <array name="tick_i">
+        <item>@drawable/msg_status_client_read</item>
+        <item>@drawable/bbm_message_got_read_receipt_from_target</item>
+        <item>@drawable/bpg_message_got_read_receipt_from_target</item>
+        <item>@drawable/circle_message_got_read_receipt_from_target</item>
+        <item>@drawable/circles_message_got_receipt_from_target</item>
+        <item>@drawable/coalfield_message_got_read_receipt_from_target</item>
+        <item>@drawable/altcrayon_message_got_read_receipt_from_target</item>
+        <item>@drawable/flatcircles_message_got_read_receipt_from_target</item>
+        <item>@drawable/google_message_got_read_receipt_from_target</item>
+        <item>@drawable/ios_message_got_read_receipt_from_target</item>
+        <item>@drawable/hike_message_got_read_receipt_from_target</item>
+        <item>@drawable/letter_message_got_receipt_from_target</item>
+        <item>@drawable/messenger_message_got_receipt_from_target</item>
+        <item>@drawable/smiley_message_got_receipt_from_target</item>
+        <item>@drawable/traffic_message_got_read_receipt_from_target</item>
+        <item>@drawable/twitter_message_got_read_receipt_from_target</item>
+        <item>@drawable/newwaca_message_got_read_receipt_from_target</item>
+        <item>@drawable/oldwaca_message_got_read_receipt_from_target</item>
+        <item>@drawable/tb_message_got_read_receipt_from_target</item>
+        <item>@drawable/joaquins_message_got_read_receipt_from_target</item>
+    </array>
+</resources>

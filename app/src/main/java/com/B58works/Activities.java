@@ -4,30 +4,29 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.preference.Preference;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import java.io.File;
+public class Activities extends Preference {
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public Activities(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-/**
- * Created by Bharath.R(58) on 28-12-2017.
- */
+    public Activities(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-public class Activities extends Preference
-{
-    public Activities(final Context context) {
+    public Activities(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public Activities(Context context) {
         super(context);
-    }
-
-    public Activities(final Context context, final AttributeSet set) {
-        super(context, set);
-    }
-
-    public Activities(final Context context, final AttributeSet set, final int n) {
-        super(context, set, n);
     }
 
     protected void onClick() {
@@ -36,63 +35,66 @@ public class Activities extends Preference
         switch (key) {
             case "update": {
                 new Update(getContext()).execute((String[]) new String[0]);
+                //Toast.makeText(getContext(),"Keep checking official page from below mentioned link.",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"This is the only OFFICIAL way to check for updates.",Toast.LENGTH_SHORT).show();
                 break;
             }
 
             case "reset": {
-                this.getContext().getSharedPreferences("B58privacy", 0).edit().clear().apply();
+                getContext().getSharedPreferences("B58privacy", 0).edit().clear().apply();
                 Toast.makeText(this.getContext(), "All privacy preferences including custom privacy are reset to default now.", Toast.LENGTH_SHORT).show();
                 break;
             }
             case "share": {
-                final String string = this.getContext().getString(B58.getResID("B58ShareBdy", "string"));
+                final String string = this.getContext().getString(R.string.B58ShareBdy);
                 final Intent intent = new Intent("android.intent.action.SEND");
                 intent.setType("text/plain");
-                intent.putExtra("android.intent.extra.SUBJECT", this.getContext().getString(B58.getResID("B58ShareSbj", "string")));
+                intent.putExtra("android.intent.extra.SUBJECT", this.getContext().getString(R.string.B58ShareSbj));
                 intent.putExtra("android.intent.extra.TEXT", string);
-                this.getContext().startActivity(Intent.createChooser(intent, this.getContext().getString(B58.getResID("B58Share", "string"))));
+                this.getContext().startActivity(Intent.createChooser(intent, this.getContext().getString(R.string.B58Share)));
                 break;
             }
             case "credits": {
-                final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
-                alertDialog$Builder.setTitle("Credits");
+                final AlertDialog.Builder ab = new AlertDialog.Builder(this.getContext());
+                ab.setTitle("Credits");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("file:///android_asset/credits.html");
-                alertDialog$Builder.setView(view);
-                alertDialog$Builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                ab.setView(view);
+                ab.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }
-                });
-                alertDialog$Builder.show();
+                }).show();
+                //Toast.makeText(getContext(),"Work in progress",Toast.LENGTH_SHORT).show();
                 break;
             }
             case "clogs": {
-                final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
-                alertDialog$Builder.setTitle("Changelogs");
+                final AlertDialog.Builder ab = new AlertDialog.Builder(this.getContext());
+                ab.setTitle("Changelogs");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("file:///android_asset/clog.html");
-                alertDialog$Builder.setView(view);
-                alertDialog$Builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                ab.setView(view);
+                ab.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }
-                });
-                alertDialog$Builder.show();
+                }).show();
+
+                //Toast.makeText(getContext(),"Work in progress",Toast.LENGTH_SHORT).show();
                 break;
             }
             case "devmsg": {
-                final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.getContext());
-                alertDialog$Builder.setTitle((CharSequence)"Developer Message");
+                final AlertDialog.Builder ab = new AlertDialog.Builder(this.getContext());
+                ab.setTitle("Developer Message");
                 final WebView view = new WebView(this.getContext());
                 view.loadUrl("https://androtechupdates.com/wp-content/uploads/devmsg.html");
-                alertDialog$Builder.setView(view);
-                alertDialog$Builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                ab.setView(view);
+                ab.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int n) {
                         dialogInterface.dismiss();
                     }
-                });
-                alertDialog$Builder.show();
+                }).show();
+                //Toast.makeText(getContext(),"Work in progress",Toast.LENGTH_SHORT).show();
                 break;
             }
         }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference android:key="oldui" />
+    <SwitchPreference android:key="lsmain" />
+    <SwitchPreference android:key="actbartitle" />
+    <ListPreference android:key="actbarsubtitle" />
+    <SwitchPreference android:key="archvchat" />
+    <SwitchPreference android:key="onlinetoast" />
+    <SwitchPreference android:key="hidemsg" />
+    <SwitchPreference android:key="hidename" />
+</PreferenceScreen>

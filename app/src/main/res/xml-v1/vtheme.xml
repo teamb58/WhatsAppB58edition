@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:key="download" />
+    <Preference android:key="save_temp" />
+    <Preference android:key="load_pref_file" />
+    <Preference android:key="clear_pref_file" />
+</PreferenceScreen>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/conpickmods" xmlns:android="http://schemas.android.com/apk/res/android">
+	<Preference android:key="conpickbg" />
+	<com.B58works.ColorPref android:key="conpickname" />
+	<com.B58works.ColorPref android:key="conpickstatus" />
+	<com.B58works.ColorPref android:key="conpicktype"/>
+</PreferenceScreen>

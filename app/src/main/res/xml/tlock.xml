@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen android:title="@string/B58protect"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <SwitchPreference android:title="@string/Lock" android:key="Locked" android:defaultValue="false" />
-    <SwitchPreference android:title="@string/patternen" android:key="pt_enabled" android:summary="@string/patternensum" android:dependency="Locked" />
-    <Preference android:title="@string/ChangeP" android:key="lockC" android:summary="@string/ChangePsum" />
-    <Preference android:title="@string/ChangePt" android:key="patternC" />
-</PreferenceScreen>

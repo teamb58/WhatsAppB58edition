@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cmwmobile="http://schemas.android.com/apk/res-auto">
+    <ListPreference android:key="notifyicon" cmwmobile:entryImages="@array/notifybar_icons" />
+    <Preference android:key="launchericon" >
+        <intent android:targetPackage="com.whatsapp" android:targetClass="com.whatsapp.architjn.ui.activity.IconChoose" />
+    </Preference>
+    <ListPreference android:key="bubblestyle" cmwmobile:entryImages="@array/conversation_bubbleStyleListP" />
+    <ListPreference android:key="tickstyle" cmwmobile:entryImages="@array/tick_i" />
+</PreferenceScreen>

@@ -1,132 +1,104 @@
 package com.B58works;
 
-/**
- * Created by Bharath.R(58) on 27-12-2017.
- */
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Process;
 import android.preference.Preference;
+import android.preference.SwitchPreference;
 
-import com.whatsapp.ow;
-import com.whatsapp.protocol.n;
+import java.util.HashSet;
 
-import java.lang.reflect.Field;
+import d.f.cz;
+/**
+ * Created by Bharath.R(58) on 26-01-2019.
+ */
 
-public class Privacy extends ow {
+public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceChangeListener {
+
     static String JID;
-    static Context pctx;
+    static HashSet hashSet;
 
-    public static boolean AlwaysOnline() {
-        return getPrivacyB("always_online");
+    static{
+        hashSet=new HashSet();
     }
+
+    /*public static boolean AlwaysOnline() {
+        return getPrivacyB("always_online");
+    }*/
 
     public static boolean AntiRevoke(final Object o) {
-        final String a = ((n)o).b.a;
-        boolean b;
-        if (getPrivacyB(a)) {
-            b = getPrivacyB(String.valueOf(a) + "_AR");
+        final String jid = (String)o;
+        if (getPrivacyB(jid)) {
+            return getPrivacyB(jid + "_AR");
         }
         else {
-            b = getPrivacyB("Antirevoke");
+            return getPrivacyB("Antirevoke");
         }
-        return b;
     }
 
+    /*public static boolean isRevoked(Object o)
+    {
+        return true;
+    }*/
 
-    private static String GetType(Object o) {
-        for (final Field field : o.getClass().getFields()) {
-            if (String.class.isAssignableFrom(field.getType())) {
-                try {
-                    final Object value = field.get(o);
-                    if (value != null) {
-                        if (value.toString().contains("@broadcast")) {
-                            o = "B";
-                            return (String) o;
-                        } else if (value.toString().contains("@s.whatsapp.net")) {
-                            o = "G";
-                            return (String) o;
-                        } else if (value.toString().contains("g.us")) {
-                            o = "G";
-                            return (String) o;
-                        }
-                    }
-                } catch (Exception ignored) {
-                }
-            }
-        }
-        o = "C";
-        return (String) o;
-    }
-
-    private static String GetType2(final String s) {
-        String s2;
-        if (s.contains("g.us")) {
-            s2 = "G";
-        } else if (s.contains("@broadcast")) {
-            s2 = "B";
-        } else {
-            s2 = "C";
-        }
-        return s2;
+    private static String GetType2(final String jid) {
+        if (jid.contains("g.us"))
+            return  "G";
+        else if (jid.contains("@broadcast"))
+            return  "B";
+        else if (jid.contains("@s.whatsapp.net"))
+            return  "C";
+        else
+            return "ST";
     }
 
     public static boolean HideCR(final String s, final int n) {
-        boolean b;
-        switch (n) {
-            default: {
-                if (getPrivacyB(s)) {
-                    b = getPrivacyB(s + "_HideCompose");
-                    break;
-                }
-                b = getPrivacyB(GetType2(s) + "_HideCompose");
-                break;
-            }
-            case 1: {
-                if (getPrivacyB(s)) {
-                    b = getPrivacyB(s + "_HideRecord");
-                    break;
-                }
-                b = getPrivacyB(GetType2(s) + "_HideRecord");
-                break;
-            }
+        if (n == 1) {
+            if (getPrivacyB(s))
+                return getPrivacyB(s + "_HideRecord");
+            else
+                getPrivacyB(GetType2(s) + "_HideRecord");
         }
-        return b;
+        else
+        {
+            if (getPrivacyB(s))
+                return getPrivacyB(s + "_HideCompose");
+            else
+                return getPrivacyB(GetType2(s) + "_HideCompose");
+        }
+        return false;
     }
 
-    public static boolean HidePlay(final n k) {
-        final String a = k.b.a;
-        boolean b;
-        if (getPrivacyB(a)) {
-            b = getPrivacyB(a + "_HidePlay");
-        } else {
-            b = getPrivacyB(GetType(k) + "_HidePlay");
-        }
-        return b;
+    public static boolean HidePlay(final Object o) {
+        final String jid = (String)o;
+        if (getPrivacyB(jid))
+            return getPrivacyB(jid + "_HidePlay");
+        else
+            return getPrivacyB(GetType2(jid) + "_HidePlay");
+    }
+
+    public static int HideForward(final int i) {
+        return (getPrivacyB("HideForward") || i <= 0) ? i : i-1;
+        /*final String jid = (String)o;
+        if (getPrivacyB(jid))
+            return getPrivacyB(jid + "_HideForward");
+        else
+            return getPrivacyB(GetType2(jid) + "_HideForward");*/
     }
 
     public static boolean HideRead(final Object o) {
-        final String s = (String)o;
-        boolean b;
-        if (getPrivacyB(s)) {
-            b = getPrivacyB(s + "_HideRead");
-        }
-        else {
-            b = getPrivacyB(GetType(o) + "_HideRead");
-        }
-        return b;
+        final String jid = (String)o;
+        if (getPrivacyB(jid))
+            return getPrivacyB(jid + "_HideRead");
+        else
+            return getPrivacyB(GetType2(jid) + "_HideRead");
     }
 
     public static boolean HideReceipt(final Object o) {
-        final String s = (String)o;
-        boolean b;
-        if (getPrivacyB(s)) {
-            b = getPrivacyB(s + "_HideReceipt");
-        }
-        else {
-            b = getPrivacyB(GetType(o) + "_HideReceipt");
-        }
-        return b;
+        final String jid = (String)o;
+        if (getPrivacyB(jid))
+            return getPrivacyB(jid + "_HideReceipt");
+        else
+            return getPrivacyB(GetType2(jid) + "_HideReceipt");
     }
 
     public static boolean HideSeen() {
@@ -135,37 +107,25 @@ public class Privacy extends ow {
 
     public static boolean HideStatus() {
         final String jid = Privacy.JID;
-        boolean b;
-        if (getPrivacyB(jid)) {
-            b = (!getPrivacyB(String.valueOf(jid) + "_HideStatus"));
-        }
-        else {
-            b = (!getPrivacyB("hide_status"));
-        }
-        return b;
+        if (getPrivacyB(jid))
+            return (!getPrivacyB(jid + "_HideStatus"));
+        else
+            return (!getPrivacyB("hide_status"));
     }
 
     public static void SetJID(final String jid) {
-        Privacy.JID = jid;
+        JID = jid;
     }
 
     static boolean getPrivacyB(final String s) {
-        return Privacy.pctx.getSharedPreferences("B58privacy", 0).getBoolean(s, false);
+        return B58.ctx.getSharedPreferences("B58privacy", 0).getBoolean(s, false);
     }
 
-    public static String getStringPriv(final String s) {
-        return B58.ctx.getSharedPreferences("B58", 0).getString(s, "");
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        Process.killProcess(Process.myPid());
-    }
-
-    protected void onCreate(final Bundle bundle) {
-        super.onCreate(bundle);
+    public void onCreate(Bundle b)
+    {
+        super.onCreate(b);
+        addPreferencesFromResource(R.xml.tprivacy);
         this.getPreferenceManager().setSharedPreferencesName("B58privacy");
-        this.addPreferencesFromResource(B58.getResID("b58_privacy", "xml"));
         final Preference p1=this.findPreference("C_HideReceipt");
         final Preference p2=this.findPreference("B_HideReceipt");
         final Preference p3=this.findPreference("G_HideReceipt");
@@ -175,6 +135,22 @@ public class Privacy extends ow {
         p2.setSummary("Please use custom privacy as it has reduced delay.");
         p3.setEnabled(false);
         p3.setSummary("Please use custom privacy as it has reduced delay.");
-
     }
+
+    protected void onStart()
+    {
+        super.onStart();
+    }
+
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        Preference p=findPreference(s);
+        if(p!=null)
+        {
+            String key=p.getKey();
+            if(p instanceof SwitchPreference)
+                B58.ctx.getSharedPreferences("B58",0).edit().putBoolean(key, ((SwitchPreference)p).isChecked()).apply();
+        }
+        onStart();
+    }
+
 }

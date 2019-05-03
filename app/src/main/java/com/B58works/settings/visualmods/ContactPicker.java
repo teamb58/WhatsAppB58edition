@@ -1,5 +1,6 @@
 package com.B58works.settings.visualmods;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -7,42 +8,61 @@ import android.preference.Preference;
 
 
 import com.B58works.B58;
+import com.B58works.R;
 import com.B58works.settings.Superpref;
-
-import static com.B58works.B58.getBoolean;
 
 
 public class ContactPicker extends Superpref{
 
-    public void onCreate(Bundle b) {
-        super.onCreate(b);
-        addPreferencesFromResource(B58.getResID("vconpick", "xml"));
-        B58.settingstoast();
-        final Preference p2=this.findPreference("conbg");
-        final Preference p3=this.findPreference("conbggr");
-        if(getBoolean("conbggrc"))
-        {
-            p2.setTitle("v6.1a Start color for Gradient");
-            p2.setSummary("Choose a start color for background Gradient");
-            p3.setTitle("v6.1b End color for Gradient");
-            p3.setSummary("Choose an end color for background Gradient");
-        }
-        else if(!getBoolean("conbggrc")) {
-            p2.setTitle("v6.1 ContactPicker screen background");
-            p2.setSummary("Choose a color for background of contacts in ContactPicker screen.");
-        }
+    Preference p601,p602,p603,p604;
+
+    public ContactPicker()
+    {
+        p601=findPreference("conpickbg");
+        p602=findPreference("conpickname");
+        p603=findPreference("conpickstatus");
+        p604=findPreference("conpicktype");
     }
 
-    protected void onPause() {
+
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+        addPreferencesFromResource(R.xml.vconpick);
+    }
+
+    protected void onStart()
+    {
+        super.onStart();
+        b581();b58();
+    }
+
+    public void onPause() {
         super.onPause();
     }
 
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         super.onSharedPreferenceChanged(sharedPreferences, s);
+    }
+
+    private void b581()
+    {
+        p601.setIntent(new Intent(getApplicationContext(),grConpickbg.class));
+    }
+
+    private void b58()
+    {
+        p601.setTitle(R.string.conpickgr);
+        p601.setSummary(R.string.conpickgrsum);
+        p602.setTitle(R.string.conpickname);
+        p602.setSummary(R.string.conpicknamesum);
+        p603.setTitle(R.string.conpickstatus);
+        p603.setSummary(R.string.conpickstatussum);
+        p604.setTitle(R.string.conpicktype);
+        p604.setSummary(R.string.conpicktypesum);
     }
 }
 

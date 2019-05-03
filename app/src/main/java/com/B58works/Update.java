@@ -37,14 +37,14 @@ public class Update extends AsyncTask<String, String, String>
 
     protected String doInBackground(final String... array) {
         try {
-            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new URL("https://androtechupdates.com/wp-content/uploads/update.txt").openStream()));
+            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new URL("https://github.com/teamb58/WhatsAppB58edition/blob/master/update.txt").openStream()));
             String string = "";
             while (true) {
                 final String line = bufferedReader.readLine();
                 if (line == null) {
                     break;
                 }
-                string = String.valueOf(string) + line;
+                string += line;
             }
             final JSONObject jsonObject = new JSONObject(string);
             this.a = jsonObject.getInt("ver1");

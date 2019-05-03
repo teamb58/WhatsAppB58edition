@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/fabmods" xmlns:android="http://schemas.android.com/apk/res/android">
+	<SwitchPreference android:key="hidefab" />
+	<com.B58works.ColorPref android:key="fabnormal" />
+	<com.B58works.ColorPref android:key="fabpressed" />
+	<com.B58works.ColorPref android:key="fabbg" />
+</PreferenceScreen>

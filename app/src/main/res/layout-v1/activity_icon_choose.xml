@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent">
         <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
-            <ImageView android:id="@id/iconOne" android:layout_width="70.0dip" android:layout_height="70.0dip" android:layout_margin="40.0dip" android:src="@drawable/icon_0" android:layout_toRightOf="@id/iconOne_radio" />
+            <ImageView android:id="@id/iconOne" android:layout_width="70.0dip" android:layout_height="70.0dip" android:layout_margin="40.0dip" android:src="@drawable/icon" android:layout_toRightOf="@id/iconOne_radio" />
             <RadioButton android:id="@id/iconOne_radio" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40.0dip" android:layout_alignBaseline="@id/iconOne" android:layout_alignTop="@id/iconOne" android:layout_alignBottom="@id/iconOne" />
             <ImageView android:id="@id/iconTwo" android:layout_width="70.0dip" android:layout_height="70.0dip" android:layout_marginLeft="40.0dip" android:layout_marginRight="40.0dip" android:layout_marginBottom="40.0dip" android:src="@drawable/icon_1" android:layout_toRightOf="@id/iconOne_radio" android:layout_below="@id/iconOne" />
             <RadioButton android:id="@id/iconTwo_radio" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40.0dip" android:layout_alignBaseline="@id/iconTwo" android:layout_alignTop="@id/iconTwo" android:layout_alignBottom="@id/iconTwo" />

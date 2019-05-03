@@ -14,11 +14,10 @@ import android.widget.Toast;
 import java.io.File;
 
 import static com.B58works.B58.ctx;
-import static com.B58works.B58.isOnline;
 
 public class getDrawable {
 
-    public static void downloadFile1() {
+    /*public static void downloadFile1() {
         String uRl="https://androtechupdates.com/wp-content/uploads/special.jpg";
         File direct = new File(Environment.getExternalStorageDirectory() + "B58wishes");
 
@@ -45,7 +44,7 @@ public class getDrawable {
         else
             Toast.makeText(ctx,"No internet connection to check for new wallpaper",Toast.LENGTH_SHORT).show();
 
-    }
+    }*/
 
     public static Drawable getbg()
     {

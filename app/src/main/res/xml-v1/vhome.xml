@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/B58homev" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:robobunny="http://robobunny.com">
+    <SwitchPreference android:key="globalbggr" />
+    <Preference android:key="globalbg"/>
+    <Preference android:key="globaltabsgr" />
+    <com.B58works.ColorPref android:key="tabtitle" />
+    <com.B58works.SeekBarPreference android:key="textsize" android:max="35" android:defaultValue="15" robobunny:min="10" robobunny:unitsLeft="" robobunny:unitsRight="sp" />
+    <com.B58works.ColorPref android:key="unreadcounttab" />
+    <com.B58works.ColorPref android:key="unreadcounttabbg" />
+    <PreferenceCategory android:title="@string/chats" >
+        <Preference android:key="chatsbggr" />
+        <com.B58works.ColorPref android:key="online" />
+        <com.B58works.ColorPref android:key="lastseen" />
+        <com.B58works.ColorPref android:key="unreadcount" />
+        <com.B58works.ColorPref android:key="unreadcountbg" />
+        <com.B58works.ColorPref android:key="chatcontname" />
+        <com.B58works.ColorPref android:key="chatdate" />
+        <com.B58works.ColorPref android:key="chatfrom" />
+        <com.B58works.ColorPref android:key="chatmsg" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/statuss" >
+        <Preference android:key="statusbggr" />
+        <com.B58works.ColorPref android:key="statcontname" />
+        <com.B58works.ColorPref android:key="stattime" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/calls" >
+        <Preference android:key="callsbggr" />
+        <com.B58works.ColorPref android:key="callcontname" />
+        <com.B58works.ColorPref android:key="callcount" />
+        <com.B58works.ColorPref android:key="calldate" />
+        <com.B58works.ColorPref android:key="callicon" />
+    </PreferenceCategory>
+</PreferenceScreen>
