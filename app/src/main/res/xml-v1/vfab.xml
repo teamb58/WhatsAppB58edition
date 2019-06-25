@@ -4,4 +4,5 @@
 	<com.B58works.ColorPref android:key="fabnormal" />
 	<com.B58works.ColorPref android:key="fabpressed" />
 	<com.B58works.ColorPref android:key="fabbg" />
+	<Preference android:key="fabpos" />
 </PreferenceScreen>

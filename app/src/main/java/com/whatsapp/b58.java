@@ -22,7 +22,7 @@ public class b58 {
     public static void BackupPreference2(Context context, String str, String str2) {
         CreateFolder();
         File file = new File(Environment.getDataDirectory(), "data/" + context.getPackageName() + "/shared_prefs/" + "B58.xml");
-        File file2 = new File(Environment.getExternalStorageDirectory(), String.valueOf(str2) + str);
+        File file2 = new File(Environment.getExternalStorageDirectory(), (str2) + str);
         try {
             /*Object channel = new FileInputStream(file).getChannel();
             FileChannel channel2 = new FileOutputStream(file2).getChannel();

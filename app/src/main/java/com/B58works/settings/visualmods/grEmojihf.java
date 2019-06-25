@@ -6,6 +6,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -16,7 +17,7 @@ public class grEmojihf extends Superpref {
     Preference p2;
     ListPreference p3;
 
-    public grEmojihf()
+    public void init()
     {
         p=(SwitchPreference) findPreference("emojihfgr");
         p1=findPreference("emojihfColor");
@@ -27,7 +28,8 @@ public class grEmojihf extends Superpref {
     public void onCreate(Bundle b)
     {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vgremojihf);
+        addPreferencesFromResource(IDGen.xml.vgremojihf);
+        init();
     }
 
     protected void onStart()
@@ -51,33 +53,33 @@ public class grEmojihf extends Superpref {
 
     private void b58()
     {
-        p.setTitle(R.string.enablegr);
-        p.setSummary(R.string.enablegrsum);
+        p.setTitle(IDGen.string.enablegr);
+        p.setSummary(IDGen.string.enablegrsum);
         if(p.isChecked())
         {
             p2.setEnabled(true);
             p3.setEnabled(true);
-            p1.setTitle(R.string.startcolor);
-            p1.setSummary(R.string.emojihfstartsum);
-            p2.setTitle(R.string.endcolor);
-            p2.setSummary(R.string.emojihfendsum);
-            p3.setTitle(R.string.gradient);
-            p3.setEntries(R.array.gr_style);
-            p3.setEntryValues(R.array.actionbarStyleListValues);
+            p1.setTitle(IDGen.string.startcolor);
+            p1.setSummary(IDGen.string.emojihfstartsum);
+            p2.setTitle(IDGen.string.endcolor);
+            p2.setSummary(IDGen.string.emojihfendsum);
+            p3.setTitle(IDGen.string.gradient);
+            p3.setEntries(IDGen.array.gr_style);
+            p3.setEntryValues(IDGen.array.actionbarStyleListValues);
             p3.setDefaultValue("0");
-            p3.setSummary(R.string.grstyle);
+            p3.setSummary(IDGen.string.grstyle);
 
         }
         else
         {
             p2.setEnabled(false);
             p3.setEnabled(false);
-            p2.setTitle(R.string.disabled);
-            p3.setTitle(R.string.disabled);
-            p2.setSummary(getApplicationContext().getString(R.string.disableoption,"4.19.0"));
-            p3.setSummary(getApplicationContext().getString(R.string.disableoption,"4.19.0"));
-            p1.setTitle(R.string.emojihf);
-            p1.setSummary(R.string.emojihfsum);
+            p2.setTitle(IDGen.string.disabled);
+            p3.setTitle(IDGen.string.disabled);
+            p2.setSummary(getApplicationContext().getString(IDGen.string.disableoption,"4.19.0"));
+            p3.setSummary(getApplicationContext().getString(IDGen.string.disableoption,"4.19.0"));
+            p1.setTitle(IDGen.string.emojihf);
+            p1.setSummary(IDGen.string.emojihfsum);
         }
     }
 }

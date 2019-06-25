@@ -14,7 +14,7 @@ public class Listpref extends ListPreference {
     public Listpref(final Context context, final AttributeSet set) {
         super(context, set);
         this.resourceIds = null;
-        final TypedArray obtainStyledAttributes = context.obtainStyledAttributes(set, new int[] { R.attr.entryImages });
+        final TypedArray obtainStyledAttributes = context.obtainStyledAttributes(set, new int[] { IDGen.attr.entryImages });
         final String[] stringArray = context.getResources().getStringArray(obtainStyledAttributes.getResourceId(-1 + obtainStyledAttributes.getIndexCount(), -1));
         this.resourceIds = new int[stringArray.length];
         Log.d("B58", new StringBuilder().append(this.resourceIds.length).toString());

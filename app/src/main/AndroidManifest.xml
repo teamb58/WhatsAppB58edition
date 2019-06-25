@@ -37,5 +37,6 @@
         <activity android:name=".Privacy" />
         <activity android:name="com.whatsapp.architjn.ui.activity.IconChoose" />
         <activity android:name="com.whatsapp.plus.ReadLogFile" />
+        <activity android:name="com.whatsapp.plus.XMLXplorerActivity" />
     </application>
 </manifest>

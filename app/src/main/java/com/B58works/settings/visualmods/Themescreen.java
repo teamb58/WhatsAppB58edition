@@ -6,6 +6,7 @@ import android.preference.Preference;
 import android.widget.Toast;
 
 import com.B58works.B58;
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -13,7 +14,7 @@ public class Themescreen extends Superpref implements Preference.OnPreferenceCli
 
     Preference p101,p102,p103,p104;
 
-    public Themescreen()
+    public void init()
     {
         p101=findPreference("save_temp");
         p102=findPreference("load_pref_file");
@@ -42,7 +43,8 @@ public class Themescreen extends Superpref implements Preference.OnPreferenceCli
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vtheme);b58();
+        addPreferencesFromResource(IDGen.xml.vtheme);b58();
+        init();
         this.getPreferenceManager().setSharedPreferencesName("B58");
         p101.setOnPreferenceClickListener(this);
         p102.setOnPreferenceClickListener(this);
@@ -63,13 +65,13 @@ public class Themescreen extends Superpref implements Preference.OnPreferenceCli
 
     private void b58()
     {
-        p101.setTitle(R.string.savetheme);
-        p101.setSummary(R.string.savethemesum);
-        p102.setTitle(R.string.loadtheme);
-        p102.setSummary(R.string.loadthemesum);
-        p103.setTitle(R.string.cleartheme);
-        p103.setSummary(R.string.clearthemesum);
-        p104.setTitle(R.string.downloadtheme);
-        p104.setSummary(R.string.downloadthemesum);
+        p101.setTitle(IDGen.string.savetheme);
+        p101.setSummary(IDGen.string.savethemesum);
+        p102.setTitle(IDGen.string.loadtheme);
+        p102.setSummary(IDGen.string.loadthemesum);
+        p103.setTitle(IDGen.string.cleartheme);
+        p103.setSummary(IDGen.string.clearthemesum);
+        p104.setTitle(IDGen.string.downloadtheme);
+        p104.setSummary(IDGen.string.downloadthemesum);
     }
 }

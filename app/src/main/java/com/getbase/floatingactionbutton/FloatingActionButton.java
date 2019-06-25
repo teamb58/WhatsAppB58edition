@@ -27,6 +27,8 @@ import android.util.AttributeSet;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.B58works.IDGen;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -78,13 +80,13 @@ public class FloatingActionButton extends android.support.v7.widget.AppCompatIma
     mTitle = attr.getString(R.styleable.FloatingActionButton_fab_title);
     attr.recycle();
 
-      SharedPreferences shp = context.getSharedPreferences("architMod", Context.MODE_PRIVATE);
-      mColorNormal = shp.getInt("architModFabNormalColor", Color.parseColor("#00ff00"));
-      mColorPressed = shp.getInt("architModFabPressedColor", Color.parseColor("#00ff00"));
+      SharedPreferences shp = context.getSharedPreferences("B58", Context.MODE_PRIVATE);
+      mColorNormal = shp.getInt("fabnormal", Color.parseColor("#00ff00"));
+      mColorPressed = shp.getInt("fabpressed", Color.parseColor("#00ff00"));
 
     updateCircleSize();
-    mShadowRadius = getDimension(com.B58works.R.dimen.fab_shadow_radius);
-    mShadowOffset = getDimension(com.B58works.R.dimen.fab_shadow_offset);
+    mShadowRadius = getDimension(IDGen.dimen.fab_shadow_radius);
+    mShadowOffset = getDimension(IDGen.dimen.fab_shadow_offset);
     updateDrawableSize();
 
     updateBackground();
@@ -95,7 +97,7 @@ public class FloatingActionButton extends android.support.v7.widget.AppCompatIma
   }
 
   private void updateCircleSize() {
-    mCircleSize = getDimension(mSize == SIZE_NORMAL ? com.B58works.R.dimen.fab_size_normal : com.B58works.R.dimen.fab_size_mini);
+    mCircleSize = getDimension(mSize == SIZE_NORMAL ? IDGen.dimen.fab_size_normal : IDGen.dimen.fab_size_mini);
   }
 
   public void setSize(@FAB_SIZE int size) {
@@ -169,7 +171,7 @@ public class FloatingActionButton extends android.support.v7.widget.AppCompatIma
 
   public void setTitle(String title) {
     mTitle = title;
-    TextView label = (TextView) getTag(com.B58works.R.id.fab_label);
+    TextView label = (TextView) getTag(IDGen.id.fab_label);
     if (label != null)
       label.setText(title);
   }
@@ -185,19 +187,19 @@ public class FloatingActionButton extends android.support.v7.widget.AppCompatIma
   }
 
   void updateBackground() {
-    final float strokeWidth = getDimension(com.B58works.R.dimen.fab_stroke_width);
+    final float strokeWidth = getDimension(IDGen.dimen.fab_stroke_width);
     final float halfStrokeWidth = strokeWidth / 2f;
 
     LayerDrawable layerDrawable = new LayerDrawable(
         new Drawable[] {
-            getResources().getDrawable(mSize == SIZE_NORMAL ? com.B58works.R.drawable.fab_bg_normal : com.B58works.R.drawable.fab_bg_mini),
+            getResources().getDrawable(mSize == SIZE_NORMAL ? IDGen.drawable.fab_bg_normal : IDGen.drawable.fab_bg_mini),
             createFillDrawable(),
             createOuterStrokeDrawable(strokeWidth),
             createInnerStrokesDrawable(strokeWidth),
             getIconDrawable()
         });
 
-    int iconOffset = (int) (mCircleSize - getDimension(com.B58works.R.dimen.fab_icon_size)) / 2;
+    int iconOffset = (int) (mCircleSize - getDimension(IDGen.dimen.fab_icon_size)) / 2;
 
     int circleInsetHorizontal = (int) (mShadowRadius);
     int circleInsetTop = (int) (mShadowRadius - mShadowOffset);

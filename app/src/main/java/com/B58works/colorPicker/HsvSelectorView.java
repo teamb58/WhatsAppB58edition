@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class HsvSelectorView extends LinearLayout {
@@ -36,15 +37,15 @@ public class HsvSelectorView extends LinearLayout {
 	private void buildUI() {
 		LayoutInflater inflater = (LayoutInflater) getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View hsvView = inflater.inflate(R.layout.color_hsvview, null);
+		View hsvView = inflater.inflate(IDGen.layout.color_hsvview, null);
 		this.addView(hsvView, new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT));
 
-		alphaSelector = (HsvAlphaSelectorView) hsvView
-				.findViewById(R.id.color_hsv_alpha);
-		hsvColorValueView = (HsvColorValueView) hsvView
-				.findViewById(R.id.color_hsv_value);
-		hueSelector = (HsvHueSelectorView) hsvView.findViewById(R.id.color_hsv_hue);
+		alphaSelector =  hsvView
+				.findViewById(IDGen.id.color_hsv_alpha);
+		hsvColorValueView =  hsvView
+				.findViewById(IDGen.id.color_hsv_value);
+		hueSelector =  hsvView.findViewById(IDGen.id.color_hsv_hue);
 		
 		alphaSelector.setOnAlphaChangedListener(new HsvAlphaSelectorView.OnAlphaChangedListener() {
 			@Override

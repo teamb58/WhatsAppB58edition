@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class RgbSelectorView extends LinearLayout {
@@ -34,7 +35,7 @@ public class RgbSelectorView extends LinearLayout {
 	private void init()
 	{
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rgbView = inflater.inflate(R.layout.color_rgbview, null);
+		View rgbView = inflater.inflate(IDGen.layout.color_rgbview, null);
 		
 		addView(rgbView, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
@@ -55,15 +56,15 @@ public class RgbSelectorView extends LinearLayout {
 			}
 		};
 		
-		seekRed = (SeekBar)rgbView.findViewById(R.id.color_rgb_seekRed);
+		seekRed = (SeekBar)rgbView.findViewById(IDGen.id.color_rgb_seekRed);
 		seekRed.setOnSeekBarChangeListener(listener);
-		seekGreen = (SeekBar)rgbView.findViewById(R.id.color_rgb_seekGreen);
+		seekGreen = (SeekBar)rgbView.findViewById(IDGen.id.color_rgb_seekGreen);
 		seekGreen.setOnSeekBarChangeListener(listener);
-		seekBlue = (SeekBar)rgbView.findViewById(R.id.color_rgb_seekBlue);
+		seekBlue = (SeekBar)rgbView.findViewById(IDGen.id.color_rgb_seekBlue);
 		seekBlue.setOnSeekBarChangeListener(listener);
-		seekAlpha = (SeekBar)rgbView.findViewById(R.id.color_rgb_seekAlpha);
+		seekAlpha = (SeekBar)rgbView.findViewById(IDGen.id.color_rgb_seekAlpha);
 		seekAlpha.setOnSeekBarChangeListener(listener);
-		imgPreview = (ImageView)rgbView.findViewById(R.id.color_rgb_imgpreview);
+		imgPreview = (ImageView)rgbView.findViewById(IDGen.id.color_rgb_imgpreview);
 		
 		setColor(Color.BLACK);
 	}

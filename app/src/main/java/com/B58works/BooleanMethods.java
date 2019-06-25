@@ -7,126 +7,126 @@ import static com.B58works.B58.ctx;
 
 public class BooleanMethods {
 
-    public static Boolean getBoolean(String name)
+    public static boolean getBoolean(String name)
     {
         return B58.pref.getBoolean(name,false);
     }
-    public static Boolean actionbargr()
+    public static boolean actionbargr()
     {
         return getBoolean("actionbargr");
     }
 
-    public static Boolean globalbggr()
+    public static boolean globalbggr()
     {
         return getBoolean("globalbggr");
     }
 
-    public static Boolean homebggr()
+    public static boolean homebggr()
     {
         return getBoolean("homebggr");
     }
 
-    public static Boolean tabsbggr()
+    public static boolean tabsbggr()
     {
         return getBoolean("tabsbggr");
     }
 
-    public static Boolean chatscrfullbg()
+    public static boolean chatscrfullbg()
     {
         return getBoolean("chatfullbg");
     }
 
-    public static Boolean chatscrfullbggr()
+    public static boolean chatscrfullbggr()
     {
         return getBoolean("chatscrbggren");
     }
 
-    public static Boolean chatscraltbg()
+    public static boolean chatscraltbg()
     {
         return getBoolean("chatscrbgalten");
     }
 
-    public static Boolean chatscraltbggr()
+    public static boolean chatscraltbggr()
     {
         return getBoolean("chatscrbggralten");
     }
 
-    public static Boolean hidename()
+    static boolean hidename()
     {
         return getBoolean("hidename");
     }
 
-    public static Boolean hidemsg()
+    static boolean hidemsg()
     {
         return getBoolean("hidemsg");
     }
 
-    public static Boolean statusscrfullbg()
+    public static boolean statusscrfullbg()
     {
         return getBoolean("statusfullbg");
     }
 
-    public static Boolean statusscrfullbggr()
+    public static boolean statusscrfullbggr()
     {
         return getBoolean("statusscrbggren");
     }
 
-    public static Boolean statusscraltbg()
+    public static boolean statusscraltbg()
     {
         return getBoolean("statusscrbgalten");
     }
 
-    public static Boolean statusscraltbggr()
+    public static boolean statusscraltbggr()
     {
         return getBoolean("statusscrbggralten");
     }
 
-    public static Boolean callscrfullbg()
+    public static boolean callscrfullbg()
     {
         return getBoolean("callfullbg");
     }
 
-    public static Boolean callscrfullbggr()
+    public static boolean callscrfullbggr()
     {
         return getBoolean("callscrbggren");
     }
 
-    public static Boolean callscraltbg()
+    public static boolean callscraltbg()
     {
         return getBoolean("callscrbgalten");
     }
 
-    public static Boolean callscraltbggr()
+    public static boolean callscraltbggr()
     {
         return getBoolean("callscrbggralten");
     }
 
-    public static Boolean emojihfgr()
+    public static boolean emojihfgr()
     {
         return getBoolean("emojihfgr");
     }
 
-    public static Boolean emojibggr()
+    public static boolean emojibggr()
     {
         return getBoolean("emojibggr");
     }
 
-    public static Boolean conpickbggr()
+    public static boolean conpickbggr()
     {
         return getBoolean("conpickbggr");
     }
 
-    public static Boolean hidefab()
+    public static boolean hidefab()
     {
         return getBoolean("hidefab");
     }
 
-    public static boolean contact_online_toast() {
-        return getBoolean("contact_online_toast");
+    static boolean contact_online_toast() {
+        return getBoolean("onlinetoast");
     }
 
     public static boolean Archv_chats() {
-        return getBoolean("Archv_chats");
+        return getBoolean("archvchat");
     }
 
     public static boolean Audio_ears() {
@@ -138,11 +138,11 @@ public class BooleanMethods {
     }
 
     public static boolean HideInfo() {
-        return getBoolean("B58_hideinfo");
+        return getBoolean("hideinfo");
     }
 
     static boolean onlinechat() {
-        return getBoolean("onlinechat");
+        return getBoolean("lsmain");
     }
 
     static boolean isNetworkAvailable() {
@@ -155,7 +155,7 @@ public class BooleanMethods {
         }
     }
 
-    public static boolean statuschat() {
-        return getBoolean("statuschat");
+    static boolean statuschat() {
+        return getBoolean("chatstatus");
     }
 }

@@ -6,6 +6,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -22,7 +23,7 @@ public class grStatusscrbg extends Superpref {
     Preference p368;
     ListPreference p369;
 
-    public grStatusscrbg()
+    public void init()
     {
         p=(SwitchPreference)findPreference("statusfullbg");
         p361=(SwitchPreference)findPreference("statusscrbggren");
@@ -39,7 +40,8 @@ public class grStatusscrbg extends Superpref {
     public void onCreate(Bundle b)
     {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vgrstatusscr);
+        addPreferencesFromResource(IDGen.xml.vgrstatusscr);
+        init();
     }
 
     protected void onStart()
@@ -62,12 +64,12 @@ public class grStatusscrbg extends Superpref {
 
     private void b58()
     {
-        p.setTitle(R.string.statussinglebg);
-        p.setSummary(R.string.statussinglebgsum);
-        p361.setTitle(R.string.enablegr);
-        p361.setSummary(R.string.enablegrsum);
-        p365.setTitle(R.string.altrows);
-        p365.setSummary(R.string.altrowsbg);
+        p.setTitle(IDGen.string.statussinglebg);
+        p.setSummary(IDGen.string.statussinglebgsum);
+        p361.setTitle(IDGen.string.enablegr);
+        p361.setSummary(IDGen.string.enablegrsum);
+        p365.setTitle(IDGen.string.altrows);
+        p365.setSummary(IDGen.string.altrowsbg);
         if(p.isChecked())
         {
             p365.setEnabled(true);
@@ -78,20 +80,20 @@ public class grStatusscrbg extends Superpref {
             mainrow();
             if(p365.isChecked())
             {
-                p366.setTitle(R.string.statusaltbggr);
-                p366.setSummary(R.string.statusaltbggrsum);
+                p366.setTitle(IDGen.string.statusaltbggr);
+                p366.setSummary(IDGen.string.statusaltbggrsum);
                 altrow();
             }
             else
             {
-                p366.setTitle(R.string.disabled);
-                p366.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.5"));
-                p368.setTitle(R.string.disabled);
-                p368.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.5"));
-                p369.setTitle(R.string.disabled);
-                p369.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.5"));
-                p367.setTitle(R.string.disabled);
-                p367.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.5"));
+                p366.setTitle(IDGen.string.disabled);
+                p366.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.5"));
+                p368.setTitle(IDGen.string.disabled);
+                p368.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.5"));
+                p369.setTitle(IDGen.string.disabled);
+                p369.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.5"));
+                p367.setTitle(IDGen.string.disabled);
+                p367.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.5"));
                 p368.setEnabled(false);
                 p369.setEnabled(false);
                 p367.setEnabled(false);
@@ -106,16 +108,16 @@ public class grStatusscrbg extends Superpref {
             p367.setEnabled(false);
             p368.setEnabled(false);
             p369.setEnabled(false);
-            p365.setTitle(R.string.disabled);
-            p365.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.0"));
-            p366.setTitle(R.string.disabled);
-            p366.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.0"));
-            p367.setTitle(R.string.disabled);
-            p367.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.0"));
-            p368.setTitle(R.string.disabled);
-            p368.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.0"));
-            p369.setTitle(R.string.disabled);
-            p369.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.0"));
+            p365.setTitle(IDGen.string.disabled);
+            p365.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.0"));
+            p366.setTitle(IDGen.string.disabled);
+            p366.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.0"));
+            p367.setTitle(IDGen.string.disabled);
+            p367.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.0"));
+            p368.setTitle(IDGen.string.disabled);
+            p368.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.0"));
+            p369.setTitle(IDGen.string.disabled);
+            p369.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.0"));
         }
     }
 
@@ -123,26 +125,26 @@ public class grStatusscrbg extends Superpref {
     {
         if(p361.isChecked())
         {
-            p362.setTitle(R.string.startcolor);
-            p362.setSummary(R.string.statussfsbgstartsum);
-            p363.setTitle(R.string.endcolor);
-            p363.setSummary(R.string.statussfsbgendsum);
-            p364.setTitle(R.string.gradient);
-            p364.setEntries(R.array.gr_style);
-            p364.setEntryValues(R.array.actionbarStyleListValues);
+            p362.setTitle(IDGen.string.startcolor);
+            p362.setSummary(IDGen.string.statussfsbgstartsum);
+            p363.setTitle(IDGen.string.endcolor);
+            p363.setSummary(IDGen.string.statussfsbgendsum);
+            p364.setTitle(IDGen.string.gradient);
+            p364.setEntries(IDGen.array.gr_style);
+            p364.setEntryValues(IDGen.array.actionbarStyleListValues);
             p364.setDefaultValue("0");
-            p364.setSummary(R.string.grstyle);
+            p364.setSummary(IDGen.string.grstyle);
             p363.setEnabled(true);
             p364.setEnabled(true);
         }
         else
         {
-            p362.setTitle(R.string.statussscrbg);
-            p362.setSummary(R.string.statussscrfsbgsum);
-            p363.setTitle(R.string.disabled);
-            p363.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.1"));
-            p364.setTitle(R.string.disabled);
-            p364.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.1"));
+            p362.setTitle(IDGen.string.statussscrbg);
+            p362.setSummary(IDGen.string.statussscrfsbgsum);
+            p363.setTitle(IDGen.string.disabled);
+            p363.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.1"));
+            p364.setTitle(IDGen.string.disabled);
+            p364.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.1"));
             p363.setEnabled(false);
             p364.setEnabled(false);
         }
@@ -152,26 +154,26 @@ public class grStatusscrbg extends Superpref {
     {
         if(p361.isChecked())
         {
-            p362.setTitle(R.string.startcolor);
-            p362.setSummary(R.string.statussbgstartsum);
-            p363.setTitle(R.string.endcolor);
-            p363.setSummary(R.string.statussbgendsum);
-            p364.setTitle(R.string.gradient);
-            p364.setEntries(R.array.gr_style);
-            p364.setEntryValues(R.array.actionbarStyleListValues);
+            p362.setTitle(IDGen.string.startcolor);
+            p362.setSummary(IDGen.string.statussbgstartsum);
+            p363.setTitle(IDGen.string.endcolor);
+            p363.setSummary(IDGen.string.statussbgendsum);
+            p364.setTitle(IDGen.string.gradient);
+            p364.setEntries(IDGen.array.gr_style);
+            p364.setEntryValues(IDGen.array.actionbarStyleListValues);
             p364.setDefaultValue("0");
-            p364.setSummary(R.string.grstyle);
+            p364.setSummary(IDGen.string.grstyle);
             p363.setEnabled(true);
             p364.setEnabled(true);
         }
         else
         {
-            p362.setTitle(R.string.statussscrbg);
-            p362.setSummary(R.string.statussscrbgsum);
-            p363.setTitle(R.string.disabled);
-            p363.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.1"));
-            p364.setTitle(R.string.disabled);
-            p364.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.1"));
+            p362.setTitle(IDGen.string.statussscrbg);
+            p362.setSummary(IDGen.string.statussscrbgsum);
+            p363.setTitle(IDGen.string.disabled);
+            p363.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.1"));
+            p364.setTitle(IDGen.string.disabled);
+            p364.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.1"));
             p363.setEnabled(false);
             p364.setEnabled(false);
         }
@@ -181,26 +183,26 @@ public class grStatusscrbg extends Superpref {
     {
         if(p366.isChecked())
         {
-            p367.setTitle(R.string.startcolor);
-            p367.setSummary(R.string.statussaltbgstartsum);
-            p368.setTitle(R.string.endcolor);
-            p368.setSummary(R.string.statussaltbgendsum);
-            p369.setTitle(R.string.gradient);
-            p369.setEntries(R.array.gr_style);
-            p369.setEntryValues(R.array.actionbarStyleListValues);
+            p367.setTitle(IDGen.string.startcolor);
+            p367.setSummary(IDGen.string.statussaltbgstartsum);
+            p368.setTitle(IDGen.string.endcolor);
+            p368.setSummary(IDGen.string.statussaltbgendsum);
+            p369.setTitle(IDGen.string.gradient);
+            p369.setEntries(IDGen.array.gr_style);
+            p369.setEntryValues(IDGen.array.actionbarStyleListValues);
             p369.setDefaultValue("0");
-            p369.setSummary(R.string.grstyle);
+            p369.setSummary(IDGen.string.grstyle);
             p368.setEnabled(true);
             p369.setEnabled(true);
         }
         else
         {
-            p367.setTitle(R.string.statussscraltbg);
-            p367.setSummary(R.string.statussscraltbgsum);
-            p368.setTitle(R.string.disabled);
-            p368.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.6"));
-            p369.setTitle(R.string.disabled);
-            p369.setSummary(getApplicationContext().getString(R.string.enableoption,"3.6.6"));
+            p367.setTitle(IDGen.string.statussscraltbg);
+            p367.setSummary(IDGen.string.statussscraltbgsum);
+            p368.setTitle(IDGen.string.disabled);
+            p368.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.6"));
+            p369.setTitle(IDGen.string.disabled);
+            p369.setSummary(getApplicationContext().getString(IDGen.string.enableoption,"3.6.6"));
             p368.setEnabled(false);
             p369.setEnabled(false);
         }

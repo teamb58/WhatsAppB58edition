@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.SwitchPreference;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -13,7 +14,7 @@ public class Chatscreen extends Superpref{
 
     SwitchPreference p31,p32,p33,p34,p35,p36,p37;
 
-    public Chatscreen()
+    public void init()
     {
         p31=(SwitchPreference)findPreference("hideinfo");
         p32=(SwitchPreference)findPreference("txtselect");
@@ -26,7 +27,8 @@ public class Chatscreen extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.tchat);
+        addPreferencesFromResource(IDGen.xml.tchat);
+        init();
     }
 
     public void onPause() {
@@ -50,27 +52,27 @@ public class Chatscreen extends Superpref{
 
     private void b58()
     {
-        p31.setTitle(R.string.hidedt);
-        p31.setSummaryOn(getString(R.string.hidedtsum,getString(R.string.swhides)));
-        p31.setSummaryOff(getString(R.string.hidedtsum,getString(R.string.swshows)));
-        p32.setTitle(R.string.txtselect);
-        p32.setSummaryOn(getString(R.string.txtselectsum,getString(R.string.swshows)));
-        p32.setSummaryOff(getString(R.string.txtselectsum,getString(R.string.swhides)));
-        p33.setTitle(R.string.callbtn);
-        p33.setSummaryOn(getString(R.string.callbtnsum,getString(R.string.swhides)));
-        p33.setSummaryOff(getString(R.string.callbtnsum,getString(R.string.swshows)));
-        p34.setTitle(R.string.profpic);
-        p34.setSummaryOn(getString(R.string.profpicsum,getString(R.string.swhides)));
-        p34.setSummaryOff(getString(R.string.profpicsum,getString(R.string.swshows)));
-        p35.setTitle(R.string.gifchoose);
-        p35.setSummaryOn(R.string.giftenor);
-        p35.setSummaryOff(R.string.gifgiphy);
-        p36.setTitle(R.string.chatstatus);
-        p36.setSummaryOn(getString(R.string.chatstatussum,getString(R.string.swshows)));
-        p36.setSummaryOff(getString(R.string.chatstatussum,getString(R.string.swhides)));
-        p37.setTitle(R.string.centeraction);
-        p37.setSummaryOn(getString(R.string.centeractionsum,getString(R.string.swshows)));
-        p37.setSummaryOff(getString(R.string.centeractionsum,getString(R.string.swhides)));
+        p31.setTitle(IDGen.string.hidedt);
+        p31.setSummaryOn(getString(IDGen.string.hidedtsum,getString(IDGen.string.swhides)));
+        p31.setSummaryOff(getString(IDGen.string.hidedtsum,getString(IDGen.string.swshows)));
+        p32.setTitle(IDGen.string.txtselect);
+        p32.setSummaryOn(getString(IDGen.string.txtselectsum,getString(IDGen.string.swshows)));
+        p32.setSummaryOff(getString(IDGen.string.txtselectsum,getString(IDGen.string.swhides)));
+        p33.setTitle(IDGen.string.callbtn);
+        p33.setSummaryOn(getString(IDGen.string.callbtnsum,getString(IDGen.string.swhides)));
+        p33.setSummaryOff(getString(IDGen.string.callbtnsum,getString(IDGen.string.swshows)));
+        p34.setTitle(IDGen.string.profpic);
+        p34.setSummaryOn(getString(IDGen.string.profpicsum,getString(IDGen.string.swhides)));
+        p34.setSummaryOff(getString(IDGen.string.profpicsum,getString(IDGen.string.swshows)));
+        p35.setTitle(IDGen.string.gifchoose);
+        p35.setSummaryOn(IDGen.string.giftenor);
+        p35.setSummaryOff(IDGen.string.gifgiphy);
+        p36.setTitle(IDGen.string.chatstatus);
+        p36.setSummaryOn(getString(IDGen.string.chatstatussum,getString(IDGen.string.swshows)));
+        p36.setSummaryOff(getString(IDGen.string.chatstatussum,getString(IDGen.string.swhides)));
+        p37.setTitle(IDGen.string.centeraction);
+        p37.setSummaryOn(getString(IDGen.string.centeractionsum,getString(IDGen.string.swshows)));
+        p37.setSummaryOff(getString(IDGen.string.centeractionsum,getString(IDGen.string.swhides)));
     }
 
 }

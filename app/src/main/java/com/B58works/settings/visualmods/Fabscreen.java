@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.B58works.B58;
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -26,7 +27,7 @@ public class Fabscreen extends Superpref{
     Preference p3;
     Preference p4;
 
-    public Fabscreen()
+    public void init()
     {
         p = (SwitchPreference) findPreference("hidefab");
         p1 = findPreference("fabnormal");
@@ -37,7 +38,8 @@ public class Fabscreen extends Superpref{
 
     public void onCreate(final Bundle bundle) {
         super.onCreate(bundle);
-        this.addPreferencesFromResource(R.xml.vfab);
+        this.addPreferencesFromResource(IDGen.xml.vfab);
+        init();
         p4.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -67,17 +69,17 @@ public class Fabscreen extends Superpref{
 
     private void b58()
     {
-        p.setTitle(R.string.hidefab);
-        p.setSummaryOff(R.string.stockfabd);
-        p.setSummaryOn(R.string.stockfabe);
-        p1.setTitle(R.string.fabnormal);
-        p1.setSummary(R.string.fabnormalsum);
-        p2.setTitle(R.string.fabpressed);
-        p2.setSummary(R.string.fabpressedsum);
-        p3.setTitle(R.string.fabbg);
-        p3.setSummary(R.string.fabbgsum);
-        p4.setTitle(R.string.fabpos);
-        p4.setSummary(R.string.fabpossum);
+        p.setTitle(IDGen.string.hidefab);
+        p.setSummaryOff(IDGen.string.stockfabd);
+        p.setSummaryOn(IDGen.string.stockfabe);
+        p1.setTitle(IDGen.string.fabnormal);
+        p1.setSummary(IDGen.string.fabnormalsum);
+        p2.setTitle(IDGen.string.fabpressed);
+        p2.setSummary(IDGen.string.fabpressedsum);
+        p3.setTitle(IDGen.string.fabbg);
+        p3.setSummary(IDGen.string.fabbgsum);
+        p4.setTitle(IDGen.string.fabpos);
+        p4.setSummary(IDGen.string.fabpossum);
     }
 
     private void dialogForFabAnimationPoints() {

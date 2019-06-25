@@ -22,26 +22,26 @@ public class ColorPref extends Preference {
     public ColorPref(final Context context) {
         super(context);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(R.layout.color_pref);
+        this.setWidgetLayoutResource(IDGen.layout.color_pref);
     }
 
     public ColorPref(final Context context, final AttributeSet set) {
         super(context, set);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(R.layout.color_pref);
+        this.setWidgetLayoutResource(IDGen.layout.color_pref);
     }
 
     public ColorPref(final Context context, final AttributeSet set, final int n) {
         super(context, set, n);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(R.layout.color_pref);
+        this.setWidgetLayoutResource(IDGen.layout.color_pref);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ColorPref(final Context context, final AttributeSet set, final int n, final int n2) {
         super(context, set, n, n2);
         this.b = B58.getColor(this.getKey());
-        this.setWidgetLayoutResource(R.layout.color_pref);
+        this.setWidgetLayoutResource(IDGen.layout.color_pref);
     }
 
     private void a() {
@@ -76,7 +76,7 @@ public class ColorPref extends Preference {
                 a(view);
             }
         });
-        this.a = view.findViewById(R.id.imageViewIcon);
+        this.a = view.findViewById(IDGen.id.imageViewIcon);
         if (this.a != null) {
             this.a();
             this.a.setClickable(true);

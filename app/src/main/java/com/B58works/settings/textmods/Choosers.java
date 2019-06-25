@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.preference.Preference;
 
 
+import com.B58works.IDGen;
 import com.B58works.Listpref;
-import com.B58works.R;
 import com.B58works.settings.Superpref;
 import com.whatsapp.architjn.ui.activity.IconChoose;
 
@@ -17,7 +17,7 @@ public class Choosers extends Superpref{
     Listpref p71,p73,p74;
     Preference p72;
 
-    public Choosers()
+    public void init()
     {
         p71=(Listpref)findPreference("notifyicon");
         p72=findPreference("launchericon");
@@ -27,7 +27,8 @@ public class Choosers extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.tchooser);
+        addPreferencesFromResource(IDGen.xml.tchooser);
+        init();
     }
 
     public void onPause() {
@@ -51,19 +52,19 @@ public class Choosers extends Superpref{
 
     private void b58()
     {
-        p71.setTitle(R.string.notifychoose);
-        p71.setEntries(R.array.notifybar_colors);
+        p71.setTitle(IDGen.string.notifychoose);
+        p71.setEntries(IDGen.array.notifybar_colors);
         p71.setDefaultValue("0");
-        p71.setEntryValues(R.array.notifybar_values);
-        p72.setTitle(R.string.launcherchoose);
+        p71.setEntryValues(IDGen.array.notifybar_values);
+        p72.setTitle(IDGen.string.launcherchoose);
         p72.setIntent(new Intent(this, IconChoose.class));
-        p73.setTitle(R.string.bubblechoose);
-        p73.setEntries(R.array.conversation_bubbleStyleList);
+        p73.setTitle(IDGen.string.bubblechoose);
+        p73.setEntries(IDGen.array.conversation_bubbleStyleList);
         p73.setDefaultValue("0");
-        p73.setEntryValues(R.array.conversation_bubbleStyleListValues);
-        p74.setTitle(R.string.tickchoose);
-        p74.setEntries(R.array.tick_n);
+        p73.setEntryValues(IDGen.array.conversation_bubbleStyleListValues);
+        p74.setTitle(IDGen.string.tickchoose);
+        p74.setEntries(IDGen.array.tick_n);
         p74.setDefaultValue("0");
-        p74.setEntryValues(R.array.tick_v);
+        p74.setEntryValues(IDGen.array.tick_v);
     }
 }

@@ -9,6 +9,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class ColorSelectorView extends LinearLayout {
@@ -62,7 +63,7 @@ public class ColorSelectorView extends LinearLayout {
 	private void init() {
 		LayoutInflater inflater = (LayoutInflater) getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View contentView = inflater.inflate(R.layout.color_colorselectview,
+		View contentView = inflater.inflate(IDGen.layout.color_colorselectview,
 				null);
 
 		addView(contentView, new LayoutParams(LayoutParams.FILL_PARENT,
@@ -100,14 +101,14 @@ public class ColorSelectorView extends LinearLayout {
 				});
 
 		tabs = (TabHost) contentView
-				.findViewById(R.id.colorview_tabColors);
+				.findViewById(IDGen.id.colorview_tabColors);
 		tabs.setup();
 		ColorTabContentFactory factory = new ColorTabContentFactory();
-		TabSpec hsvTab = tabs.newTabSpec(HSV_TAG).setIndicator("HSV", getContext().getResources().getDrawable(R.drawable.hsv32))
+		TabSpec hsvTab = tabs.newTabSpec(HSV_TAG).setIndicator("HSV", getContext().getResources().getDrawable(IDGen.drawable.hsv32))
 				.setContent(factory);
-		TabSpec rgbTab = tabs.newTabSpec(RGB_TAG).setIndicator("RGB", getContext().getResources().getDrawable(R.drawable.rgb32))
+		TabSpec rgbTab = tabs.newTabSpec(RGB_TAG).setIndicator("RGB", getContext().getResources().getDrawable(IDGen.drawable.rgb32))
 				.setContent(factory);
-		TabSpec hexTab = tabs.newTabSpec(HEX_TAG).setIndicator("HEX", getContext().getResources().getDrawable(R.drawable.hex32))
+		TabSpec hexTab = tabs.newTabSpec(HEX_TAG).setIndicator("HEX", getContext().getResources().getDrawable(IDGen.drawable.hex32))
 				.setContent(factory);
 		tabs.addTab(hsvTab);
 		tabs.addTab(rgbTab);

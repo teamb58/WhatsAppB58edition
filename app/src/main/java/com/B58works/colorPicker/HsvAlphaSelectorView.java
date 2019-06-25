@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class HsvAlphaSelectorView extends LinearLayout {
@@ -51,7 +52,7 @@ public class HsvAlphaSelectorView extends LinearLayout {
 
 	private void init() {
 		seekSelector = getContext().getResources().getDrawable(
-				R.drawable.color_seekselector);
+				IDGen.drawable.color_seekselector);
 		buildUI();
 	}
 
@@ -67,7 +68,7 @@ public class HsvAlphaSelectorView extends LinearLayout {
 		addView(imgSeekSelector, paramsSeek);
 
 		imgAlpha = new ImageView(getContext());
-		imgAlpha.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.transparentbackrepeat));
+		imgAlpha.setBackgroundDrawable(getContext().getResources().getDrawable(IDGen.drawable.transparentbackrepeat));
 		imgAlpha.setScaleType(ScaleType.FIT_XY);
 		LayoutParams params = new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT);

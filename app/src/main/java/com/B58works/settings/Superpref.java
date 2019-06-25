@@ -10,10 +10,10 @@ import android.preference.SwitchPreference;
 import com.B58works.B58;
 import com.B58works.SeekBarPreference;
 
-import d.f.cz;
+import d.f.Wy;
 import static com.B58works.B58.prefEdit;
 
-public class Superpref extends cz implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class Superpref extends Wy implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);

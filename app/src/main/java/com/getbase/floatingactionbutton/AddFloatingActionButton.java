@@ -12,6 +12,8 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 
+import com.B58works.IDGen;
+
 public class AddFloatingActionButton extends FloatingActionButton {
   int mPlusColor;
 
@@ -61,11 +63,11 @@ public class AddFloatingActionButton extends FloatingActionButton {
 
   @Override
   Drawable getIconDrawable() {
-    final float iconSize = getDimension(com.B58works.R.dimen.fab_icon_size);
+    final float iconSize = getDimension(IDGen.dimen.fab_icon_size);
     final float iconHalfSize = iconSize / 2f;
 
-    final float plusSize = getDimension(com.B58works.R.dimen.fab_plus_icon_size);
-    final float plusHalfStroke = getDimension(com.B58works.R.dimen.fab_plus_icon_stroke) / 2f;
+    final float plusSize = getDimension(IDGen.dimen.fab_plus_icon_size);
+    final float plusHalfStroke = getDimension(IDGen.dimen.fab_plus_icon_stroke) / 2f;
     final float plusOffset = (iconSize - plusSize) / 2f;
 
     final Shape shape = new Shape() {

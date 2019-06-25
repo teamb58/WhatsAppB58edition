@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.preference.SwitchPreference;
 
 import com.B58works.B58;
-import com.B58works.R;
+import com.B58works.IDGen;
 import com.B58works.SeekBarPreference;
 import com.B58works.settings.Superpref;
 
@@ -14,7 +14,7 @@ public class Mediamods extends Superpref{
     SeekBarPreference p41,p42,p43,p44,p45,p46;
     SwitchPreference p47,p48;
 
-    public Mediamods()
+    public void init()
     {
         p41=(SeekBarPreference) findPreference("status_image_quality");
         p42=(SeekBarPreference) findPreference("status_image_max_edge");
@@ -28,7 +28,8 @@ public class Mediamods extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.tmedia);
+        addPreferencesFromResource(IDGen.xml.tmedia);
+        init();
         this.getPreferenceManager().setSharedPreferencesName("com.whatsapp_preferences");
     }
 
@@ -53,14 +54,14 @@ public class Mediamods extends Superpref{
 
     private void b58()
     {
-        p41.setTitle(R.string.statusquality);
-        p42.setTitle(R.string.statusimg);
-        p43.setTitle(R.string.statusduration);
-        p44.setTitle(R.string.imgsize);
-        p45.setTitle(R.string.imgquality);
-        p46.setTitle(R.string.imgresolution);
-        p47.setTitle(R.string.mediaprox);
-        p48.setTitle(R.string.mediaopswitch);
+        p41.setTitle(IDGen.string.statusquality);
+        p42.setTitle(IDGen.string.statusimg);
+        p43.setTitle(IDGen.string.statusduration);
+        p44.setTitle(IDGen.string.imgsize);
+        p45.setTitle(IDGen.string.imgquality);
+        p46.setTitle(IDGen.string.imgresolution);
+        p47.setTitle(IDGen.string.mediaprox);
+        p48.setTitle(IDGen.string.mediaopswitch);
         p48.setDependency(p47.getKey());
     }
 }

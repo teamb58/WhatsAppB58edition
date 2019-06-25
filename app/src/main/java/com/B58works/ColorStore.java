@@ -51,11 +51,6 @@ public class ColorStore {
         return Color.parseColor(chatbubbleleft);
     }
 
-    public static int sbg() {
-        String sendbg = "#075e54";
-        return Color.parseColor(sendbg);
-    }
-
     public static int send() {
         String send = "#ffffff";
         return Color.parseColor(send);
@@ -75,11 +70,4 @@ public class ColorStore {
         String fabBackgoundColor = "#1Affffff";
         return Color.parseColor(fabBackgoundColor);
     }
-
-
-
-
-
-
-
 }

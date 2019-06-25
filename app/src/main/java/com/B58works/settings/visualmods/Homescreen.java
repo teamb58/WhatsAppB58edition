@@ -8,6 +8,7 @@ import android.preference.SwitchPreference;
 import android.widget.Toast;
 
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.SeekBarPreference;
 import com.B58works.settings.Superpref;
@@ -42,7 +43,7 @@ public class Homescreen extends Superpref{
     Preference p326;
 
 
-    public Homescreen()
+    public void init()
     {
         p300=(SwitchPreference)findPreference("globalbggr");
         p301=findPreference("globalbg");
@@ -71,7 +72,8 @@ public class Homescreen extends Superpref{
     }
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vhome);
+        addPreferencesFromResource(IDGen.xml.vhome);
+        init();
         //getPreferenceManager().setSharedPreferencesName("B58");
         b581();
         general();
@@ -122,20 +124,20 @@ public class Homescreen extends Superpref{
     }
     private void main()
     {
-        p300.setTitle(R.string.singlebg);
+        p300.setTitle(IDGen.string.singlebg);
         //if(getApplicationContext().getSharedPreferences("B58",0).getBoolean("globalbggr",false))
         if(p300.isChecked())
         {
-            p300.setSummary(getApplicationContext().getString(R.string.singlebgsum,"Enabled"));
-            p301.setTitle(R.string.globalbg);
-            p301.setSummary(R.string.globalbgsum);
+            p300.setSummary(getString(IDGen.string.singlebgsum,"Enabled"));
+            p301.setTitle(IDGen.string.globalbg);
+            p301.setSummary(IDGen.string.globalbgsum);
             globalbg();
-            p307.setTitle(R.string.disabled);
-            p317.setTitle(R.string.disabled);
-            p321.setTitle(R.string.disabled);
-            p307.setSummary(getApplicationContext().getString(R.string.disableoption,"3.0"));
-            p317.setSummary(getApplicationContext().getString(R.string.disableoption,"3.0"));
-            p321.setSummary(getApplicationContext().getString(R.string.disableoption,"3.0"));
+            p307.setTitle(IDGen.string.disabled);
+            p317.setTitle(IDGen.string.disabled);
+            p321.setTitle(IDGen.string.disabled);
+            p307.setSummary(getString(IDGen.string.disableoption,"3.0"));
+            p317.setSummary(getString(IDGen.string.disableoption,"3.0"));
+            p321.setSummary(getString(IDGen.string.disableoption,"3.0"));
             p307.setEnabled(false);
             p317.setEnabled(false);
             p321.setEnabled(false);
@@ -145,23 +147,23 @@ public class Homescreen extends Superpref{
             /*p300.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Toast.makeText(getApplicationContext(),getApplicationContext().getString(R.string.enableoption,"3.0"),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getApplicationContext().getString(IDGen.string.enableoption,"3.0"),Toast.LENGTH_SHORT).show();
                     return true;
                 }
             });*/
-            p300.setSummary(getApplicationContext().getString(R.string.singlebgsum,"Disabled"));
-            p301.setTitle(R.string.disabled);
-            p301.setSummary(getString(R.string.disableoption,"3.0"));
+            p300.setSummary(getString(IDGen.string.singlebgsum,"Disabled"));
+            p301.setTitle(IDGen.string.disabled);
+            p301.setSummary(getString(IDGen.string.disableoption,"3.0"));
             p301.setEnabled(false);
             chatscrbg();
             statuscrbg();
             callscrbg();
-            p307.setTitle(R.string.chatscrbg);
-            p307.setSummary(R.string.chatscrbgsum);
-            p317.setTitle(R.string.statscrbg);
-            p317.setSummary(R.string.statscrbgsum);
-            p321.setTitle(R.string.callscrbg);
-            p321.setSummary(R.string.callscrbgsum);
+            p307.setTitle(IDGen.string.chatscrbg);
+            p307.setSummary(IDGen.string.chatscrbgsum);
+            p317.setTitle(IDGen.string.statscrbg);
+            p317.setSummary(IDGen.string.statscrbgsum);
+            p321.setTitle(IDGen.string.callscrbg);
+            p321.setSummary(IDGen.string.callscrbgsum);
             p307.setEnabled(true);
             p317.setEnabled(true);
             p321.setEnabled(true);
@@ -171,43 +173,43 @@ public class Homescreen extends Superpref{
 
     public void general()
     {
-        p302.setTitle(R.string.tabcolor);
-        p302.setSummary(R.string.tabcolorsum);
-        p303.setTitle(R.string.tabtitle);
-        p303.setSummary(R.string.tabtitlesum);
-        p304.setTitle(R.string.textsize);
-        p304.setSummary(R.string.textsizesum);
-        p305.setTitle(R.string.unreadcounttab);
-        p305.setSummary(R.string.unreadcounttabsum);
-        p306.setTitle(R.string.unreadcounttabbg);
-        p306.setSummary(R.string.unreadcounttabbgsum);
-        p309.setTitle(R.string.onlinecolor);
-        p309.setSummary(R.string.onlinecolorsum);
-        p310.setTitle(R.string.lastseencolor);
-        p310.setSummary(R.string.lastseencolorsum);
-        p311.setTitle(R.string.unreadcount);
-        p311.setSummary(R.string.unreadcountsum);
-        p312.setTitle(R.string.unreadcountbg);
-        p312.setSummary(R.string.unreadcountbgsum);
-        p313.setTitle(R.string.contname);
-        p313.setSummary(R.string.contnamesum);
-        p314.setTitle(R.string.contdate);
-        p314.setSummary(R.string.contdatesum);
-        p315.setTitle(R.string.sender);
-        p315.setSummary(R.string.sendersum);
-        p316.setTitle(R.string.msgcolor);
-        p316.setSummary(R.string.msgcolorsum);
-        p319.setTitle(R.string.contname);
-        p319.setSummary(R.string.contnamesum);
-        p320.setTitle(R.string.stattime);
-        p320.setSummary(R.string.stattimesum);
-        p323.setTitle(R.string.contname);
-        p323.setSummary(R.string.contnamesum);
-        p324.setTitle(R.string.callcount);
-        p324.setSummary(R.string.callcountsum);
-        p325.setTitle(R.string.calltime);
-        p325.setSummary(R.string.calltimesum);
-        p326.setTitle(R.string.callicon);
-        p326.setSummary(R.string.calliconsum);
+        p302.setTitle(IDGen.string.tabcolor);
+        p302.setSummary(IDGen.string.tabcolorsum);
+        p303.setTitle(IDGen.string.tabtitle);
+        p303.setSummary(IDGen.string.tabtitlesum);
+        p304.setTitle(IDGen.string.textsize);
+        p304.setSummary(IDGen.string.textsizesum);
+        p305.setTitle(IDGen.string.unreadcounttab);
+        p305.setSummary(IDGen.string.unreadcounttabsum);
+        p306.setTitle(IDGen.string.unreadcounttabbg);
+        p306.setSummary(IDGen.string.unreadcounttabbgsum);
+        p309.setTitle(IDGen.string.onlinecolor);
+        p309.setSummary(IDGen.string.onlinecolorsum);
+        p310.setTitle(IDGen.string.lastseencolor);
+        p310.setSummary(IDGen.string.lastseencolorsum);
+        p311.setTitle(IDGen.string.unreadcount);
+        p311.setSummary(IDGen.string.unreadcountsum);
+        p312.setTitle(IDGen.string.unreadcountbg);
+        p312.setSummary(IDGen.string.unreadcountbgsum);
+        p313.setTitle(IDGen.string.contname);
+        p313.setSummary(IDGen.string.contnamesum);
+        p314.setTitle(IDGen.string.contdate);
+        p314.setSummary(IDGen.string.contdatesum);
+        p315.setTitle(IDGen.string.sender);
+        p315.setSummary(IDGen.string.sendersum);
+        p316.setTitle(IDGen.string.msgcolor);
+        p316.setSummary(IDGen.string.msgcolorsum);
+        p319.setTitle(IDGen.string.contname);
+        p319.setSummary(IDGen.string.contnamesum);
+        p320.setTitle(IDGen.string.stattime);
+        p320.setSummary(IDGen.string.stattimesum);
+        p323.setTitle(IDGen.string.contname);
+        p323.setSummary(IDGen.string.contnamesum);
+        p324.setTitle(IDGen.string.callcount);
+        p324.setSummary(IDGen.string.callcountsum);
+        p325.setTitle(IDGen.string.calltime);
+        p325.setSummary(IDGen.string.calltimesum);
+        p326.setTitle(IDGen.string.callicon);
+        p326.setSummary(IDGen.string.calliconsum);
     }
 }

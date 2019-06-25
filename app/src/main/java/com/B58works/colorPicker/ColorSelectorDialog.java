@@ -8,6 +8,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class ColorSelectorDialog extends Dialog {
@@ -32,9 +33,9 @@ public class ColorSelectorDialog extends Dialog {
 		mainContent.setOrientation(LinearLayout.VERTICAL);
 		
 		LinearLayout buttonsLL = new LinearLayout(getContext());
-		buttonsLL.setBackgroundResource(R.drawable.transparentbackrepeat);
+		buttonsLL.setBackgroundResource(IDGen.drawable.transparentbackrepeat);
 		btnOld = new Button(getContext());
-		btnOld.setText(getContext().getResources().getString(R.string.color_old_color));
+		btnOld.setText(getContext().getResources().getString(IDGen.string.color_old_color));
 		LinearLayout.LayoutParams paramsOld = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		paramsOld.weight = 1;
 		buttonsLL.addView(btnOld, paramsOld);
@@ -47,7 +48,7 @@ public class ColorSelectorDialog extends Dialog {
 		});
 		
 		btnNew = new Button(getContext());
-		btnNew.setText(getContext().getResources().getString(R.string.color_new_color));
+		btnNew.setText(getContext().getResources().getString(IDGen.string.color_new_color));
 		LinearLayout.LayoutParams paramsNew = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		paramsNew.weight = 1;
 		buttonsLL.addView(btnNew, paramsNew);

@@ -35,11 +35,10 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import d.f.B1.f;
-import d.f.xC;
+import d.f.uC;
 import d.f.o1.g;
 import c.a.a1.a;
 
@@ -58,16 +57,10 @@ public class B58 extends sn1 {
     public static Class n;
     public static SQLiteOpenHelper sql;
     private static LinkedHashMap<String, Integer> Counter;
-    private static Conversation conversation;
+    public static Conversation conversation;
 
     static {
         n = B58.class;
-    }
-
-
-    public B58() {
-        pref = ctx.getSharedPreferences("B58", 0);
-        prefEdit = pref.edit();
     }
 
     public static void setConversation(Conversation conversation) {
@@ -89,20 +82,20 @@ public class B58 extends sn1 {
 
     public static int Disablefablayout() {
         if (BooleanMethods.hidefab())
-            return R.layout.conversations;
+            return IDGen.layout.conversations;
         else
-            return R.layout.conversations_fab;
+            return IDGen.layout.conversations_fab;
     }
 
     public static void CallBHide(MenuItem m) {
-        if (getBoolean("call_btn"))
+        if (getBoolean("callbtn"))
             m.setShowAsAction(0);
     }
 
     public static void Contactonl(String s) {
         String j;
         if (BooleanMethods.contact_online_toast()) {
-            j = xC.c().e.jabber_id;
+            j = uC.c().e.jabber_id;
             if (j != null) {
                 Utils.checkContactOnline(ctx, s, j);
             }
@@ -115,6 +108,8 @@ public class B58 extends sn1 {
 
     public static void init(final Context context) {
         //Status.T = new HashMap();
+        pref = context.getSharedPreferences("B58", 0);
+        prefEdit = pref.edit();
         if (context instanceof Activity) {
             ctx = context.getApplicationContext();
         } else {
@@ -129,40 +124,40 @@ public class B58 extends sn1 {
 
     public static int oldui() {
         if (getBoolean("oldui")) {
-            return R.layout.homeo;
+            return IDGen.layout.homeo;
         } else {
-            return R.layout.home;
+            return IDGen.layout.home;
         }
     }
 
-    public static void rebootApp(final Context context) {
+    private static void rebootApp(final Context context) {
         ((AlarmManager) context.getSystemService(Context.ALARM_SERVICE)).set(AlarmManager.RTC, 100L + System.currentTimeMillis(), PendingIntent.getActivity(context, 123456, context.getPackageManager().getLaunchIntentForPackage(context.getPackageName()), PendingIntent.FLAG_CANCEL_CURRENT));
         System.exit(0);
     }
 
-    public static MenuItem setMenuC(final Menu menu) {
-        return menu.add(1, R.id.openc, 0, R.string.opench);
+    private static void setMenuC(final Menu menu) {
+        menu.add(1, IDGen.id.openc, 0, IDGen.string.opench);
     }
 
-    public static MenuItem setMenuR(final Menu menu) {
-        return menu.add(1, R.id.restart, 0, R.string.B58Restart);
+    private static void setMenuR(final Menu menu) {
+        menu.add(1, IDGen.id.restart, 0, IDGen.string.B58Restart);
     }
 
-    public static MenuItem setMenutS(final Menu menu) {
-        return menu.add(1, R.id.B58textmods, 0, R.string.B58textsettingstitle);
+    private static void setMenutS(final Menu menu) {
+        menu.add(1, IDGen.id.B58textmods, 0, IDGen.string.B58textsettingstitle);
     }
 
-    public static MenuItem setMenuvS(final Menu menu) {
-        return menu.add(1, R.id.B58visualmods, 0, R.string.B58visualsettingstitle);
+    private static void setMenuvS(final Menu menu) {
+        menu.add(1, IDGen.id.B58visualmods, 0, IDGen.string.B58visualsettingstitle);
     }
 
     public static void setMenuNC(final Menu menu) {
         if (!getBoolean("hide_fab")) {
-            MenuItem m = menu.add(1, R.id.menuitem_new_conversation, 0, R.string.menuitem_new);
-            int i = R.drawable.ic_action_compose;
+            MenuItem m = menu.add(1, IDGen.id.menuitem_new_conversation, 0, IDGen.string.menuitem_new);
+            int i = IDGen.drawable.ic_action_compose;
             m.setIcon(i);
             m.setShowAsAction(2);
-            //menuic(m);
+            menuic(m);
         }
 
     }
@@ -178,14 +173,15 @@ public class B58 extends sn1 {
     }
 
     private static String contactstringsfinder() {
-        return d.f.nw.a().a(conversation.Ye);
+        return d.f.nw.a().a(conversation.df);
     }
 
     private static void presencemanagerfinder(Conversation conversation) {
-        d.f.eF.b().e(conversation.Ye.I);
+        d.f.bF.b().e(conversation.df.I);
     }
 
-    public static void setStatusText(final TextView textView) {
+    public static void setStatusText(final View view) {
+        TextView textView = view.findViewById(getContactStatusStr());
         String online = "online";
         String ls = "lastseen";
 
@@ -206,7 +202,7 @@ public class B58 extends sn1 {
 
     private static void tgchooser() {
         int n = 1;
-        if (!getBoolean("tgchoose")) {
+        if (!getBoolean("gifchoose")) {
             n = 0;
         }
         SetPrefInt(n);
@@ -218,7 +214,12 @@ public class B58 extends sn1 {
         edit.apply();
     }
 
-    public static LinkedHashMap<String, Integer> GetGroupMsgs(final String s) {
+    public static void GroupMsgs(final String s)
+    {
+        Counter=GetGroupMsgs(s);
+    }
+
+    private static LinkedHashMap<String, Integer> GetGroupMsgs(final String s) {
         final LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>();
         final Cursor rawQuery = com.B58works.B58.sql.getReadableDatabase().rawQuery("SELECT remote_resource, count(remote_resource) as total FROM messages WHERE key_remote_jid=\"" + s + "\" AND remote_resource!=\"\" GROUP BY remote_resource UNION SELECT remote_resource, count(key_from_me) as total FROM messages WHERE key_remote_jid=\"" + s + "\" AND key_from_me=1 And receipt_server_timestamp!=-1 GROUP BY remote_resource ORDER BY total DESC", (String[]) null);
         rawQuery.moveToFirst();
@@ -233,13 +234,13 @@ public class B58 extends sn1 {
 
     public static int GetNIcon() {
         //return Integer.parseInt(B58.ctx.getSharedPreferences("B58", 0).getString("notifybar_colors_list", "13"));
-        return getIntofList("notifybar_colors_list");
+        return getIntofList("notifyicon");
 
     }
 
     public static void HidePicBar(final Conversation c) {
-        if (getBoolean("B58pic")) {
-            final FrameLayout f = c.findViewById(R.id.conversation_contact_photo_frame);
+        if (getBoolean("profpic")) {
+            final FrameLayout f = c.findViewById(IDGen.id.conversation_contact_photo_frame);
             if (f != null) {
                 f.setVisibility(View.GONE);
             }
@@ -272,7 +273,7 @@ public class B58 extends sn1 {
 
     public static void SetMsgs(String s, final View view) {
         final LinkedHashMap<String, Integer> counter = Counter;
-        final TextView textView = view.findViewById(R.id.counter);
+        final TextView textView = view.findViewById(IDGen.id.counter);
         if (counter != null) {
             textView.setVisibility(View.VISIBLE);
             if (s.equals("me")) {
@@ -287,18 +288,18 @@ public class B58 extends sn1 {
     }
 
     public static boolean wacontactfinder(Conversation conversation) {
-        return conversation.Ye.h();
+        return conversation.df.h();
     }
 
     public static void SetStatusChat(Conversation conversation) {
         String text = "statustext";
         String bg = "statusbg";
-        TextView textView = conversation.findViewById(R.id.conversation_contact_global_status);
+        TextView textView = conversation.findViewById(IDGen.id.conversation_contact_global_status);
         if (wacontactfinder(conversation)) {
-            if (!getBoolean("chatstatus")) {
+            if (!BooleanMethods.statuschat()) {
                 textView.setVisibility(View.GONE);
             } else {
-                textView.setText(f.a(conversation.Ye.E.e, conversation, conversation.dd));
+                textView.setText(f.a(conversation.df.E.e, conversation, conversation.dd));
                 textView.setSelected(true);
                 textView.setTextColor(getColor(text, -1));
                 textView.setBackgroundColor(getColor(bg, Color.parseColor("#44000000")));
@@ -309,14 +310,14 @@ public class B58 extends sn1 {
                 textView.setVisibility(View.GONE);
             }
             SetGroupChat(true);
-        } else if ((conversation.Ye.o).endsWith("@broadcast")) {
+        } else if ((conversation.df.o).endsWith("@broadcast")) {
             textView.setVisibility(View.GONE);
             SetGroupChat(true);
         } else {
-            if (!getBoolean("chatstatus")) {
+            if (!BooleanMethods.statuschat()) {
                 textView.setVisibility(View.GONE);
             } else {
-                textView.setText(f.a(conversation.Ye.p, conversation, conversation.dd));
+                textView.setText(f.a(conversation.df.p, conversation, conversation.hd));
                 textView.setSelected(true);
                 textView.setTextColor(getColor(text, -1));
                 textView.setBackgroundColor(getColor(bg, Color.parseColor("#44000000")));
@@ -337,7 +338,7 @@ public class B58 extends sn1 {
     }
 
     public static void ShowName(final a a) {
-        if (getBoolean("show_my_name_check")) {
+        if (getBoolean("actbartitle")) {
             a.a(MaMy_Name2());
             int i=getIntofList("actbarsubtitle");
             if(i==1)
@@ -348,7 +349,7 @@ public class B58 extends sn1 {
     }
 
     public static void TxtSelect(final TextEmojiLabel t) {
-        if (getBoolean("TxtSelect")) {
+        if (getBoolean("txtselect")) {
             t.setTextIsSelectable(true);
             t.setLinksClickable(true);
         }
@@ -356,27 +357,27 @@ public class B58 extends sn1 {
 
     public static int actionbar() {
 
-        if (getBoolean("actionbar")) {
-            return R.layout.wamod_style_stockcentered_conversation_actionbar;
+        if (getBoolean("centeraction")) {
+            return IDGen.layout.wamod_style_stockcentered_conversation_actionbar;
         } else {
-            return R.layout.conversation_actionbar;
+            return IDGen.layout.conversation_actionbar;
         }
 
     }
 
     public static void addMenu(final HomeActivity homeActivity, final MenuItem menuItem) {
         if (getBoolean("hide_fab")) {
-            if (menuItem.getItemId() == R.id.B58textmods) {
+            if (menuItem.getItemId() == IDGen.id.B58textmods) {
                 homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.textmods.newSettings.class));
             }
-            if (menuItem.getItemId() == R.id.B58visualmods) {
+            if (menuItem.getItemId() == IDGen.id.B58visualmods) {
                 homeActivity.startActivity(new Intent(homeActivity, com.B58works.settings.visualmods.newSettings.class));
             }
         }
-        if (menuItem.getItemId() == R.id.restart) {
+        if (menuItem.getItemId() == IDGen.id.restart) {
             rebootApp(homeActivity);
         }
-        if (menuItem.getItemId() == R.id.openc) {
+        if (menuItem.getItemId() == IDGen.id.openc) {
             AlertDialog.Builder builder;
             builder = new AlertDialog.Builder(homeActivity);
             builder.setTitle("New Chat");
@@ -409,15 +410,15 @@ public class B58 extends sn1 {
     public static void callDlg(final Activity activity, final boolean b) {
         final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(activity);
         if (b) {
-            alertDialog$Builder.setMessage(R.string.video_call_confirmation_text).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            alertDialog$Builder.setMessage(IDGen.string.video_call_confirmation_text).setNegativeButton(IDGen.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
                 }
-            }).setPositiveButton(R.string.call, new DialogInterface.OnClickListener() {
+            }).setPositiveButton(IDGen.string.call, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    conversation.kd.a(conversation.Ye, activity, 8, b, true);
+                    conversation.qd.a(conversation.df, activity, 8, b, true);
                 }
             });
         } else {
@@ -426,7 +427,7 @@ public class B58 extends sn1 {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     switch (i) {
                         case 0: {
-                            conversation.kd.a(conversation.Ye, activity, 8, b, false);
+                            conversation.qd.a(conversation.df, activity, 8, b, false);
                             break;
                         }
                         case 1: {
@@ -458,19 +459,19 @@ public class B58 extends sn1 {
             public void onClick(View view) {
                 String s = textView.getText().toString();
                 ((ClipboardManager) ctx.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", s));
-                Toast.makeText(ctx, ctx.getText(R.string.B58copy), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, ctx.getText(IDGen.string.B58copy), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public static void copystatus(final TextView t) {
-        if (t.getPaddingRight() > 8 && t.getId() == R.id.status) {
+        if (t.getPaddingRight() > 8 && t.getId() == IDGen.id.status) {
             clickcopytext(t);
         }
     }
 
     public static int getContactStatusStr() {
-        return R.id.conversations_contact_status1;
+        return IDGen.id.conversations_contact_status1;
     }
 
 }

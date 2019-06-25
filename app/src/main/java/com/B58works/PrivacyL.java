@@ -3,7 +3,8 @@ package com.B58works;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.widget.SwitchCompat;
+//import android.support.v7.widget.SwitchCompat;
+import androidx.appcompat.widget.SwitchCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -44,16 +45,16 @@ public class PrivacyL extends LinearLayout implements View.OnClickListener {
 
     public void onClick(final View view) {
         this.dialog.setTitle( "Set Custom Privacy");
-        this.dialog.setContentView(R.layout.custom_privacy);
-        final SwitchCompat switchCompat =  this.dialog.findViewById(R.id.tb);
-        final SwitchCompat switchCompat2 = this.dialog.findViewById(R.id.tb1);
-        final SwitchCompat switchCompat3 = this.dialog.findViewById(R.id.tb2);
-        final SwitchCompat switchCompat4 = this.dialog.findViewById(R.id.tb3);
-        final SwitchCompat switchCompat5 = this.dialog.findViewById(R.id.tb4);
-        final SwitchCompat switchCompat6 = this.dialog.findViewById(R.id.tb5);
-        final SwitchCompat switchCompat7 = this.dialog.findViewById(R.id.tb6);
-        final SwitchCompat switchCompat8 = this.dialog.findViewById(R.id.tb7);
-        final SwitchCompat switchCompat9 = this.dialog.findViewById(R.id.tb8);
+        this.dialog.setContentView(IDGen.layout.custom_privacy);
+        final SwitchCompat switchCompat =  this.dialog.findViewById(IDGen.id.tb);
+        final SwitchCompat switchCompat2 = this.dialog.findViewById(IDGen.id.tb1);
+        final SwitchCompat switchCompat3 = this.dialog.findViewById(IDGen.id.tb2);
+        final SwitchCompat switchCompat4 = this.dialog.findViewById(IDGen.id.tb3);
+        final SwitchCompat switchCompat5 = this.dialog.findViewById(IDGen.id.tb4);
+        final SwitchCompat switchCompat6 = this.dialog.findViewById(IDGen.id.tb5);
+        final SwitchCompat switchCompat7 = this.dialog.findViewById(IDGen.id.tb6);
+        final SwitchCompat switchCompat8 = this.dialog.findViewById(IDGen.id.tb7);
+        //final SwitchCompat switchCompat9 = this.dialog.findViewById(R.id.tb8);
         switchCompat.setChecked(Privacy.getPrivacyB(Privacy.JID));
         switchCompat.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean enabled) {
@@ -66,7 +67,7 @@ public class PrivacyL extends LinearLayout implements View.OnClickListener {
                 switchCompat6.setEnabled(enabled);
                 switchCompat7.setEnabled(enabled);
                 switchCompat8.setEnabled(enabled);
-                switchCompat9.setEnabled(enabled);
+                //switchCompat9.setEnabled(enabled);
                 if (enabled) {
                     PrivacyL.this.edit.putBoolean(Privacy.JID + "_HideRead",  PrivacyL.this.getSpecific(Privacy.JID, "_HideRead"));
                     switchCompat2.setChecked(PrivacyL.this.getSpecific(Privacy.JID, "_HideRead"));
@@ -82,8 +83,8 @@ public class PrivacyL extends LinearLayout implements View.OnClickListener {
                     switchCompat7.setChecked(PrivacyL.this.getSpecific(Privacy.JID, "_HideStatus"));
                     PrivacyL.this.edit.putBoolean(Privacy.JID + "_AR",  PrivacyL.this.getSpecific(Privacy.JID, "_AR"));
                     switchCompat8.setChecked(PrivacyL.this.getSpecific(Privacy.JID, "_AR"));
-                    PrivacyL.this.edit.putBoolean(Privacy.JID + "_HideForward",  PrivacyL.this.getSpecific(Privacy.JID, "_HideForward"));
-                    switchCompat9.setChecked(PrivacyL.this.getSpecific(Privacy.JID, "_HideForward"));
+                    //PrivacyL.this.edit.putBoolean(Privacy.JID + "_HideForward",  PrivacyL.this.getSpecific(Privacy.JID, "_HideForward"));
+                    //switchCompat9.setChecked(PrivacyL.this.getSpecific(Privacy.JID, "_HideForward"));
                     PrivacyL.this.edit.apply();
                 }
             }
@@ -96,7 +97,7 @@ public class PrivacyL extends LinearLayout implements View.OnClickListener {
             this.edit.putBoolean(Privacy.JID + "_HidePlay",  this.getSpecific(Privacy.JID, "_HidePlay"));
             this.edit.putBoolean(Privacy.JID + "_HideStatus",  this.getSpecific(Privacy.JID, "_HideStatus"));
             this.edit.putBoolean(Privacy.JID + "_AR",  this.getSpecific(Privacy.JID, "_AR"));
-            this.edit.putBoolean(Privacy.JID + "_HideForward",  this.getSpecific(Privacy.JID, "_HideForward"));
+            //this.edit.putBoolean(Privacy.JID + "_HideForward",  this.getSpecific(Privacy.JID, "_HideForward"));
         }
         switchCompat2.setChecked(Privacy.getPrivacyB(Privacy.JID + "_HideRead"));
         switchCompat2.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
@@ -147,13 +148,13 @@ public class PrivacyL extends LinearLayout implements View.OnClickListener {
                 PrivacyL.this.edit.apply();
             }
         });
-        switchCompat9.setChecked(Privacy.getPrivacyB(Privacy.JID + "_HideForward"));
+        /*switchCompat9.setChecked(Privacy.getPrivacyB(Privacy.JID + "_HideForward"));
         switchCompat9.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
                 PrivacyL.this.edit.putBoolean(Privacy.JID + "_HideForward", b);
                 PrivacyL.this.edit.apply();
             }
-        });
+        });*/
         if (!switchCompat.isChecked()) {
             switchCompat2.setEnabled(false);
             switchCompat3.setEnabled(false);
@@ -162,7 +163,7 @@ public class PrivacyL extends LinearLayout implements View.OnClickListener {
             switchCompat6.setEnabled(false);
             switchCompat7.setEnabled(false);
             switchCompat8.setEnabled(false);
-            switchCompat9.setEnabled(false);
+            //switchCompat9.setEnabled(false);
         }
         this.dialog.show();
     }

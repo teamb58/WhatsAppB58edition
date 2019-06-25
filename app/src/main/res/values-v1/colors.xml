@@ -8,4 +8,8 @@
     <color name="list_item_title">#de000000</color>
     <color name="abs__holo_blue_light">#ff009688</color>
     <color name="black">#ff000000</color>
+	<color name="primary_accent_light_psy">#ff5ad1c6</color>
+    <color name="primary_accent_psy">#ff4db6ac</color>
+    <color name="primary_dark_psy">#ff1d3838</color>
+    <color name="primary_psy">#ff214545</color>
 </resources>

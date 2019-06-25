@@ -37,7 +37,7 @@ public class Update extends AsyncTask<String, String, String>
 
     protected String doInBackground(final String... array) {
         try {
-            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new URL("https://github.com/teamb58/WhatsAppB58edition/blob/master/update.txt").openStream()));
+            final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new URL("https://https://tempohari.com/wp-content/uploads/update.txt").openStream()));
             String string = "";
             while (true) {
                 final String line = bufferedReader.readLine();
@@ -61,7 +61,7 @@ public class Update extends AsyncTask<String, String, String>
         final String url=c;
         if (this.a > v1 || this.b > v2 ) {
             final WebView view = new WebView(this.ctx);
-            view.loadUrl("https://androtechupdates.com/wp-content/uploads/clog.html");
+            view.loadUrl("https://tempohari.com/wp-content/uploads/clog.html");
             final AlertDialog.Builder alertDialog$Builder = new AlertDialog.Builder(this.ctx);
             alertDialog$Builder.setTitle(("New Update v" + this.a + "." + this.b + "Found"));
             alertDialog$Builder.setView(view);

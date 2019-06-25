@@ -1,5 +1,6 @@
 package com.whatsapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,8 +14,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.view.menu.ActionMenuItemView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -23,9 +26,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.B58works.B58;
 import com.B58works.ColorStore;
 import com.B58works.BooleanMethods;
-import com.B58works.R;
+import com.B58works.IDGen;
 import com.whatsapp.plus.XMLXplorerActivity;
 
 import java.io.File;
@@ -62,18 +66,18 @@ public class sn1 {
     }
 
     public static void DialogSaveTheme(final Activity activity) {
-        final View inflate = LayoutInflater.from(activity).inflate(R.layout.editbox_dialog, null);
+        final View inflate = LayoutInflater.from(activity).inflate(IDGen.layout.editbox_dialog, null);
         final AlertDialog.Builder a = new AlertDialog.Builder(activity);
         a.setView(inflate);
-        a.setCancelable(false).setPositiveButton(R.string.B58save, new DialogInterface.OnClickListener() {
+        a.setCancelable(false).setPositiveButton(IDGen.string.B58save, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText e=inflate.findViewById(R.id.etname);
+                EditText e=inflate.findViewById(IDGen.id.etname);
                 final String string = e.getText().toString();
                 b58.BackupPreference2(activity, (string) + ".xml", ("WhatsApp") + "/B58/Themes/");
                 b58.getWallpaper(activity, string, "Themes");
             }
-        }).setNegativeButton(R.string.B58cancel, new DialogInterface.OnClickListener() {
+        }).setNegativeButton(IDGen.string.B58cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -110,6 +114,13 @@ public class sn1 {
         intent.putExtra("FILTER", ".xml");
         activity.startActivityForResult(intent, 6384);
     }
+
+    public static void DisableFAB(ImageView i, int n) {
+        if (!BooleanMethods.getBoolean("hide_fab") && n == 1) {
+            i.setVisibility(View.GONE);
+        }
+    }
+
 
     public static GradientDrawable getGD(final String name) {
         final Object[] gradientColor = setGD(name);
@@ -156,6 +167,75 @@ public class sn1 {
     public static int mainpagercolor() {
         return pref.getInt("ActionbartextColor", ColorStore.getMainTextColor());
     }
+
+    public static void menuic(MenuItem m) {
+        Drawable d = m.getIcon();
+        d.setColorFilter(getColor("ActionbartextColor", -1), PorterDuff.Mode.MULTIPLY);
+        m.setIcon(d);
+    }
+
+    public static void actionbarbk(Activity activity) {
+        String s = "ActionbarColor";
+        try {
+            int color = getColor(s, -11);
+            ViewGroup viewById = null;
+            if (color != -11) {
+                viewById = activity.findViewById(IDGen.id.action_mode_bar);
+                if (BooleanMethods.actionbargr()) {
+                    viewById.setBackgroundDrawable(getGD(s));
+                }
+                viewById.setBackgroundColor(getColor(s, ColorStore.getActionBarColor()));
+            }
+            ViewGroup viewGroup2 = viewById;
+            for (int i = 0; i < viewGroup2.getChildCount(); i++) {
+                b(viewGroup2.getChildAt(i), mainpagercolor());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static void b(View view, int n) {
+        try {
+            if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    View child = viewGroup.getChildAt(i);
+                    if (child != null) {
+                        a(child, n);
+                    }
+                }
+                return;
+            }
+            a(view, n);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @SuppressLint("RestrictedApi")
+    static void a(View view, int textColor) {
+        try {
+            if (view instanceof ImageView) {
+                ((ImageView) view).setColorFilter(textColor, PorterDuff.Mode.SRC_ATOP);
+                return;
+            }
+            if (view instanceof TextView) {
+                ((TextView) view).setTextColor(textColor);
+            }
+            try {
+                ActionMenuItemView actionMenuItemView = (ActionMenuItemView) view;
+                Drawable[] compoundDrawables = actionMenuItemView.getCompoundDrawables();
+                compoundDrawables[0].setColorFilter(textColor, PorterDuff.Mode.SRC_ATOP);
+                actionMenuItemView.setIcon(compoundDrawables[0]);
+            } catch (ClassCastException e) {
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 
     public static void Toolbarcolor(Toolbar t)
     {
@@ -223,7 +303,7 @@ public class sn1 {
         }
     }
 
-    public static void tabcolor(d.f.ME me)
+    public static void tabcolor(d.f.KE me)
     {
         String name="tabsbgColor";
         if(BooleanMethods.tabsbggr())
@@ -238,12 +318,18 @@ public class sn1 {
         textView.setTextColor(getColor(name, mainpagercolor()));
     }
 
-    public static int tabunread(int i)
+    public static int tabunread(int i, final TextView textView)
     {
         if(i==0)
+        {
+            textView.setBackgroundColor(getColor("unreadcounttabbg"));
             return getColor("unreadcounttab");
+        }
         else
+        {
+            textView.setBackgroundColor((getColor("unreadcounttabbg")-Color.parseColor("80000000")));
             return (getColor("unreadcounttab")-Color.parseColor("80000000"));
+        }
     }
 
     public static void chatscrbg(View view)
@@ -291,9 +377,16 @@ public class sn1 {
     }
 
     public static int setHomeCounterBK() {
-        String name="unreadcount";
+        String name="unreadcountbg";
         return getColor(name, ColorStore.unread());
     }
+
+    public static Drawable statuscamera(Drawable drawable) {
+        String s="tabtitle";
+        drawable.setColorFilter(getColor(s, mainpagercolor()), PorterDuff.Mode.MULTIPLY);
+        return drawable;
+    }
+
 
     public static void statusscrbg(View view)
     {
@@ -350,8 +443,8 @@ public class sn1 {
 
     public static void callscrrowbg(View view, int i)
     {
-        String altname="statusscraltbg";
-        String name="statusscrbg";
+        String altname="callsscraltbg";
+        String name="callsscrbg";
         if(BooleanMethods.callscrfullbg())
         {
             if(BooleanMethods.callscraltbg())
@@ -395,7 +488,7 @@ public class sn1 {
         drawable.setColorFilter(getColor(name,ColorStore.getChatBubbleRightColor()),PorterDuff.Mode.SRC_IN);
     }
 
-    public static void setChatDateColor(final TextView textView, Boolean b) {
+    public static void setChatDateColor(final TextView textView, boolean b) {
         if (b)
             textView.setTextColor(getColor("rtime", -12303292));
         else
@@ -429,21 +522,19 @@ public class sn1 {
         drawable.setColorFilter(getColor(name,ColorStore.getConsBackColor()),PorterDuff.Mode.SRC_IN);
     }
 
-    public static void ColorBtnInput(final View view) {
+    public static void ColorBtnInput() {
         String name="sendbg";
+        final View view = B58.conversation.findViewById(IDGen.id.input_circle);
         /*final Drawable drawable = context.getResources().getDrawable(getResID("input_circle", "drawable"));
         drawable.setColorFilter(getColor(s, ColorStore.sbg()), PorterDuff.Mode.SRC_ATOP);*/
         Drawable drawable;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            drawable = ctx.getDrawable(R.drawable.input_circle);
+            drawable = ctx.getDrawable(IDGen.drawable.input_circle);
         }
         else
-            drawable=ctx.getResources().getDrawable(R.drawable.input_circle);
+            drawable=ctx.getResources().getDrawable(IDGen.drawable.input_circle);
         ColorDrawable colorDrawable=(ColorDrawable)drawable;
-        int color= 0;
-        if (colorDrawable != null) {
-            color = colorDrawable.getColor();
-        }
+        int color=colorDrawable.getColor();
         view.setBackgroundColor(getColor(name,color));
     }
 
@@ -461,11 +552,11 @@ public class sn1 {
         }
         final int color2 = getColor("quotname", -11);
         if (color2 != -11) {
-            ((TextView)quot.findViewById(R.id.quoted_title)).setTextColor(color2);
+            ((TextView)quot.findViewById(IDGen.id.quoted_title)).setTextColor(color2);
         }
         final int color3 = getColor("quottext", -11);
         if (color3 != -11) {
-            ((TextView)quot.findViewById(R.id.quoted_text)).setTextColor(color3);
+            ((TextView)quot.findViewById(IDGen.id.quoted_text)).setTextColor(color3);
         }
     }
 
@@ -473,15 +564,22 @@ public class sn1 {
     {
         String headfoot="emojihfColor";
         String bg="emojibgColor";
+        String icon="emojiicons";
+        String[] icons = {"emoji_recent_btn", "emoji_people_btn", "emoji_nature_btn", "emoji_food_btn", "emoji_activity_btn", "emoji_travel_btn", "emoji_objects_btn", "emoji_symbols_btn", "emoji_flags_btn", "delete_symbol", "delete_symbol_tb", "gif_tab", "emoji_tab", "search_button", "sticker_tab_icon"};
+        for (String ic:icons
+             ) {
+            ImageView imageView = view.findViewById(IDGen.idid(ic));
+            imageView.setColorFilter(getColor(icon,-11));
+        }
         if(BooleanMethods.emojihfgr())
         {
-            view.findViewById(R.id.footer_toolbar).setBackgroundDrawable(getGD(headfoot));
-            view.findViewById(R.id.emoji_group_layout).setBackgroundDrawable(getGD(headfoot));
+            view.findViewById(IDGen.id.footer_toolbar).setBackgroundDrawable(getGD(headfoot));
+            view.findViewById(IDGen.id.emoji_group_layout).setBackgroundDrawable(getGD(headfoot));
         }
         else
         {
-            view.findViewById(R.id.footer_toolbar).setBackgroundColor(getColor(headfoot,Color.parseColor("#ffebeff2")));
-            view.findViewById(R.id.emoji_group_layout).setBackgroundColor(getColor(headfoot,Color.parseColor("#ffebeff2")));
+            view.findViewById(IDGen.id.footer_toolbar).setBackgroundColor(getColor(headfoot,Color.parseColor("#ffebeff2")));
+            view.findViewById(IDGen.id.emoji_group_layout).setBackgroundColor(getColor(headfoot,Color.parseColor("#ffebeff2")));
         }
 
         if(BooleanMethods.emojibggr())
@@ -492,6 +590,11 @@ public class sn1 {
         {
             view.setBackgroundColor(getColor(bg,Color.parseColor("#ffebeff2")));
         }
+    }
+
+    public static void Revoketext(final TextView textView)
+    {
+
     }
 
     public static void contactPicker(View view)
@@ -507,19 +610,14 @@ public class sn1 {
         String s="fabnormal";
         Drawable drawable;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            drawable = ctx.getDrawable(R.drawable.input_circle_green);
+            drawable = ctx.getDrawable(IDGen.drawable.input_circle_green);
         }
         else
-            drawable=ctx.getResources().getDrawable(R.drawable.input_circle_green);
+            drawable=ctx.getResources().getDrawable(IDGen.drawable.input_circle_green);
         ColorDrawable colorDrawable=(ColorDrawable)drawable;
         int color=colorDrawable.getColor();
         /*final Drawable drawable = context.getResources().getDrawable(getResID("input_circle_green", "drawable"));
         drawable.setColorFilter(getColor(s, 0), PorterDuff.Mode.SRC_ATOP);*/
         view.setBackgroundColor(getColor(s,color));
     }
-
-
-
-
-
 }

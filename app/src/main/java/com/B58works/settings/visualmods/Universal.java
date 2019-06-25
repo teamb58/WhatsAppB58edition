@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -13,7 +14,7 @@ public class Universal extends Superpref{
 
     Preference p,p4,p5,p6;
 
-    public Universal()
+    public void init()
     {
         p=this.findPreference("actionbar");
         p4=findPreference("ActionbartextColor");
@@ -23,16 +24,17 @@ public class Universal extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vuniversal);
+        addPreferencesFromResource(IDGen.xml.vuniversal);
+        init();
         b58();
-        p.setTitle(R.string.actionbarc);
-        p.setSummary(R.string.actionbarcsum);
-        p4.setTitle(R.string.univactionbartext);
-        p4.setSummary(R.string.univactionbartextsum);
-        p5.setTitle(R.string.univstatusbar);
-        p5.setSummary(R.string.univstatusbarsum);
-        p6.setTitle(R.string.univnavbar);
-        p6.setSummary(R.string.univnavbarsum);
+        p.setTitle(IDGen.string.actionbarc);
+        p.setSummary(IDGen.string.actionbarcsum);
+        p4.setTitle(IDGen.string.univactionbartext);
+        p4.setSummary(IDGen.string.univactionbartextsum);
+        p5.setTitle(IDGen.string.univstatusbar);
+        p5.setSummary(IDGen.string.univstatusbarsum);
+        p6.setTitle(IDGen.string.univnavbar);
+        p6.setSummary(IDGen.string.univnavbarsum);
     }
 
     protected void onStart()

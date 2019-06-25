@@ -8,6 +8,7 @@ import android.preference.Preference;
 
 
 import com.B58works.B58;
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -16,7 +17,7 @@ public class ContactPicker extends Superpref{
 
     Preference p601,p602,p603,p604;
 
-    public ContactPicker()
+    public void init()
     {
         p601=findPreference("conpickbg");
         p602=findPreference("conpickname");
@@ -27,7 +28,8 @@ public class ContactPicker extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vconpick);
+        addPreferencesFromResource(IDGen.xml.vconpick);
+        init();
     }
 
     protected void onStart()
@@ -55,14 +57,14 @@ public class ContactPicker extends Superpref{
 
     private void b58()
     {
-        p601.setTitle(R.string.conpickgr);
-        p601.setSummary(R.string.conpickgrsum);
-        p602.setTitle(R.string.conpickname);
-        p602.setSummary(R.string.conpicknamesum);
-        p603.setTitle(R.string.conpickstatus);
-        p603.setSummary(R.string.conpickstatussum);
-        p604.setTitle(R.string.conpicktype);
-        p604.setSummary(R.string.conpicktypesum);
+        p601.setTitle(IDGen.string.conpickgr);
+        p601.setSummary(IDGen.string.conpickgrsum);
+        p602.setTitle(IDGen.string.conpickname);
+        p602.setSummary(IDGen.string.conpicknamesum);
+        p603.setTitle(IDGen.string.conpickstatus);
+        p603.setSummary(IDGen.string.conpickstatussum);
+        p604.setTitle(IDGen.string.conpicktype);
+        p604.setSummary(IDGen.string.conpicktypesum);
     }
 }
 

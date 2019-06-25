@@ -46,12 +46,12 @@ public class Activities extends Preference {
                 break;
             }
             case "share": {
-                final String string = this.getContext().getString(R.string.B58ShareBdy);
+                final String string = this.getContext().getString(IDGen.string.B58ShareBdy);
                 final Intent intent = new Intent("android.intent.action.SEND");
                 intent.setType("text/plain");
-                intent.putExtra("android.intent.extra.SUBJECT", this.getContext().getString(R.string.B58ShareSbj));
+                intent.putExtra("android.intent.extra.SUBJECT", this.getContext().getString(IDGen.string.B58ShareSbj));
                 intent.putExtra("android.intent.extra.TEXT", string);
-                this.getContext().startActivity(Intent.createChooser(intent, this.getContext().getString(R.string.B58Share)));
+                this.getContext().startActivity(Intent.createChooser(intent, this.getContext().getString(IDGen.string.B58Share)));
                 break;
             }
             case "credits": {

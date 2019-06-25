@@ -6,6 +6,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -16,7 +17,7 @@ public class grGlobalTabs extends Superpref {
     Preference p2;
     ListPreference p3;
 
-    public grGlobalTabs()
+    public void init()
     {
         p=findPreference("tabsbggr");
         p1=findPreference("tabsbgColor");
@@ -27,7 +28,8 @@ public class grGlobalTabs extends Superpref {
     public void onCreate(Bundle b)
     {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vgrglobaltabs);
+        addPreferencesFromResource(IDGen.xml.vgrglobaltabs);
+        init();
     }
 
     protected void onStart()
@@ -50,28 +52,28 @@ public class grGlobalTabs extends Superpref {
 
     private void b58()
     {
-        p.setTitle(R.string.grfortabs);
-        p.setSummary(R.string.grfortabssum);
+        p.setTitle(IDGen.string.grfortabs);
+        p.setSummary(IDGen.string.grfortabssum);
         if(p.isEnabled())
         {
-            p1.setTitle(R.string.startcolor);
-            p1.setSummary(R.string.tabsbgstartsum);
-            p2.setTitle(R.string.endcolor);
-            p2.setSummary(R.string.tabsbgendsum);
-            p3.setTitle(R.string.gradient);
-            p3.setEntries(R.array.gr_style);
-            p3.setEntryValues(R.array.actionbarStyleListValues);
+            p1.setTitle(IDGen.string.startcolor);
+            p1.setSummary(IDGen.string.tabsbgstartsum);
+            p2.setTitle(IDGen.string.endcolor);
+            p2.setSummary(IDGen.string.tabsbgendsum);
+            p3.setTitle(IDGen.string.gradient);
+            p3.setEntries(IDGen.array.gr_style);
+            p3.setEntryValues(IDGen.array.actionbarStyleListValues);
             p3.setDefaultValue("0");
-            p3.setSummary(R.string.grstyle);
+            p3.setSummary(IDGen.string.grstyle);
         }
         else
         {
-            p2.setTitle(R.string.disabled);
-            p3.setTitle(R.string.disabled);
-            p2.setSummary(getApplicationContext().getString(R.string.disableoption,"undef"));
-            p3.setSummary(getApplicationContext().getString(R.string.disableoption,"undef"));
-            p1.setTitle(R.string.tabsbg);
-            p1.setSummary(R.string.tabsbgsum);
+            p2.setTitle(IDGen.string.disabled);
+            p3.setTitle(IDGen.string.disabled);
+            p2.setSummary(getApplicationContext().getString(IDGen.string.disableoption,"undef"));
+            p3.setSummary(getApplicationContext().getString(IDGen.string.disableoption,"undef"));
+            p1.setTitle(IDGen.string.tabsbg);
+            p1.setSummary(IDGen.string.tabsbgsum);
         }
     }
 }

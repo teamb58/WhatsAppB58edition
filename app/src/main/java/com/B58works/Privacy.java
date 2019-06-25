@@ -5,28 +5,27 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.SwitchPreference;
 
-import java.util.HashSet;
-
-import d.f.cz;
+import d.f.Wy;
 /**
  * Created by Bharath.R(58) on 26-01-2019.
  */
 
-public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class Privacy extends Wy implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     static String JID;
-    static HashSet hashSet;
 
-    static{
-        hashSet=new HashSet();
+    public static void setStrin(String strin) {
+        Privacy.strin = strin;
     }
+
+    public static String strin;
 
     /*public static boolean AlwaysOnline() {
         return getPrivacyB("always_online");
     }*/
 
-    public static boolean AntiRevoke(final Object o) {
-        final String jid = (String)o;
+    public static boolean AntiRevoke() {
+        final String jid = strin;
         if (getPrivacyB(jid)) {
             return getPrivacyB(jid + "_AR");
         }
@@ -68,8 +67,8 @@ public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceC
         return false;
     }
 
-    public static boolean HidePlay(final Object o) {
-        final String jid = (String)o;
+    public static boolean HidePlay() {
+        final String jid = strin;
         if (getPrivacyB(jid))
             return getPrivacyB(jid + "_HidePlay");
         else
@@ -77,7 +76,7 @@ public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceC
     }
 
     public static int HideForward(final int i) {
-        return (getPrivacyB("HideForward") || i <= 0) ? i : i-1;
+        return (getPrivacyB("hidefwd") || i <= 0) ? i : i-1;
         /*final String jid = (String)o;
         if (getPrivacyB(jid))
             return getPrivacyB(jid + "_HideForward");
@@ -93,8 +92,8 @@ public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceC
             return getPrivacyB(GetType2(jid) + "_HideRead");
     }
 
-    public static boolean HideReceipt(final Object o) {
-        final String jid = (String)o;
+    public static boolean HideReceipt() {
+        final String jid = strin;
         if (getPrivacyB(jid))
             return getPrivacyB(jid + "_HideReceipt");
         else
@@ -124,9 +123,9 @@ public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceC
     public void onCreate(Bundle b)
     {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.tprivacy);
+        addPreferencesFromResource(IDGen.xml.tprivacy);
         this.getPreferenceManager().setSharedPreferencesName("B58privacy");
-        final Preference p1=this.findPreference("C_HideReceipt");
+        /*final Preference p1=this.findPreference("C_HideReceipt");
         final Preference p2=this.findPreference("B_HideReceipt");
         final Preference p3=this.findPreference("G_HideReceipt");
         p1.setEnabled(false);
@@ -134,7 +133,7 @@ public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceC
         p2.setEnabled(false);
         p2.setSummary("Please use custom privacy as it has reduced delay.");
         p3.setEnabled(false);
-        p3.setSummary("Please use custom privacy as it has reduced delay.");
+        p3.setSummary("Please use custom privacy as it has reduced delay.");*/
     }
 
     protected void onStart()
@@ -148,7 +147,7 @@ public class Privacy extends cz implements SharedPreferences.OnSharedPreferenceC
         {
             String key=p.getKey();
             if(p instanceof SwitchPreference)
-                B58.ctx.getSharedPreferences("B58",0).edit().putBoolean(key, ((SwitchPreference)p).isChecked()).apply();
+                B58.ctx.getSharedPreferences("B58privacy",0).edit().putBoolean(key, ((SwitchPreference)p).isChecked()).apply();
         }
         onStart();
     }

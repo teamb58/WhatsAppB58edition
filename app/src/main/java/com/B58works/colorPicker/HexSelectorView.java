@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class HexSelectorView extends LinearLayout {
@@ -33,13 +34,13 @@ public class HexSelectorView extends LinearLayout {
 	private void init()
 	{
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View content = inflater.inflate(R.layout.color_hexview, null);
+		View content = inflater.inflate(IDGen.layout.color_hexview, null);
 		addView(content, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 	
-		txtError = (TextView)content.findViewById(R.id.color_hex_txtError);
+		txtError = content.findViewById(IDGen.id.color_hex_txtError);
 		
-		edit = (EditText)content.findViewById(R.id.color_hex_edit);
-		btnSave = (Button)content.findViewById(R.id.color_hex_btnSave);
+		edit = content.findViewById(IDGen.id.color_hex_edit);
+		btnSave = content.findViewById(IDGen.id.color_hex_btnSave);
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

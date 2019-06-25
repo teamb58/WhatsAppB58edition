@@ -32,8 +32,8 @@ public class FabButton extends FloatingActionButton {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        SharedPreferences shp = context.getSharedPreferences("architMod", Context.MODE_PRIVATE);
-        setColorNormal(shp.getInt("architModFabNormalColor", ColorStore.getFabColorNormal()));
-        setColorPressed(shp.getInt("architModFabPressedColor", ColorStore.getFabColorPressed()));
+        SharedPreferences shp = context.getSharedPreferences("B58", Context.MODE_PRIVATE);
+        setColorNormal(shp.getInt("fabnormal", ColorStore.getFabColorNormal()));
+        setColorPressed(shp.getInt("fabpressed", ColorStore.getFabColorPressed()));
     }
 }

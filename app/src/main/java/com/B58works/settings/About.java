@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.B58;
 
@@ -12,7 +13,7 @@ public class About extends Superpref{
 
     public void onCreate(Bundle b) {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.about);
+        addPreferencesFromResource(IDGen.xml.about);
     }
 
     public void onPause() {

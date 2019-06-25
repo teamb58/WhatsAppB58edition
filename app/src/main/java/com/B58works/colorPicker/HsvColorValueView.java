@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 
 public class HsvColorValueView extends FrameLayout {
@@ -52,7 +53,7 @@ public class HsvColorValueView extends FrameLayout {
 
 	private void init() {
 		colorSelector = getContext().getResources().getDrawable(
-				R.drawable.color_selector);
+				IDGen.drawable.color_selector);
 		selectorView = new ImageView(getContext());
 		selectorView.setImageDrawable(colorSelector);
 		addView(selectorView, new LayoutParams(colorSelector.getIntrinsicWidth(), colorSelector.getIntrinsicHeight()));

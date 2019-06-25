@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.textmods.newSettings;
 
@@ -39,28 +40,28 @@ public class IconChoose extends Activity {
 
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_icon_choose);
-        this.iconOne =  findViewById(R.id.iconOne_radio);
-        this.iconTwo =  findViewById(R.id.iconTwo_radio);
-        this.iconThree =  findViewById(R.id.iconThree_radio);
-        this.iconFour =  findViewById(R.id.iconFour_radio);
-        this.iconFive =  findViewById(R.id.iconFive_radio);
-        this.iconSix =  findViewById(R.id.iconSix_radio);
-        this.iconSeven =  findViewById(R.id.iconSeven_radio);
-        this.iconEight =  findViewById(R.id.iconEight_radio);
-        this.iconNine =  findViewById(R.id.iconNine_radio);
-        this.iconTen =  findViewById(R.id.iconTen_radio);
-        this.iconEleven =  findViewById(R.id.iconEleven_radio);
-        this.iconTwelve =  findViewById(R.id.iconTwelve_radio);
-        this.iconThirteen =  findViewById(R.id.iconThirteen_radio);
-        this.iconFourteen =  findViewById(R.id.iconFourteen_radio);
-        this.iconFifteen =  findViewById(R.id.iconFifteen_radio);
-        this.iconSixteen =  findViewById(R.id.iconSixteen_radio);
-        this.iconSeventeen =  findViewById(R.id.iconSeventeen_radio);
-        this.iconEighteen =  findViewById(R.id.iconEighteen_radio);
-        this.iconNineteen =  findViewById(R.id.iconNineteen_radio);
-        this.iconTwenty =  findViewById(R.id.iconTwenty_radio);
-        this.applyChangeButton =  findViewById(R.id.applyIcon);
+        setContentView(IDGen.layout.activity_icon_choose);
+        this.iconOne =  findViewById(IDGen.id.iconOne_radio);
+        this.iconTwo =  findViewById(IDGen.id.iconTwo_radio);
+        this.iconThree =  findViewById(IDGen.id.iconThree_radio);
+        this.iconFour =  findViewById(IDGen.id.iconFour_radio);
+        this.iconFive =  findViewById(IDGen.id.iconFive_radio);
+        this.iconSix =  findViewById(IDGen.id.iconSix_radio);
+        this.iconSeven =  findViewById(IDGen.id.iconSeven_radio);
+        this.iconEight =  findViewById(IDGen.id.iconEight_radio);
+        this.iconNine =  findViewById(IDGen.id.iconNine_radio);
+        this.iconTen =  findViewById(IDGen.id.iconTen_radio);
+        this.iconEleven =  findViewById(IDGen.id.iconEleven_radio);
+        this.iconTwelve =  findViewById(IDGen.id.iconTwelve_radio);
+        this.iconThirteen =  findViewById(IDGen.id.iconThirteen_radio);
+        this.iconFourteen =  findViewById(IDGen.id.iconFourteen_radio);
+        this.iconFifteen =  findViewById(IDGen.id.iconFifteen_radio);
+        this.iconSixteen =  findViewById(IDGen.id.iconSixteen_radio);
+        this.iconSeventeen =  findViewById(IDGen.id.iconSeventeen_radio);
+        this.iconEighteen =  findViewById(IDGen.id.iconEighteen_radio);
+        this.iconNineteen =  findViewById(IDGen.id.iconNineteen_radio);
+        this.iconTwenty =  findViewById(IDGen.id.iconTwenty_radio);
+        this.applyChangeButton =  findViewById(IDGen.id.applyIcon);
         this.iconOne.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton compoundButton, boolean z) {
                 if (z) {

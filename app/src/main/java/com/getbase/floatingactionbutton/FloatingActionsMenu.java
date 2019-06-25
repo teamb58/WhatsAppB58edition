@@ -22,6 +22,8 @@ import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
+import com.B58works.IDGen;
+
 public class FloatingActionsMenu extends ViewGroup {
     public static final int EXPAND_UP = 0;
     public static final int EXPAND_DOWN = 1;
@@ -73,9 +75,9 @@ public class FloatingActionsMenu extends ViewGroup {
     }
 
     private void init(Context context, AttributeSet attributeSet) {
-        mButtonSpacing = (int) (getResources().getDimension(com.B58works.R.dimen.fab_actions_spacing) - getResources().getDimension(com.B58works.R.dimen.fab_shadow_radius) - getResources().getDimension(com.B58works.R.dimen.fab_shadow_offset));
-        mLabelsMargin = getResources().getDimensionPixelSize(com.B58works.R.dimen.fab_labels_margin);
-        mLabelsVerticalOffset = getResources().getDimensionPixelSize(com.B58works.R.dimen.fab_shadow_offset);
+        mButtonSpacing = (int) (getResources().getDimension(IDGen.dimen.fab_actions_spacing) - getResources().getDimension(IDGen.dimen.fab_shadow_radius) - getResources().getDimension(IDGen.dimen.fab_shadow_offset));
+        mLabelsMargin = getResources().getDimensionPixelSize(IDGen.dimen.fab_labels_margin);
+        mLabelsVerticalOffset = getResources().getDimensionPixelSize(IDGen.dimen.fab_shadow_offset);
 
         TypedArray attr = context.obtainStyledAttributes(attributeSet, R.styleable.FloatingActionsMenu, 0, 0);
         mAddButtonPlusColor = attr.getColor(R.styleable.FloatingActionsMenu_fab_addButtonPlusIconColor, getColor(android.R.color.white));
@@ -85,9 +87,9 @@ public class FloatingActionsMenu extends ViewGroup {
         mLabelsStyle = attr.getResourceId(R.styleable.FloatingActionsMenu_fab_labelStyle, 0);
         attr.recycle();
 
-        SharedPreferences shp = context.getSharedPreferences("architMod", Context.MODE_PRIVATE);
-        mAddButtonColorNormal = shp.getInt("architModFabNormalColor", Color.parseColor("#4db6ac"));
-        mAddButtonColorPressed = shp.getInt("architModFabPressedColor", Color.parseColor("#4db6ac"));
+        SharedPreferences shp = context.getSharedPreferences("B58", Context.MODE_PRIVATE);
+        mAddButtonColorNormal = shp.getInt("fabnormal", Color.parseColor("#4db6ac"));
+        mAddButtonColorPressed = shp.getInt("fabpressed", Color.parseColor("#4db6ac"));
 
         if (mLabelsStyle != 0 && expandsHorizontally()) {
             throw new IllegalStateException("Action labels in horizontal expand orientation is not supported.");
@@ -161,7 +163,7 @@ public class FloatingActionsMenu extends ViewGroup {
             }
         };
 
-        mAddButton.setId(com.B58works.R.id.fab_expand_menu_button);
+        mAddButton.setId(IDGen.id.fab_expand_menu_button);
         mAddButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,7 +213,7 @@ public class FloatingActionsMenu extends ViewGroup {
             }
 
             if (!expandsHorizontally()) {
-                TextView label = (TextView) child.getTag(com.B58works.R.id.fab_label);
+                TextView label = (TextView) child.getTag(IDGen.id.fab_label);
                 if (label != null) {
                     maxLabelWidth = Math.max(maxLabelWidth, label.getMeasuredWidth());
                 }
@@ -279,7 +281,7 @@ public class FloatingActionsMenu extends ViewGroup {
                     params.mExpandDir.setFloatValues(collapsedTranslation, expandedTranslation);
                     params.setAnimationsTarget(child);
 
-                    View label = (View) child.getTag(com.B58works.R.id.fab_label);
+                    View label = (View) child.getTag(IDGen.id.fab_label);
                     if (label != null) {
                         int labelLeft = labelsRight - label.getMeasuredWidth();
                         int labelTop = childY - mLabelsVerticalOffset + (child.getMeasuredHeight() - label.getMeasuredHeight()) / 2;
@@ -434,13 +436,13 @@ public class FloatingActionsMenu extends ViewGroup {
             String title = button.getTitle();
 
             if (button == mAddButton || title == null ||
-                    button.getTag(com.B58works.R.id.fab_label) != null) continue;
+                    button.getTag(IDGen.id.fab_label) != null) continue;
 
             TextView label = new TextView(context);
             label.setText(button.getTitle());
             addView(label);
 
-            button.setTag(com.B58works.R.id.fab_label, label);
+            button.setTag(IDGen.id.fab_label, label);
         }
     }
 

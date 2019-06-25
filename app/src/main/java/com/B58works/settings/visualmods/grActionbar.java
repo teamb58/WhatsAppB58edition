@@ -7,6 +7,7 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 
+import com.B58works.IDGen;
 import com.B58works.R;
 import com.B58works.settings.Superpref;
 
@@ -21,7 +22,7 @@ public class grActionbar extends Superpref {
     Preference p2;
     ListPreference p3;
 
-    public grActionbar()
+    public void init()
     {
         p3=(ListPreference) findPreference("ActionbarColoror");
         p2=findPreference("ActionbarColorgr");
@@ -32,7 +33,8 @@ public class grActionbar extends Superpref {
     public void onCreate(Bundle b)
     {
         super.onCreate(b);
-        addPreferencesFromResource(R.xml.vgractionbar);
+        addPreferencesFromResource(IDGen.xml.vgractionbar);
+        init();
     }
 
     protected void onStart()
@@ -56,31 +58,31 @@ public class grActionbar extends Superpref {
 
     private void b58()
     {
-        p.setTitle(R.string.enablegr);
+        p.setTitle(IDGen.string.enablegr);
         if(p.isChecked())
         {
             p2.setEnabled(true);
             p3.setEnabled(true);
-            p1.setTitle(R.string.startcolor);
-            p1.setSummary(R.string.univactionbarstartsum);
-            p2.setTitle(R.string.endcolor);
-            p2.setSummary(R.string.univactionbarendsum);
-            p3.setTitle(R.string.gradient);
-            p3.setEntries(R.array.gr_style);
-            p3.setEntryValues(R.array.actionbarStyleListValues);
+            p1.setTitle(IDGen.string.startcolor);
+            p1.setSummary(IDGen.string.univactionbarstartsum);
+            p2.setTitle(IDGen.string.endcolor);
+            p2.setSummary(IDGen.string.univactionbarendsum);
+            p3.setTitle(IDGen.string.gradient);
+            p3.setEntries(IDGen.array.gr_style);
+            p3.setEntryValues(IDGen.array.actionbarStyleListValues);
             p3.setDefaultValue("0");
-            p3.setSummary(R.string.grstyle);
+            p3.setSummary(IDGen.string.grstyle);
         }
         else
         {
             p2.setEnabled(false);
             p3.setEnabled(false);
-            p2.setTitle(R.string.disabled);
-            p3.setTitle(R.string.disabled);
-            p2.setSummary(getApplicationContext().getString(R.string.disableoption,"undef"));
-            p3.setSummary(getApplicationContext().getString(R.string.disableoption,"undef"));
-            p1.setTitle(R.string.univactionbar);
-            p1.setSummary(R.string.univactionbarsum);
+            p2.setTitle(IDGen.string.disabled);
+            p3.setTitle(IDGen.string.disabled);
+            p2.setSummary(getString(IDGen.string.disableoption,"2.1.1"));
+            p3.setSummary(getString(IDGen.string.disableoption,"2.1.1"));
+            p1.setTitle(IDGen.string.univactionbar);
+            p1.setSummary(IDGen.string.univactionbarsum);
         }
     }
 }
